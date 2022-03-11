@@ -56,7 +56,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 editar = true;
             }
 
-            if (!profLogin.rol1.permiso.Contains(mvInci.bloqueProf))
+            if (!editar)
             {
                 txtSeparador.Visibility = Visibility.Collapsed;
                 comboResponsable.Visibility = Visibility.Collapsed;
@@ -153,6 +153,32 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             mvInci.inciNueva.fecha_resolucion = null;
             mvInci.inciNueva.tiempo = null;
+        }
+
+        private void checkCambioware_Checked(object sender, RoutedEventArgs e)
+        {
+            txtNumSerie.Visibility = Visibility.Collapsed;
+            txtModelo.Visibility = Visibility.Collapsed;
+            checkGarantia.Visibility = Visibility.Collapsed;
+            comboTipoHW.Visibility = Visibility.Collapsed;
+            txtHardware.Visibility = Visibility.Collapsed;
+
+            txtSoftNombre.Visibility = Visibility.Visible;
+            txtSoftVersion.Visibility = Visibility.Visible;
+            txtSoftware.Visibility = Visibility.Visible;
+        }
+
+        private void checkCambioware_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtNumSerie.Visibility = Visibility.Visible;
+            txtModelo.Visibility = Visibility.Visible;
+            checkGarantia.Visibility = Visibility.Visible;
+            comboTipoHW.Visibility = Visibility.Visible;
+            txtHardware.Visibility = Visibility.Visible;
+
+            txtSoftNombre.Visibility = Visibility.Collapsed;
+            txtSoftVersion.Visibility = Visibility.Collapsed;
+            txtSoftware.Visibility = Visibility.Collapsed;
         }
     }
 }

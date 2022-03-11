@@ -17,6 +17,7 @@ namespace Incidencias_Infor.Backend.Modelo
         public string version { get; set; }
         public int codigo { get; set; }
         public int incidencia { get; set; }
+        public string nombre { get; set; }
     
         public virtual incidencia incidencia1 { get; set; }
     }

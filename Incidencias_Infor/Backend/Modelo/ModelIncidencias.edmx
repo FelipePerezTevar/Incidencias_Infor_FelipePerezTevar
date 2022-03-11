@@ -98,6 +98,7 @@
           </Key>
           <Property Name="version" Type="varchar" MaxLength="45" />
           <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" />
           <Property Name="incidencia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tipohw">
@@ -423,6 +424,7 @@
           <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="incidencia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="incidencia1" Relationship="Self.fk_software_incidencia1" FromRole="software" ToRole="incidencia" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tipohw">
           <Key>
@@ -708,6 +710,7 @@
           <EntitySetMapping Name="software">
             <EntityTypeMapping TypeName="incidencias_informaticasModel.software">
               <MappingFragment StoreEntitySet="software">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="incidencia" ColumnName="incidencia" />

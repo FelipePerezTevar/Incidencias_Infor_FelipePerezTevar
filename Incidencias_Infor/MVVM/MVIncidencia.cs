@@ -14,12 +14,13 @@ namespace Incidencias_Infor.MVVM
         private LugarServicio luServ;
         private EstadoServicio estServ;
         private IncidenciaServicio inciServ;
-        private ArticuloServicio artiServ;
         private ProfesorServicio profServ;
         private HardwareServicio hardServ;
         private SoftwareServicio softServ;
         private PermisoServicio permServ;
         private profesor profTIC;
+        private hardware hard;
+        private software soft;
         private estado estadoEnSolucion;
         private permiso limiteProfesor;
         private incidencia inci;
@@ -36,13 +37,14 @@ namespace Incidencias_Infor.MVVM
         {
             luServ = new LugarServicio(inciEnt);
             estServ = new EstadoServicio(inciEnt);
-            artiServ = new ArticuloServicio(inciEnt);
             profServ = new ProfesorServicio(inciEnt);
             inciServ = new IncidenciaServicio(inciEnt);
             hardServ = new HardwareServicio(inciEnt);
             softServ = new SoftwareServicio(inciEnt);
             permServ = new PermisoServicio(inciEnt);
             inci = new incidencia();
+            hard = new hardware();
+            soft = new software();
             estadoEnSolucion = estServ.getEnSolucion();
             limiteProfesor = permServ.bloqueProfesor();
             profTIC = profServ.getCoordTIC();
@@ -51,7 +53,7 @@ namespace Incidencias_Infor.MVVM
 
         public List<lugar> listLugar { get { return luServ.getAll().ToList(); } }
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
-        public List<articulo> listArticulo { get { return artiServ.getAll().ToList(); } }
+        
         public List<profesor> listProfesor { get { return profServ.getAll().ToList(); } }
 
         public estado estadoProf { get { return estadoEnSolucion; } }
@@ -67,6 +69,10 @@ namespace Incidencias_Infor.MVVM
         public List<hardware> listHardware { get { return hardServ.getAll().ToList(); } }
 
         public incidencia inciNueva { get { return inci; } set { inci = value; NotifyPropertyChanged(nameof(inciNueva)); } }
+
+       public software softNuevo { get { return soft; } set { soft = value; NotifyPropertyChanged(nameof(softNuevo)); } }
+
+        public hardware hardNuevo { get { return hard; } set { hard = value;NotifyPropertyChanged(nameof(hardNuevo)); } }
 
         public bool guarda { get { return add(inciNueva); } }
         public bool edita { get { return update(inciNueva); } }

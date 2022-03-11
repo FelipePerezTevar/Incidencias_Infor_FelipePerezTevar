@@ -5,13 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="incidencias_informaticasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="articulo">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="45" />
-        </EntityType>
         <EntityType Name="departamento">
           <Key>
             <PropertyRef Name="codigo" />
@@ -30,10 +23,12 @@
           <Key>
             <PropertyRef Name="codigo" />
           </Key>
-          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="num_serie" Type="varchar" MaxLength="45" />
           <Property Name="tipo" Type="int" Nullable="false" />
-          <Property Name="articulo" Type="int" Nullable="false" />
+          <Property Name="garantia" Type="smallint" />
+          <Property Name="modelo" Type="varchar" MaxLength="45" />
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="incidencia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="incidencia">
           <Key>
@@ -50,7 +45,6 @@
           <Property Name="observacion" Type="varchar" MaxLength="150" />
           <Property Name="lugar" Type="int" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
-          <Property Name="articulo" Type="int" Nullable="false" />
           <Property Name="profesor" Type="int" Nullable="false" />
           <Property Name="responsable" Type="int" />
         </EntityType>
@@ -102,9 +96,10 @@
           <Key>
             <PropertyRef Name="codigo" />
           </Key>
-          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="varchar" MaxLength="45" />
-          <Property Name="articulo" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" />
+          <Property Name="incidencia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tipohw">
           <Key>
@@ -113,15 +108,15 @@
           <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="45" />
         </EntityType>
-        <Association Name="fk_hardware_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
+        <Association Name="fk_hardware_incidencia1">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="1" />
           <End Role="hardware" Type="Self.hardware" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="articulo">
+            <Principal Role="incidencia">
               <PropertyRef Name="codigo" />
             </Principal>
             <Dependent Role="hardware">
-              <PropertyRef Name="articulo" />
+              <PropertyRef Name="incidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,18 +129,6 @@
             </Principal>
             <Dependent Role="hardware">
               <PropertyRef Name="tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_incidencia_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
-          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="articulo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="incidencia">
-              <PropertyRef Name="articulo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,20 +240,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_software_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
+        <Association Name="fk_software_incidencia1">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="1" />
           <End Role="software" Type="Self.software" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="articulo">
+            <Principal Role="incidencia">
               <PropertyRef Name="codigo" />
             </Principal>
             <Dependent Role="software">
-              <PropertyRef Name="articulo" />
+              <PropertyRef Name="incidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="incidencias_informaticasModelStoreContainer">
-          <EntitySet Name="articulo" EntityType="Self.articulo" Schema="incidencias_informaticas" store:Type="Tables" />
           <EntitySet Name="departamento" EntityType="Self.departamento" Schema="incidencias_informaticas" store:Type="Tables" />
           <EntitySet Name="estado" EntityType="Self.estado" Schema="incidencias_informaticas" store:Type="Tables" />
           <EntitySet Name="hardware" EntityType="Self.hardware" Schema="incidencias_informaticas" store:Type="Tables" />
@@ -282,17 +264,13 @@
           <EntitySet Name="rol_has_permiso" EntityType="Self.rol_has_permiso" Schema="incidencias_informaticas" store:Type="Tables" />
           <EntitySet Name="software" EntityType="Self.software" Schema="incidencias_informaticas" store:Type="Tables" />
           <EntitySet Name="tipohw" EntityType="Self.tipohw" Schema="incidencias_informaticas" store:Type="Tables" />
-          <AssociationSet Name="fk_hardware_articulo1" Association="Self.fk_hardware_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
+          <AssociationSet Name="fk_hardware_incidencia1" Association="Self.fk_hardware_incidencia1">
+            <End Role="incidencia" EntitySet="incidencia" />
             <End Role="hardware" EntitySet="hardware" />
           </AssociationSet>
           <AssociationSet Name="fk_hardware_tipohw" Association="Self.fk_hardware_tipohw">
             <End Role="tipohw" EntitySet="tipohw" />
             <End Role="hardware" EntitySet="hardware" />
-          </AssociationSet>
-          <AssociationSet Name="fk_incidencia_articulo1" Association="Self.fk_incidencia_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
-            <End Role="incidencia" EntitySet="incidencia" />
           </AssociationSet>
           <AssociationSet Name="fk_incidencia_estado1" Association="Self.fk_incidencia_estado1">
             <End Role="estado" EntitySet="estado" />
@@ -330,8 +308,8 @@
             <End Role="rol" EntitySet="rol" />
             <End Role="rol_has_permiso" EntitySet="rol_has_permiso" />
           </AssociationSet>
-          <AssociationSet Name="fk_software_articulo1" Association="Self.fk_software_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
+          <AssociationSet Name="fk_software_incidencia1" Association="Self.fk_software_incidencia1">
+            <End Role="incidencia" EntitySet="incidencia" />
             <End Role="software" EntitySet="software" />
           </AssociationSet>
         </EntityContainer>
@@ -339,16 +317,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="incidencias_informaticasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="articulo">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="hardware" Relationship="Self.fk_hardware_articulo1" FromRole="articulo" ToRole="hardware" />
-          <NavigationProperty Name="incidencia" Relationship="Self.fk_incidencia_articulo1" FromRole="articulo" ToRole="incidencia" />
-          <NavigationProperty Name="software" Relationship="Self.fk_software_articulo1" FromRole="articulo" ToRole="software" />
-        </EntityType>
         <EntityType Name="departamento">
           <Key>
             <PropertyRef Name="codigo" />
@@ -370,11 +338,13 @@
           <Key>
             <PropertyRef Name="codigo" />
           </Key>
-          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="incidencia" Type="Int32" Nullable="false" />
           <Property Name="num_serie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="tipo" Type="Int32" Nullable="false" />
-          <Property Name="articulo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="articulo1" Relationship="Self.fk_hardware_articulo1" FromRole="hardware" ToRole="articulo" />
+          <Property Name="garantia" Type="Int16" />
+          <Property Name="modelo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="incidencia1" Relationship="Self.fk_hardware_incidencia1" FromRole="hardware" ToRole="incidencia" />
           <NavigationProperty Name="tipohw" Relationship="Self.fk_hardware_tipohw" FromRole="hardware" ToRole="tipohw" />
         </EntityType>
         <EntityType Name="incidencia">
@@ -392,14 +362,14 @@
           <Property Name="observacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="lugar" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Int32" Nullable="false" />
-          <Property Name="articulo" Type="Int32" Nullable="false" />
           <Property Name="profesor" Type="Int32" Nullable="false" />
-          <Property Name="responsable" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="articulo1" Relationship="Self.fk_incidencia_articulo1" FromRole="incidencia" ToRole="articulo" />
+          <Property Name="responsable" Type="Int32" />
           <NavigationProperty Name="estado1" Relationship="Self.fk_incidencia_estado1" FromRole="incidencia" ToRole="estado" />
+          <NavigationProperty Name="hardware" Relationship="Self.fk_hardware_incidencia1" FromRole="incidencia" ToRole="hardware" />
           <NavigationProperty Name="lugar1" Relationship="Self.fk_incidencia_lugar1" FromRole="incidencia" ToRole="lugar" />
           <NavigationProperty Name="profesor1" Relationship="Self.fk_incidencia_profesor1" FromRole="incidencia" ToRole="profesor" />
           <NavigationProperty Name="profesor2" Relationship="Self.fk_incidencia_profesor2" FromRole="incidencia" ToRole="profesor" />
+          <NavigationProperty Name="software" Relationship="Self.fk_software_incidencia1" FromRole="incidencia" ToRole="software" />
         </EntityType>
         <EntityType Name="lugar">
           <Key>
@@ -450,10 +420,11 @@
           <Key>
             <PropertyRef Name="codigo" />
           </Key>
-          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="articulo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="articulo1" Relationship="Self.fk_software_articulo1" FromRole="software" ToRole="articulo" />
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="incidencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="incidencia1" Relationship="Self.fk_software_incidencia1" FromRole="software" ToRole="incidencia" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tipohw">
           <Key>
@@ -463,42 +434,6 @@
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="hardware" Relationship="Self.fk_hardware_tipohw" FromRole="tipohw" ToRole="hardware" />
         </EntityType>
-        <Association Name="fk_hardware_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
-          <End Role="hardware" Type="Self.hardware" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="articulo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="hardware">
-              <PropertyRef Name="articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_incidencia_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
-          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="articulo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="incidencia">
-              <PropertyRef Name="articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_software_articulo1">
-          <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
-          <End Role="software" Type="Self.software" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="articulo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="software">
-              <PropertyRef Name="articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_lugar_departamento1">
           <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
           <End Role="lugar" Type="Self.lugar" Multiplicity="*" />
@@ -532,6 +467,18 @@
             </Principal>
             <Dependent Role="incidencia">
               <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_hardware_incidencia1">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="1" />
+          <End Role="hardware" Type="Self.hardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="hardware">
+              <PropertyRef Name="incidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -572,7 +519,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_incidencia_profesor2">
-          <End Role="profesor" Type="Self.profesor" Multiplicity="1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
           <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="profesor">
@@ -580,6 +527,18 @@
             </Principal>
             <Dependent Role="incidencia">
               <PropertyRef Name="responsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_software_incidencia1">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="1" />
+          <End Role="software" Type="Self.software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="software">
+              <PropertyRef Name="incidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -600,7 +559,6 @@
           <End Role="rol" Type="Self.rol" Multiplicity="*" />
         </Association>
         <EntityContainer Name="incidenciasEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="articulo" EntityType="Self.articulo" />
           <EntitySet Name="departamento" EntityType="Self.departamento" />
           <EntitySet Name="estado" EntityType="Self.estado" />
           <EntitySet Name="hardware" EntityType="Self.hardware" />
@@ -611,18 +569,6 @@
           <EntitySet Name="rol" EntityType="Self.rol" />
           <EntitySet Name="software" EntityType="Self.software" />
           <EntitySet Name="tipohw" EntityType="Self.tipohw" />
-          <AssociationSet Name="fk_hardware_articulo1" Association="Self.fk_hardware_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
-            <End Role="hardware" EntitySet="hardware" />
-          </AssociationSet>
-          <AssociationSet Name="fk_incidencia_articulo1" Association="Self.fk_incidencia_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
-            <End Role="incidencia" EntitySet="incidencia" />
-          </AssociationSet>
-          <AssociationSet Name="fk_software_articulo1" Association="Self.fk_software_articulo1">
-            <End Role="articulo" EntitySet="articulo" />
-            <End Role="software" EntitySet="software" />
-          </AssociationSet>
           <AssociationSet Name="fk_lugar_departamento1" Association="Self.fk_lugar_departamento1">
             <End Role="departamento" EntitySet="departamento" />
             <End Role="lugar" EntitySet="lugar" />
@@ -634,6 +580,10 @@
           <AssociationSet Name="fk_incidencia_estado1" Association="Self.fk_incidencia_estado1">
             <End Role="estado" EntitySet="estado" />
             <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_hardware_incidencia1" Association="Self.fk_hardware_incidencia1">
+            <End Role="incidencia" EntitySet="incidencia" />
+            <End Role="hardware" EntitySet="hardware" />
           </AssociationSet>
           <AssociationSet Name="fk_hardware_tipohw" Association="Self.fk_hardware_tipohw">
             <End Role="tipohw" EntitySet="tipohw" />
@@ -651,6 +601,10 @@
             <End Role="profesor" EntitySet="profesor" />
             <End Role="incidencia" EntitySet="incidencia" />
           </AssociationSet>
+          <AssociationSet Name="fk_software_incidencia1" Association="Self.fk_software_incidencia1">
+            <End Role="incidencia" EntitySet="incidencia" />
+            <End Role="software" EntitySet="software" />
+          </AssociationSet>
           <AssociationSet Name="fk_profesor_rol1" Association="Self.fk_profesor_rol1">
             <End Role="rol" EntitySet="rol" />
             <End Role="profesor" EntitySet="profesor" />
@@ -666,14 +620,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="incidencias_informaticasModelStoreContainer" CdmEntityContainer="incidenciasEntities">
-          <EntitySetMapping Name="articulo">
-            <EntityTypeMapping TypeName="incidencias_informaticasModel.articulo">
-              <MappingFragment StoreEntitySet="articulo">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="departamento">
             <EntityTypeMapping TypeName="incidencias_informaticasModel.departamento">
               <MappingFragment StoreEntitySet="departamento">
@@ -693,10 +639,12 @@
           <EntitySetMapping Name="hardware">
             <EntityTypeMapping TypeName="incidencias_informaticasModel.hardware">
               <MappingFragment StoreEntitySet="hardware">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="incidencia" ColumnName="incidencia" />
                 <ScalarProperty Name="num_serie" ColumnName="num_serie" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="garantia" ColumnName="garantia" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -714,7 +662,6 @@
                 <ScalarProperty Name="observacion" ColumnName="observacion" />
                 <ScalarProperty Name="lugar" ColumnName="lugar" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="articulo" ColumnName="articulo" />
                 <ScalarProperty Name="profesor" ColumnName="profesor" />
                 <ScalarProperty Name="responsable" ColumnName="responsable" />
               </MappingFragment>
@@ -763,9 +710,10 @@
           <EntitySetMapping Name="software">
             <EntityTypeMapping TypeName="incidencias_informaticasModel.software">
               <MappingFragment StoreEntitySet="software">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="incidencia" ColumnName="incidencia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

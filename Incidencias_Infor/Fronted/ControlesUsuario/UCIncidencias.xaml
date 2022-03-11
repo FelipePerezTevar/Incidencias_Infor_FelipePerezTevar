@@ -21,7 +21,6 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Articulo" Binding="{Binding articulo1.nombre}"/>
                     <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}"/>
                     <DataGridTextColumn Header="Estado" Binding="{Binding estado1.nombre}"/>
                     <DataGridTextColumn Header="Lugar" Binding="{Binding lugar1.nombre}"/>

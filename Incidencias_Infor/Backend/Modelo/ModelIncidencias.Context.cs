@@ -25,7 +25,6 @@ namespace Incidencias_Infor.Backend.Modelo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<articulo> articulo { get; set; }
         public virtual DbSet<departamento> departamento { get; set; }
         public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<hardware> hardware { get; set; }

@@ -14,12 +14,14 @@ namespace Incidencias_Infor.Backend.Modelo
     
     public partial class hardware
     {
-        public int codigo { get; set; }
+        public int incidencia { get; set; }
         public string num_serie { get; set; }
         public int tipo { get; set; }
-        public int articulo { get; set; }
+        public Nullable<short> garantia { get; set; }
+        public string modelo { get; set; }
+        public int codigo { get; set; }
     
-        public virtual articulo articulo1 { get; set; }
+        public virtual incidencia incidencia1 { get; set; }
         public virtual tipohw tipohw { get; set; }
     }
 }

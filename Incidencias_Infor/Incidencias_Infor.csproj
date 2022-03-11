@@ -138,9 +138,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Backend\Modelo\articulo.cs">
-      <DependentUpon>ModelIncidencias.tt</DependentUpon>
-    </Compile>
     <Compile Include="Backend\Modelo\departamento.cs">
       <DependentUpon>ModelIncidencias.tt</DependentUpon>
     </Compile>
@@ -186,7 +183,6 @@
     <Compile Include="Backend\Modelo\tipohw.cs">
       <DependentUpon>ModelIncidencias.tt</DependentUpon>
     </Compile>
-    <Compile Include="Backend\Servicio\ArticuloServicio.cs" />
     <Compile Include="Backend\Servicio\DepartamentoServicio.cs" />
     <Compile Include="Backend\Servicio\EstadoServicio.cs" />
     <Compile Include="Backend\Servicio\HardwareServicio.cs" />
@@ -258,6 +254,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Backend\Modelo\ModelIncidencias.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
+      <LastGenOutput>ModelIncidencias.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Backend\Modelo\ModelIncidencias.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
+      <LastGenOutput>ModelIncidencias.cs</LastGenOutput>
+    </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EntityDeploy Include="Backend\Modelo\ModelIncidencias.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelIncidencias.Designer.cs</LastGenOutput>
@@ -265,9 +274,6 @@
     <None Include="Backend\Modelo\ModelIncidencias.edmx.diagram">
       <DependentUpon>ModelIncidencias.edmx</DependentUpon>
     </None>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Informes\DataSetIncidencias.xsc">
       <DependentUpon>DataSetIncidencias.xsd</DependentUpon>
     </None>
@@ -301,18 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\lincy2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Backend\Modelo\ModelIncidencias.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-      <LastGenOutput>ModelIncidencias.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Backend\Modelo\ModelIncidencias.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-      <LastGenOutput>ModelIncidencias.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

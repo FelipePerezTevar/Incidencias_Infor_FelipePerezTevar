@@ -76,7 +76,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 if (DateIncio.SelectedDate < DateTime.Now)
                 {
-                    if (comboLugar.SelectedItem != null || comboArticulo.SelectedItem != null || 
+                    if (comboLugar.SelectedItem != null ||
                         DateIncio.SelectedDate != null || txtDescripcion.Text != null)
                     {
 

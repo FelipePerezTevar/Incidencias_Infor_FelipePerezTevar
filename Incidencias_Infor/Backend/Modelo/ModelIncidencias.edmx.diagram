@@ -4,28 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00f9de6b18ff4bf68ee5853b14fb4081" Name="Diagram1">
-        <EntityTypeShape EntityType="incidencias_informaticasModel.articulo" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.departamento" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.estado" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.hardware" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.incidencia" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.lugar" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.permiso" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.profesor" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.rol" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.software" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="incidencias_informaticasModel.tipohw" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <AssociationConnector Association="incidencias_informaticasModel.fk_hardware_articulo1" ManuallyRouted="false" />
-        <AssociationConnector Association="incidencias_informaticasModel.fk_incidencia_articulo1" ManuallyRouted="false" />
-        <AssociationConnector Association="incidencias_informaticasModel.fk_software_articulo1" ManuallyRouted="false" />
+      <Diagram DiagramId="fcb7a0ff9bc44b1295eb7317a8b117bb" Name="Diagram1">
+        <EntityTypeShape EntityType="incidencias_informaticasModel.departamento" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.estado" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.hardware" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.incidencia" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.lugar" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.permiso" Width="1.5" PointX="1.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.profesor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.rol" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.software" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel.tipohw" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_lugar_departamento1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_profesor_departamento1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_incidencia_estado1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel.fk_hardware_incidencia1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_hardware_tipohw" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_incidencia_lugar1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_incidencia_profesor1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_incidencia_profesor2" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel.fk_software_incidencia1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.fk_profesor_rol1" ManuallyRouted="false" />
         <AssociationConnector Association="incidencias_informaticasModel.rol_has_permiso" ManuallyRouted="false" />
       </Diagram>

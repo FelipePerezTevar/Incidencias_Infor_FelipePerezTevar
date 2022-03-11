@@ -14,7 +14,6 @@ namespace Incidencias_Infor.MVVM
         private LugarServicio luServ;
         private EstadoServicio estServ;
         private IncidenciaServicio inciServ;
-        private ArticuloServicio artiServ;
         private ProfesorServicio profServ;
         private HardwareServicio hardServ;
         private SoftwareServicio softServ;
@@ -36,7 +35,6 @@ namespace Incidencias_Infor.MVVM
         {
             luServ = new LugarServicio(inciEnt);
             estServ = new EstadoServicio(inciEnt);
-            artiServ = new ArticuloServicio(inciEnt);
             profServ = new ProfesorServicio(inciEnt);
             inciServ = new IncidenciaServicio(inciEnt);
             hardServ = new HardwareServicio(inciEnt);
@@ -51,7 +49,7 @@ namespace Incidencias_Infor.MVVM
 
         public List<lugar> listLugar { get { return luServ.getAll().ToList(); } }
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
-        public List<articulo> listArticulo { get { return artiServ.getAll().ToList(); } }
+        
         public List<profesor> listProfesor { get { return profServ.getAll().ToList(); } }
 
         public estado estadoProf { get { return estadoEnSolucion; } }

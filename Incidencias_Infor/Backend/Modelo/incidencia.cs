@@ -14,6 +14,13 @@ namespace Incidencias_Infor.Backend.Modelo
     
     public partial class incidencia
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public incidencia()
+        {
+            this.hardware = new HashSet<hardware>();
+            this.software = new HashSet<software>();
+        }
+    
         public int codigo { get; set; }
         public Nullable<System.DateTime> fecha_inicial { get; set; }
         public Nullable<System.DateTime> fecha_introduccion { get; set; }
@@ -25,14 +32,16 @@ namespace Incidencias_Infor.Backend.Modelo
         public string observacion { get; set; }
         public int lugar { get; set; }
         public int estado { get; set; }
-        public int articulo { get; set; }
         public int profesor { get; set; }
-        public int responsable { get; set; }
+        public Nullable<int> responsable { get; set; }
     
-        public virtual articulo articulo1 { get; set; }
         public virtual estado estado1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hardware> hardware { get; set; }
         public virtual lugar lugar1 { get; set; }
         public virtual profesor profesor1 { get; set; }
         public virtual profesor profesor2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<software> software { get; set; }
     }
 }

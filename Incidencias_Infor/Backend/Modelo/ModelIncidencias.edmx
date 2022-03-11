@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="incidencias_informaticasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="incidencias_informaticasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="departamento">
           <Key>
             <PropertyRef Name="codigo" />
@@ -23,12 +23,12 @@
           <Key>
             <PropertyRef Name="codigo" />
           </Key>
-          <Property Name="incidencia" Type="int" Nullable="false" />
           <Property Name="num_serie" Type="varchar" MaxLength="45" />
           <Property Name="tipo" Type="int" Nullable="false" />
           <Property Name="garantia" Type="smallint" />
           <Property Name="modelo" Type="varchar" MaxLength="45" />
           <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="incidencia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="incidencia">
           <Key>
@@ -312,8 +312,7 @@
             <End Role="software" EntitySet="software" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="incidencias_informaticasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

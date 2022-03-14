@@ -156,7 +156,7 @@
         </TextBox>
         
         <!--Garantia-->
-        <CheckBox Content="Garantia" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"
+        <CheckBox Content="Garantia" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" IsChecked="True"
                   x:Name="checkGarantia" Checked="checkGarantia_Checked" Unchecked="checkGarantia_Unchecked"/>
         
         <!--Tipo-->

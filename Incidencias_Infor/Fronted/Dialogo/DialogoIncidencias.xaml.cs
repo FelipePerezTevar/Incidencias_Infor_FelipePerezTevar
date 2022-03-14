@@ -33,6 +33,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private bool tipoware = true;
         private bool guardado = false;
         private bool editar = false;
+        private bool garantia;
         public DialogoIncidencias(incidenciasEntities ent, profesor prof, incidencia inc)
         {
             InitializeComponent();
@@ -139,8 +140,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     if (txtSoftNombre.Text != null || txtSoftVersion.Text != null)
                                     {
                                         mvSoft.softNuevo.incidencia1 = mvInci.inciNueva;
-                                        mvSoft.softNuevo.nombre = txtSoftNombre.Text;
-                                        mvSoft.softNuevo.version = txtSoftVersion.Text;
+                                        mvSoft.softNuevo = mvInci.softNuevo;
                                         bool softGuarda = mvSoft.guarda;
 
                                         if (softGuarda)
@@ -161,13 +161,26 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
                                     if (txtNumSerie.Text != null || txtModelo.Text != null || comboTipoHW.SelectedItem != null)
                                     {
-                                        mvHard.hardNuevo.incidencia1 = mvInci.inciNueva;
+                                        mvInci.hardNuevo.incidencia1 = mvInci.inciNueva;
+                                        mvHard.hardNuevo = mvInci.hardNuevo;
+                                        if (garantia)
+                                        {
+                                            mvHard.hardNuevo.garantia = 1;
+                                        }
+                                        else
+                                        {
+                                            mvHard.hardNuevo.garantia = 0;
+                                        }
                                         
                                         bool hardGuarda = mvHard.guarda;
 
                                         if (hardGuarda)
                                         {
                                             guardado = true;
+                                        }
+                                        else
+                                        {
+                                            await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se guardo el hardware");
                                         }
                                     }
                                     else
@@ -267,13 +280,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
         //Si esta check, el hardware tendrá garantia
         private void checkGarantia_Checked(object sender, RoutedEventArgs e)
         {
-            mvHard.hardNuevo.garantia = 1;
+            garantia = true;
         }
 
         //Si esta uncheck, el hardware no tendrá garantia
         private void checkGarantia_Unchecked(object sender, RoutedEventArgs e)
         {
-            mvHard.hardNuevo.garantia = 0;
+            garantia = false;
         }
     }
 }

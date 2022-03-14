@@ -10,9 +10,24 @@ namespace Incidencias_Infor.Backend.Servicio
 {
     public class HardwareServicio: ServicioGenerico<hardware>
     {
+        DbContext contexto;
+
         public HardwareServicio(DbContext context): base(context)
         {
+            contexto = context;
+        }
 
+        public int getLastId()
+        {
+            hardware hard = contexto.Set<hardware>().OrderByDescending(h => h.codigo).FirstOrDefault();
+            if(hard == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return hard.codigo;
+            }
         }
     }
 }

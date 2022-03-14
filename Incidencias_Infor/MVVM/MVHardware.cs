@@ -28,6 +28,8 @@ namespace Incidencias_Infor.MVVM
             hard = new hardware();
         }
 
+        
+
         public hardware hardNuevo { get { return hard; } set { hard = value;NotifyPropertyChanged(nameof(hardNuevo));} }
 
         public bool guarda { get { return add(hardNuevo); } }

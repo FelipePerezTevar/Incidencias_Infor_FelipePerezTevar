@@ -134,7 +134,7 @@
         <!--Numero de serie-->
         <TextBox Grid.Row="4" Grid.Column="0" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.observacion}" x:Name="txtNumSerie"
+                 Text="{Binding hardNuevo.num_serie}" x:Name="txtNumSerie"
                  mat:TextFieldAssist.HasClearButton="True">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -146,7 +146,7 @@
         <!--Modelo-->
         <TextBox Grid.Row="4" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.observacion}" x:Name="txtModelo"
+                 Text="{Binding hardNuevo.modelo}" x:Name="txtModelo"
                  mat:TextFieldAssist.HasClearButton="True">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -157,13 +157,13 @@
         
         <!--Garantia-->
         <CheckBox Content="Garantia" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"
-                  x:Name="checkGarantia"/>
+                  x:Name="checkGarantia" Checked="checkGarantia_Checked" Unchecked="checkGarantia_Unchecked"/>
         
         <!--Tipo-->
         <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="5" Margin="0,10,0,0"
-                     Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
+                     Style="{StaticResource MaterialDesignOutlinedComboBox}" 
                   DisplayMemberPath="nombre" x:Name="comboTipoHW" 
-                  ItemsSource="{Binding listProfesor}" SelectedItem="{Binding inciNueva.profesor2, NotifyOnValidationError=True,
+                  ItemsSource="{Binding listTipo}" SelectedItem="{Binding hardNuevo.tipohw, NotifyOnValidationError=True,
             ValidatesOnDataErrors=True}">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -181,7 +181,7 @@
         <!--Nombre-->
         <TextBox Grid.Row="7" Grid.Column="0" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.observacion}" x:Name="txtSoftNombre"
+                 Text="{Binding softNuevo.nombre}" x:Name="txtSoftNombre"
                  mat:TextFieldAssist.HasClearButton="True" Visibility="Collapsed">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -193,7 +193,7 @@
         <!--Version-->
         <TextBox Grid.Row="7" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.observacion}" x:Name="txtSoftVersion"
+                 Text="{Binding softNuevo.version}" x:Name="txtSoftVersion"
                  mat:TextFieldAssist.HasClearButton="True" Visibility="Collapsed">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">

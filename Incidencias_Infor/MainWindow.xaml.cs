@@ -42,9 +42,10 @@ namespace Incidencias_Infor
 
         private void menuListar_Click(object sender, RoutedEventArgs e)
         {
+            /*
             UCIncidencias uc = new UCIncidencias(inciEnt, profLogin);
             gridCentral.Children.Clear();
-            gridCentral.Children.Add(uc);
+            gridCentral.Children.Add(uc);*/
         }
     }
 }

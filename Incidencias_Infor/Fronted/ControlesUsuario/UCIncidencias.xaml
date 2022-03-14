@@ -8,7 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <TextBlock Text="Futuros filtros"/>
+            <TextBlock Text="Futuros filtros" HorizontalAlignment="Right"/>
+            <CheckBox x:Name="checkTipoWare" Content="Software" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
         </Grid>
         <Grid>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
@@ -21,7 +22,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}"/>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}" x:Name="prueba"/>
                     <DataGridTextColumn Header="Estado" Binding="{Binding estado1.nombre}"/>
                     <DataGridTextColumn Header="Lugar" Binding="{Binding lugar1.nombre}"/>
                     <DataGridTextColumn Header="Responsable" Binding="{Binding profesor2.nombre}"/>

@@ -43,16 +43,19 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void menuEditar_Click(object sender, RoutedEventArgs e)
         {
+            
             if (dgIncidencia.SelectedItem != null){
 
                 DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,mvInci.inciNueva);
                 diag.Show();
             }
             
+            
         }
 
         private void menuBorrar_Click(object sender, RoutedEventArgs e)
         {
+            
             if (dgIncidencia.SelectedItem != null)
             {
                 bool borrado = mvInci.borrar;
@@ -68,7 +71,18 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                         "PRUEBA BORRADO", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+
             
+        }
+
+        private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
+        {
+            prueba.Visibility = Visibility.Collapsed;
+        }
+
+        private void checkTipoWare_Unchecked(object sender, RoutedEventArgs e)
+        {
+            prueba.Visibility = Visibility.Visible;
         }
     }
 }

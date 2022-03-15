@@ -55,34 +55,30 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void menuBorrar_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (dgIncidencia.SelectedItem != null)
-            {
-                bool borrado = mvInci.borrar;
 
-                if (borrado)
-                {
-                    MessageBox.Show("Ha sido eliminado con exito",
+            MessageBox.Show("Esto borrará cosas wey",
                         "PRUEBA BORRADO", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No se borro, wey",
-                        "PRUEBA BORRADO", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
 
-            
+
         }
 
         private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
         {
-            prueba.Visibility = Visibility.Collapsed;
+            hardSerie.Visibility = Visibility.Collapsed;
+            hardTipo.Visibility = Visibility.Collapsed;
+            softNombre.Visibility = Visibility.Visible;
+            softVersion.Visibility = Visibility.Visible;
+            dgIncidencia.ItemsSource = mvInci.listSoftware;
         }
 
         private void checkTipoWare_Unchecked(object sender, RoutedEventArgs e)
         {
-            prueba.Visibility = Visibility.Visible;
+
+            hardSerie.Visibility = Visibility.Visible;
+            hardTipo.Visibility = Visibility.Visible;
+            softNombre.Visibility = Visibility.Collapsed;
+            softVersion.Visibility = Visibility.Collapsed;
+            dgIncidencia.ItemsSource = mvInci.listHardware;
         }
     }
 }

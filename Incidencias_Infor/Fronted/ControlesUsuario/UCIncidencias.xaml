@@ -9,11 +9,12 @@
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <TextBlock Text="Futuros filtros" HorizontalAlignment="Right"/>
-            <CheckBox x:Name="checkTipoWare" Content="Software" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
+            <CheckBox x:Name="checkTipoWare" Content="Software" 
+                      IsChecked="False" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
         </Grid>
         <Grid>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
-                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding listIncidencia}"
+                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding listHardware}"
                       SelectedItem="{Binding inciNueva}" >
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -22,11 +23,15 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}" x:Name="prueba"/>
-                    <DataGridTextColumn Header="Estado" Binding="{Binding estado1.nombre}"/>
-                    <DataGridTextColumn Header="Lugar" Binding="{Binding lugar1.nombre}"/>
-                    <DataGridTextColumn Header="Responsable" Binding="{Binding profesor2.nombre}"/>
-                    <DataGridTextColumn Header="Comunicado" Binding="{Binding comunicado}"/>
+                    <DataGridTextColumn x:Name="softNombre" Header="Nombre" Binding="{Binding nombre}" Visibility="Collapsed"/>
+                    <DataGridTextColumn x:Name="softVersion" Header="Version" Binding="{Binding version}" Visibility="Collapsed"/>
+                    <DataGridTextColumn x:Name="hardSerie" Header="Numero de serie" Binding="{Binding num_serie}"/>
+                    <DataGridTextColumn x:Name="hardTipo" Header="Tipo" Binding="{Binding tipohw.nombre}"/>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding incidencia1.descripcion}" x:Name="prueba"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding incidencia1.estado1.nombre}"/>
+                    <DataGridTextColumn Header="Lugar" Binding="{Binding incidencia1.lugar1.nombre}"/>
+                    <DataGridTextColumn Header="Fecha de introduccion" Binding="{Binding incidencia1.fecha_introduccion}"/>
+                    <DataGridTextColumn Header="Comunicado" Binding="{Binding incidencia1.comunicado}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -31,10 +31,10 @@ namespace Incidencias_Infor.Backend.Servicio
             
         }
 
-        public List<incidencia> getIncidenciasProf(profesor prof)
+        public hardware getHardware()
         {
-            
-            return null;
+            hardware hard = contexto.Set<hardware>().Where(h => h.incidencia1.codigo == 1).FirstOrDefault();
+            return hard;
         }
     }
 }

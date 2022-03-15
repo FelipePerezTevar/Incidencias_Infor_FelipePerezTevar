@@ -104,7 +104,34 @@ namespace Incidencias_Infor.Fronted.Dialogo
                             //Dependiendo del resultado de la edición, nos dirá que ha salido bien o mal
                             if (editado)
                             {
-                                await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha actualizado la incidencia");
+                                if (tipoware == false)
+                                {
+                                    bool softEdita = mvSoft.edita;
+
+                                    if (softEdita)
+                                    {
+                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha actualizado la incidencia");
+                                    }
+                                    else
+                                    {
+                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se a podido actualizar la incidencia");
+                                    }
+
+                                }
+                                else
+                                {
+                                    bool hardEdita = mvHard.edita;
+
+                                    if (hardEdita)
+                                    {
+                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha actualizado la incidencia");
+                                    }
+                                    else
+                                    {
+                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se a podido actualizar la incidencia");
+                                    }
+                                }
+                                
                             }
                             else
                             {

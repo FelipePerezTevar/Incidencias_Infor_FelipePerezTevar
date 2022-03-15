@@ -29,10 +29,12 @@ namespace Incidencias_Infor.MVVM
             soft = new software();
         }
 
-        public software softNuevo { get { return soft; } set { soft = value; NotifyPropertyChanged(nameof(softNuevo)); } }
+        public List<software> ListWare { get { return softServ.getAll().ToList(); } }
 
-        public bool guarda { get { return add(softNuevo); } }
-        public bool edita { get { return update(softNuevo); } }
-        public bool borrar { get { return delete(softNuevo); } }
+        public software wareNuevo { get { return soft; } set { soft = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+
+        public bool guarda { get { return add(wareNuevo); } }
+        public bool edita { get { return update(wareNuevo); } }
+        public bool borrar { get { return delete(wareNuevo); } }
     }
 }

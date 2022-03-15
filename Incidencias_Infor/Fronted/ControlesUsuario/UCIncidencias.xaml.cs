@@ -24,7 +24,8 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
     public partial class UCIncidencias : UserControl
     {
         private incidenciasEntities inciEnt;
-        private MVIncidencia mvInci;
+        private MVHardware mvHard;
+        private MVSoftware mvSoft;
         private profesor profLogin;
         public UCIncidencias(incidenciasEntities ent, profesor prof)
         {
@@ -37,8 +38,9 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void inicializa()
         {
-            mvInci = new MVIncidencia(inciEnt);
-            DataContext = mvInci;
+            mvHard = new MVHardware(inciEnt);
+            mvSoft = new MVSoftware(inciEnt);
+            DataContext = mvHard;
         }
 
         private void menuEditar_Click(object sender, RoutedEventArgs e)
@@ -46,7 +48,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
             if (dgIncidencia.SelectedItem != null){
 
-                DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,mvInci.inciNueva);
+                DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,mvHard.wareNuevo.incidencia1);
                 diag.Show();
             }
             
@@ -64,21 +66,24 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
         {
+            
             hardSerie.Visibility = Visibility.Collapsed;
             hardTipo.Visibility = Visibility.Collapsed;
             softNombre.Visibility = Visibility.Visible;
             softVersion.Visibility = Visibility.Visible;
-            dgIncidencia.ItemsSource = mvInci.listSoftware;
+            DataContext = mvSoft;
+            
         }
 
         private void checkTipoWare_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            
             hardSerie.Visibility = Visibility.Visible;
             hardTipo.Visibility = Visibility.Visible;
             softNombre.Visibility = Visibility.Collapsed;
             softVersion.Visibility = Visibility.Collapsed;
-            dgIncidencia.ItemsSource = mvInci.listHardware;
+            DataContext = mvHard;
+            
         }
     }
 }

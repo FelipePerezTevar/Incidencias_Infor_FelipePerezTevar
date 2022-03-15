@@ -29,11 +29,11 @@ namespace Incidencias_Infor.MVVM
         }
 
         
+        public List<hardware> ListWare { get { return hardServ.getAll().ToList(); } }
+        public hardware wareNuevo { get { return hard; } set { hard = value;NotifyPropertyChanged(nameof(wareNuevo));} }
 
-        public hardware hardNuevo { get { return hard; } set { hard = value;NotifyPropertyChanged(nameof(hardNuevo));} }
-
-        public bool guarda { get { return add(hardNuevo); } }
-        public bool edita { get { return update(hardNuevo); } }
-        public bool borrar { get{ return delete(hardNuevo); } }
+        public bool guarda { get { return add(wareNuevo); } }
+        public bool edita { get { return update(wareNuevo); } }
+        public bool borrar { get{ return delete(wareNuevo); } }
     }
 }

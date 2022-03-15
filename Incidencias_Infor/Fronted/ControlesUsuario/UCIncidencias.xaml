@@ -14,8 +14,8 @@
         </Grid>
         <Grid>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
-                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding listHardware}"
-                      SelectedItem="{Binding inciNueva}" >
+                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding ListWare}"
+                      SelectedItem="{Binding wareNuevo}" >
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Editar" x:Name="menuEditar" Click="menuEditar_Click"/>
@@ -23,6 +23,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
+                    
                     <DataGridTextColumn x:Name="softNombre" Header="Nombre" Binding="{Binding nombre}" Visibility="Collapsed"/>
                     <DataGridTextColumn x:Name="softVersion" Header="Version" Binding="{Binding version}" Visibility="Collapsed"/>
                     <DataGridTextColumn x:Name="hardSerie" Header="Numero de serie" Binding="{Binding num_serie}"/>

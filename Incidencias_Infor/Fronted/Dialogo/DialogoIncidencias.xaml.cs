@@ -30,6 +30,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private MVSoftware mvSoft;
         private profesor profLogin;
         private incidencia inci;
+        
         private bool tipoware = true;
         private bool guardado = false;
         private bool editar = false;
@@ -40,6 +41,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             inciEnt = ent;
             profLogin = prof;
             inci = inc;
+            
             mvInci = new MVIncidencia(inciEnt);
             DataContext = mvInci;
             this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(mvInci.OnErrorEvent));
@@ -55,6 +57,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             if(inci == null)
             {
                 mvInci.inciNueva = new incidencia();
+                
             }
             else
             {
@@ -166,8 +169,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
                                     if (txtSoftNombre.Text != null || txtSoftVersion.Text != null)
                                     {
-                                        mvSoft.softNuevo.incidencia1 = mvInci.inciNueva;
-                                        mvSoft.softNuevo = mvInci.softNuevo;
+                                        mvSoft.wareNuevo.incidencia1 = mvInci.inciNueva;
+                                        mvSoft.wareNuevo = mvInci.softNuevo;
                                         bool softGuarda = mvSoft.guarda;
 
                                         if (softGuarda)
@@ -189,14 +192,14 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     if (txtNumSerie.Text != null || txtModelo.Text != null || comboTipoHW.SelectedItem != null)
                                     {
                                         mvInci.hardNuevo.incidencia1 = mvInci.inciNueva;
-                                        mvHard.hardNuevo = mvInci.hardNuevo;
+                                        mvHard.wareNuevo = mvInci.hardNuevo;
                                         if (garantia)
                                         {
-                                            mvHard.hardNuevo.garantia = 1;
+                                            mvHard.wareNuevo.garantia = 1;
                                         }
                                         else
                                         {
-                                            mvHard.hardNuevo.garantia = 0;
+                                            mvHard.wareNuevo.garantia = 0;
                                         }
                                         
                                         bool hardGuarda = mvHard.guarda;

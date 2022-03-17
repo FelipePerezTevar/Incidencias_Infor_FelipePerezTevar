@@ -171,8 +171,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
                                     if (txtSoftNombre.Text != null || txtSoftVersion.Text != null)
                                     {
-                                        mvSoft.wareNuevo.incidencia1 = mvInci.inciNueva;
                                         mvSoft.wareNuevo = mvInci.softNuevo;
+                                        mvSoft.wareNuevo.incidencia1 = mvInci.inciNueva;
                                         bool softGuarda = mvSoft.guarda;
 
                                         if (softGuarda)
@@ -193,8 +193,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
                                     if (txtNumSerie.Text != null || txtModelo.Text != null || comboTipoHW.SelectedItem != null)
                                     {
-                                        mvInci.hardNuevo.incidencia1 = mvInci.inciNueva;
+                                        
                                         mvHard.wareNuevo = mvInci.hardNuevo;
+                                        mvInci.hardNuevo.incidencia1 = mvInci.inciNueva;
                                         if (garantia)
                                         {
                                             mvHard.wareNuevo.garantia = 1;

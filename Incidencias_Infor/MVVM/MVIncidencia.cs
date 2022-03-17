@@ -50,7 +50,7 @@ namespace Incidencias_Infor.MVVM
             estadoEnSolucion = estServ.getEnSolucion();
             limiteProfesor = permServ.bloqueProfesor();
             profTIC = profServ.getCoordTIC();
-            inci.codigo = inciServ.getLastId() + 1;
+           
         }
 
         public List<tipohw> listTipo { get { return tipoServ.getAll().ToList(); } }

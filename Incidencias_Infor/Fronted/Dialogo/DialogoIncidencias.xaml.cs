@@ -58,6 +58,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 mvInci.inciNueva = new incidencia();
                 
+                
             }
             else
             {
@@ -77,9 +78,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 checkFinalizado.Visibility = Visibility.Collapsed;
                 txtObservacion.Visibility = Visibility.Collapsed;
             }
-            //Tambien declaramos los MV de hardware y software
+
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
+            
 
         }
         //Este método comprueba y guarda las incidencias en la base de datos

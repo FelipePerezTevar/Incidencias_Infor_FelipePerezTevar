@@ -15,13 +15,8 @@
         <Grid>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
                   ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding ListWare}"
-                      SelectedItem="{Binding wareNuevo}" >
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Editar" x:Name="menuEditar" Click="menuEditar_Click"/>
-                        <MenuItem Header="Borrar" x:Name="menuBorrar" Click="menuBorrar_Click"/>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
+                      SelectedItem="{Binding wareNuevo}" MouseLeftButtonDown="dgIncidencia_MouseLeftButtonDown">
+                
                 <DataGrid.Columns>
                     
                     <DataGridTextColumn x:Name="softNombre" Header="Nombre" Binding="{Binding nombre}" Visibility="Collapsed"/>

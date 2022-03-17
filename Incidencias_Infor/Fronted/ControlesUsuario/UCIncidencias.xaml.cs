@@ -43,36 +43,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             DataContext = mvHard;
         }
 
-        private void menuEditar_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if (dgIncidencia.SelectedItem != null){
-
-                if(dgIncidencia.SelectedItem is hardware)
-                {
-                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvHard.wareNuevo.incidencia1, mvHard.wareNuevo,null);
-                    diag.Show();
-                }
-                else
-                {
-                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvSoft.wareNuevo.incidencia1,null, mvSoft.wareNuevo);
-                    diag.Show();
-                }
-
-                
-            }
-            
-            
-        }
-
-        private void menuBorrar_Click(object sender, RoutedEventArgs e)
-        {
-
-            MessageBox.Show("Esto borrará cosas wey",
-                        "PRUEBA BORRADO", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-        }
+        
 
         private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
         {
@@ -94,6 +65,26 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             softVersion.Visibility = Visibility.Collapsed;
             DataContext = mvHard;
             
+        }
+
+        private void dgIncidencia_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (dgIncidencia.SelectedItem != null)
+            {
+
+                if (dgIncidencia.SelectedItem is hardware)
+                {
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvHard.wareNuevo.incidencia1, mvHard.wareNuevo, null);
+                    diag.Show();
+                }
+                else
+                {
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvSoft.wareNuevo.incidencia1, null, mvSoft.wareNuevo);
+                    diag.Show();
+                }
+
+
+            }
         }
     }
 }

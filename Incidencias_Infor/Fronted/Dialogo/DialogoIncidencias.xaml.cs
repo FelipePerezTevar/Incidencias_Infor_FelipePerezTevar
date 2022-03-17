@@ -71,11 +71,17 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 if(hard != null)
                 {
                     mvInci.hardNuevo = hard;
+                    txtNumSerie.IsEnabled = false;
+                    txtModelo.IsEnabled = false;
+                    checkGarantia.IsEnabled = false;
+                    comboTipoHW.IsEnabled = false;
                     checkCambioware.IsChecked = false;
                 }
                 else
                 {
                     mvInci.softNuevo = soft;
+                    txtSoftNombre.IsEnabled = false;
+                    txtSoftVersion.IsEnabled = false;
                     checkCambioware.IsChecked = true;
                 }
 

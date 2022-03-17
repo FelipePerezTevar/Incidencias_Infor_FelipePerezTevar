@@ -125,6 +125,11 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 txtIntro.Visibility = Visibility.Collapsed;
                 txtFinal.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                btnAceptar.Content = "EDITAR";
+                btnCancelar.Content = "BORRAR";
+            }
 
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
@@ -134,6 +139,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
         //Este método comprueba y guarda las incidencias en la base de datos
         private async void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+
+           
             //Primero, comprueba si es valido
             if (mvInci.IsValid(this))
             {
@@ -156,34 +163,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                             //Dependiendo del resultado de la edición, nos dirá que ha salido bien o mal
                             if (editado)
                             {
-                                if (tipoware == false)
-                                {
-                                    bool softEdita = mvSoft.edita;
+                                await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se  ha actualizado la incidencia");
 
-                                    if (softEdita)
-                                    {
-                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha actualizado la incidencia");
-                                    }
-                                    else
-                                    {
-                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se a podido actualizar la incidencia");
-                                    }
-
-                                }
-                                else
-                                {
-                                    bool hardEdita = mvHard.edita;
-
-                                    if (hardEdita)
-                                    {
-                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha actualizado la incidencia");
-                                    }
-                                    else
-                                    {
-                                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se a podido actualizar la incidencia");
-                                    }
-                                }
-                                
                             }
                             else
                             {
@@ -291,10 +272,43 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
         //Cierra el dialogo
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private async void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-           
-            this.Close();
+            bool borrarWare;
+            bool borrarInci;
+
+            if (editar)
+            {
+                if(tipoware == false)
+                {
+                    borrarWare = mvSoft.borrar;
+                }
+                else
+                {
+                    borrarWare = mvHard.borrar;
+                }
+
+                if (borrarWare)
+                {
+                    borrarInci = mvInci.borrar;
+
+                    if (borrarInci)
+                    {
+                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha borrado la incidencia actual");
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se ha podido borrar la incidencia actual");
+                    }
+                }
+
+                this.Close();
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         //Si esta check, la incidencia pasa a estado de comunicado

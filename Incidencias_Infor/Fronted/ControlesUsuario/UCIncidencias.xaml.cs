@@ -48,8 +48,18 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
             if (dgIncidencia.SelectedItem != null){
 
-                DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,mvHard.wareNuevo.incidencia1);
-                diag.Show();
+                if(dgIncidencia.SelectedItem is hardware)
+                {
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvHard.wareNuevo.incidencia1);
+                    diag.Show();
+                }
+                else
+                {
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvSoft.wareNuevo.incidencia1);
+                    diag.Show();
+                }
+
+                
             }
             
             

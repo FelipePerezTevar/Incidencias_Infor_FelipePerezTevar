@@ -30,17 +30,21 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private MVSoftware mvSoft;
         private profesor profLogin;
         private incidencia inci;
+        private hardware hard;
+        private software soft;
         
         private bool tipoware = true;
         private bool guardado = false;
         private bool editar = false;
         private bool garantia;
-        public DialogoIncidencias(incidenciasEntities ent, profesor prof, incidencia inc)
+        public DialogoIncidencias(incidenciasEntities ent, profesor prof, incidencia inc, hardware h, software s)
         {
             InitializeComponent();
             inciEnt = ent;
             profLogin = prof;
             inci = inc;
+            hard = h;
+            soft = s;
             
             mvInci = new MVIncidencia(inciEnt);
             DataContext = mvInci;
@@ -63,6 +67,18 @@ namespace Incidencias_Infor.Fronted.Dialogo
             else
             {
                 mvInci.inciNueva = inci;
+
+                if(hard != null)
+                {
+                    mvInci.hardNuevo = hard;
+                    checkCambioware.IsChecked = false;
+                }
+                else
+                {
+                    mvInci.softNuevo = soft;
+                    checkCambioware.IsChecked = true;
+                }
+
                 editar = true;
             }
 

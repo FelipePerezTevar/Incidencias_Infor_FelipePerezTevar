@@ -36,7 +36,7 @@ namespace Incidencias_Infor
 
         private void menuNuevo_Click(object sender, RoutedEventArgs e)
         {
-            DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,null);
+            DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,null, null, null);
             diag.ShowDialog();
         }
 

@@ -68,6 +68,24 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 mvInci.inciNueva = inci;
 
+                if(mvInci.inciNueva.comunicado == 0)
+                {
+                    checkComunicado.IsChecked = false;
+                }
+                else
+                {
+                    checkComunicado.IsChecked = true;
+                }
+
+                if(mvInci.inciNueva.tiempo == null)
+                {
+                    checkFinalizado.IsChecked = false;
+                }
+                else
+                {
+                    checkFinalizado.IsChecked = true;
+                }
+
                 if(hard != null)
                 {
                     mvInci.hardNuevo = hard;
@@ -99,6 +117,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 checkComunicado.IsChecked = false;
                 checkFinalizado.Visibility = Visibility.Collapsed;
                 txtObservacion.Visibility = Visibility.Collapsed;
+                DateIntroduccion.Visibility = Visibility.Collapsed;
+                DateFinal.Visibility = Visibility.Collapsed;
+                txtProfesor.Visibility = Visibility.Collapsed;
+                txtTiempo.Visibility = Visibility.Collapsed;
+                txtInformacion.Visibility = Visibility.Collapsed;
+                txtIntro.Visibility = Visibility.Collapsed;
+                txtFinal.Visibility = Visibility.Collapsed;
             }
 
             mvHard = new MVHardware(inciEnt);

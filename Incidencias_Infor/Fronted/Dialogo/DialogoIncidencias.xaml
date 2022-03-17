@@ -6,14 +6,17 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
-        mc:Ignorable="d" SizeToContent="Height"
-         Width="800">
+        mc:Ignorable="d" SizeToContent="Height" ShowMaxRestoreButton="False"
+         Width="800" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -202,10 +205,51 @@
             </mat:HintAssist.Hint>
         </TextBox>
         
-        <Button x:Name="btnAceptar" Grid.Column="2" Grid.Row="11" Width="110" HorizontalAlignment="Right"
+        <!--Informacion-->
+
+        <!--Titulo-->
+        <TextBlock Text="Informacion" Grid.ColumnSpan="2" Grid.Row="11" FontSize="20" Foreground="Firebrick"
+                   HorizontalAlignment="Center" x:Name="txtInformacion"/>
+        
+        <!--Introduccion-->
+        <TextBlock Text="Fecha Introduccion" Grid.Row="12" Grid.Column="0" VerticalAlignment="top" x:Name="txtIntro"
+                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,0,0,40"/>
+        <DatePicker Grid.Row="12" Grid.Column="0" Width="150" IsEnabled="False"
+                    x:Name="DateIntroduccion" SelectedDate="{Binding inciNueva.fecha_introduccion}" />
+       <!--Final-->
+        <TextBlock Text="Fecha Final" Grid.Row="12" Grid.Column="1" VerticalAlignment="top" x:Name="txtFinal"
+                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,0,0,40"/>
+        <DatePicker Grid.Row="12" Grid.Column="1" Width="150" IsEnabled="False"
+                    x:Name="DateFinal" SelectedDate="{Binding inciNueva.fecha_resolucion}" />
+        
+        <!--Profesor-->
+        <TextBox Grid.Row="13" Grid.Column="1" Width="150" Height="50"
+                 Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Text="{Binding inciNueva.profesor1.nombre}" x:Name="txtProfesor"
+                 mat:TextFieldAssist.HasClearButton="True" IsEnabled="False">
+            <mat:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                    <TextBlock Text="Profesor" FontWeight="Bold" Foreground="Firebrick"/>
+                </StackPanel>
+            </mat:HintAssist.Hint>
+        </TextBox>
+        
+        <!--Tiempo-->
+        <TextBox Grid.Row="13" Grid.Column="0" Width="150" Height="50"
+                 Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsEnabled="False"
+                 mat:TextFieldAssist.HasClearButton="True" >
+            <mat:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                    <TextBlock Text="Tiempo" FontWeight="Bold" Foreground="Firebrick"/>
+                </StackPanel>
+            </mat:HintAssist.Hint>
+        </TextBox>
+
+        <Button x:Name="btnAceptar" Grid.Column="2" Grid.Row="14" Width="110" HorizontalAlignment="Right"
                 Content="ACEPTAR" Margin="10" Click="btnAceptar_Click"/>
 
-        <Button x:Name="btnCancelar" Grid.Column="2" Grid.Row="11" Width="110" 
+        <Button x:Name="btnCancelar" Grid.Column="2" Grid.Row="14" Width="110" 
                 Content="CANCELAR" Margin="10" Click="btnCancelar_Click"/>
     </Grid>
 </mah:MetroWindow>

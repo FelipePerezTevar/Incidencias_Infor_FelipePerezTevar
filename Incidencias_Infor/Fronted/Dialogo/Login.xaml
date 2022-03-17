@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
         mc:Ignorable="d" Icon="/Recursos/Iconos/lincy2.png"
                  ShowMinButton="False"
-                 ShowMaxRestoreButton="False"
+                 ShowMaxRestoreButton="False" 
         Title="LINCIDENCIAS" Height="450" Width="450">
     <Grid>
         <Grid.RowDefinitions>

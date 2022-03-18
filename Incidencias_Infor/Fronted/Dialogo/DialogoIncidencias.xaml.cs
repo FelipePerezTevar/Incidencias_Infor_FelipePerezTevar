@@ -67,6 +67,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             else
             {
                 mvInci.inciNueva = inci;
+                
 
                 if(mvInci.inciNueva.comunicado == 0)
                 {
@@ -277,37 +278,44 @@ namespace Incidencias_Infor.Fronted.Dialogo
             bool borrarWare;
             bool borrarInci;
 
-            if (editar)
+            if (mvInci.IsValid(this))
             {
-                if(tipoware == false)
+                if (editar)
                 {
-                    borrarWare = mvSoft.borrar;
-                }
-                else
-                {
-                    borrarWare = mvHard.borrar;
-                }
-
-                if (borrarWare)
-                {
-                    borrarInci = mvInci.borrar;
-
-                    if (borrarInci)
+                    if (tipoware == false)
                     {
-                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha borrado la incidencia actual");
+                        mvSoft.wareNuevo = mvInci.softNuevo;
+                        borrarWare = mvSoft.borrar;
                     }
                     else
                     {
-                        await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se ha podido borrar la incidencia actual");
+                        mvHard.wareNuevo = mvInci.hardNuevo;
+                        borrarWare = mvHard.borrar;
                     }
-                }
 
-                this.Close();
+                    if (borrarWare)
+                    {
+                        borrarInci = mvInci.borrar;
+
+                        if (borrarInci)
+                        {
+                            await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha borrado la incidencia actual");
+                        }
+                        else
+                        {
+                            await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se ha podido borrar la incidencia actual");
+                        }
+                    }
+
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
-            else
-            {
-                this.Close();
-            }
+
+            
             
         }
 

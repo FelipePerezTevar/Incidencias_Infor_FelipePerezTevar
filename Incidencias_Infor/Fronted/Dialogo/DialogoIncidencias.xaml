@@ -6,224 +6,251 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
-        mc:Ignorable="d" SizeToContent="Height" ShowMaxRestoreButton="False"
-         Width="800" >
+        mc:Ignorable="d" SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False">
     <Grid>
+        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="AUTO"/>
         </Grid.RowDefinitions>
 
         
-        <!--Inicio-->
-        <TextBlock Text="INCIDENCIA" FontSize="25" Margin="10,10,10,40" 
-                   Foreground="Firebrick" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+        <!--Border de la parte esencial-->
+        <Border Grid.Column="0" Grid.Row="0" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Inicio-->
+                <TextBlock Text="INCIDENCIA" FontSize="14" Margin="10,10,10,40" 
+                   Foreground="Firebrick" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
                    VerticalAlignment="Top" FontWeight="Bold"/>
-        
-        <!--Fecha inicio-->
-        <TextBlock Text="Fecha Inicio" Grid.Row="1" Grid.Column="0" VerticalAlignment="top"
+
+                <!--Fecha inicio-->
+                <TextBlock Text="Fecha Inicio" Grid.Row="1" Grid.Column="0" VerticalAlignment="top"
                    HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,0,0,40"/>
-        <DatePicker Grid.Row="1" Grid.Column="0" Width="150" 
+                <DatePicker Grid.Row="1" Grid.Column="0" Width="150" 
                     x:Name="DateIncio" SelectedDate="{Binding inciNueva.fecha_inicial}" />
 
-        
 
-        <!--Lugar-->
-        <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="0" Grid.Row="2" Margin="0,10,0,0"
+
+                <!--Lugar-->
+                <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0"
                      Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
                   DisplayMemberPath="nombre" x:Name="comboLugar" 
                   ItemsSource="{Binding listLugar}" SelectedItem="{Binding inciNueva.lugar1, NotifyOnValidationError=True,
             ValidatesOnDataErrors=True}">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Lugar" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </ComboBox>
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Lugar" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </ComboBox>
 
-        <!--Administracion-->
-        
-        <!--Introduccion-->
-
-        <TextBlock Text="Administracion" Grid.ColumnSpan="2" Grid.Row="8" FontSize="20" Foreground="Firebrick"
-                   HorizontalAlignment="Center" x:Name="txtSeparador"/>
-
-        <!--Tipo-->
-        <CheckBox Content="Software" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
+                <!--Tipo-->
+                <CheckBox Content="Software" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"
                   x:Name="checkCambioware" Checked="checkCambioware_Checked" Unchecked="checkCambioware_Unchecked"/>
 
-        <!--Estado-->
-        <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="0" Grid.Row="9" Margin="0,10,0,0"
-                     Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
-                  DisplayMemberPath="nombre" x:Name="comboEstado" 
-                  ItemsSource="{Binding listEstado}" SelectedItem="{Binding inciNueva.estado1, NotifyOnValidationError=True,
-            ValidatesOnDataErrors=True}">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Estado" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </ComboBox>
+                <!--Descripcion-->
+                <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Width="500" 
+                     Margin="20" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding inciNueva.descripcion}" x:Name="txtDescripcion">
+                        <mat:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                             <TextBlock Text="Descripcion" FontWeight="Bold" Foreground="Firebrick"/>
+                            </StackPanel>
+                         </mat:HintAssist.Hint>
+                </TextBox>
+            </Grid>
+        </Border>
 
-        <!--descripcion-->
-        <TextBox Grid.Row="2" Grid.Column="1" Width="150" 
-                 Margin="20" TextWrapping="Wrap"
-                 Text="{Binding inciNueva.descripcion}" x:Name="txtDescripcion"
-                >
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Descripcion" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Responsable-->
-        <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="9" Margin="0,10,0,0"
-                     Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
-                  DisplayMemberPath="nombre" x:Name="comboResponsable" 
-                  ItemsSource="{Binding listProfesor}" SelectedItem="{Binding inciNueva.profesor2, NotifyOnValidationError=True,
-            ValidatesOnDataErrors=True}">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Profesor responsable" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </ComboBox>
-        
-        <!--Comunicado-->
-        <CheckBox Content="Comunicado" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,10"
-                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" x:Name="checkComunicado"/>
-        
-        <!--Finalizado-->
-        <CheckBox Content="Finalizado" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center"
-                  VerticalAlignment="Bottom" Margin="0,0,0,10" x:Name="checkFinalizado"
-                  Checked="checkFinalizado_Checked" Unchecked="checkFinalizado_Unchecked"/>
+        <!--Border hardware/software-->
+        <Border Grid.Row="1" Grid.Column="0" Margin="10" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-        <!--Observaciones-->
-        <TextBox Grid.Row="10" Grid.Column="0" Width="150" Height="50"
-                 Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.observacion}" x:Name="txtObservacion"
-                 mat:TextFieldAssist.HasClearButton="True">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Observacion" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Hardware-->
-        
-        <!--Titulo-->
-        <TextBlock Text="Hardware" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" Foreground="Firebrick"
+                <!--Hardware-->
+
+                <!--Titulo-->
+                <TextBlock Text="Hardware" Grid.Column="0" Grid.Row="0" FontSize="20" Foreground="Firebrick"
                    HorizontalAlignment="Center" x:Name="txtHardware"/>
-        
-        <!--Numero de serie-->
-        <TextBox Grid.Row="4" Grid.Column="0" Width="150" Height="50"
+
+                <!--Numero de serie-->
+                <TextBox Grid.Row="1" Grid.Column="0" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding hardNuevo.num_serie}" x:Name="txtNumSerie"
                  mat:TextFieldAssist.HasClearButton="True">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Numero de serie" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Modelo-->
-        <TextBox Grid.Row="4" Grid.Column="1" Width="150" Height="50"
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Numero de serie" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </TextBox>
+
+                <!--Modelo-->
+                <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding hardNuevo.modelo}" x:Name="txtModelo"
                  mat:TextFieldAssist.HasClearButton="True">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Modelo" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Garantia-->
-        <CheckBox Content="Garantia" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" IsChecked="True"
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Modelo" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </TextBox>
+
+                <!--Garantia-->
+                <CheckBox Content="Garantia" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" IsChecked="True"
                   x:Name="checkGarantia" Checked="checkGarantia_Checked" Unchecked="checkGarantia_Unchecked"/>
-        
-        <!--Tipo-->
-        <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="5" Margin="0,10,0,0"
+
+                <!--Tipo-->
+                <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0"
                      Style="{StaticResource MaterialDesignOutlinedComboBox}" 
                   DisplayMemberPath="nombre" x:Name="comboTipoHW" 
                   ItemsSource="{Binding listTipo}" SelectedItem="{Binding hardNuevo.tipohw, NotifyOnValidationError=True,
             ValidatesOnDataErrors=True}">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Tipo" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </ComboBox>
-        
-        <!--Software-->
-        
-        <!--Titulo-->
-        <TextBlock Text="Software" Grid.ColumnSpan="2" Grid.Row="6" FontSize="20" Foreground="Firebrick"
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Tipo" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </ComboBox>
+
+                <!--Software-->
+
+                <!--Titulo-->
+                <TextBlock Text="Software" Grid.Column="0" Grid.Row="0" FontSize="20" Foreground="Firebrick"
                    HorizontalAlignment="Center" x:Name="txtSoftware" Visibility="Collapsed"/>
-        
-        <!--Nombre-->
-        <TextBox Grid.Row="7" Grid.Column="0" Width="150" Height="50"
+
+                <!--Nombre-->
+                <TextBox Grid.Row="1" Grid.Column="0" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding softNuevo.nombre}" x:Name="txtSoftNombre"
                  mat:TextFieldAssist.HasClearButton="True" Visibility="Collapsed">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Nombre" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Version-->
-        <TextBox Grid.Row="7" Grid.Column="1" Width="150" Height="50"
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Nombre" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </TextBox>
+
+                <!--Version-->
+                <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding softNuevo.version}" x:Name="txtSoftVersion"
                  mat:TextFieldAssist.HasClearButton="True" Visibility="Collapsed">
-            <mat:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
-                    <TextBlock Text="Version" FontWeight="Bold" Foreground="Firebrick"/>
-                </StackPanel>
-            </mat:HintAssist.Hint>
-        </TextBox>
-        
-        <!--Informacion-->
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Version" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </TextBox>
 
-        <!--Titulo-->
-        <TextBlock Text="Informacion" Grid.ColumnSpan="2" Grid.Row="11" FontSize="20" Foreground="Firebrick"
-                   HorizontalAlignment="Center" x:Name="txtInformacion"/>
+            </Grid>
+        </Border>
+
+        <!--Border de administracion-->
+        
+        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" x:Name="borderAdmin">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Administracion-->
+
+                <!--Introduccion-->
+
+                <TextBlock Text="Administracion" Grid.Column="0" Grid.Row="0" FontSize="20" Foreground="Firebrick"
+                   HorizontalAlignment="Center" x:Name="txtSeparador"/>
+
+
+
+                <!--Estado-->
+                <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="0" Grid.Row="1" Margin="0,10,0,10"
+                     Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
+                  DisplayMemberPath="nombre" x:Name="comboEstado" 
+                  ItemsSource="{Binding listEstado}" SelectedItem="{Binding inciNueva.estado1, NotifyOnValidationError=True,
+            ValidatesOnDataErrors=True}">
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Estado" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </ComboBox>
+
+
+
+                <!--Responsable-->
+                <ComboBox HorizontalAlignment="Center" Width="150" Height="50" Grid.Column="1" Grid.Row="1" Margin="0,10,0,10"
+                     Style="{StaticResource MaterialDesignOutlinedComboBox}" mat:TextFieldAssist.HasClearButton="True"
+                  DisplayMemberPath="nombre" x:Name="comboResponsable" 
+                  ItemsSource="{Binding listProfesor}" SelectedItem="{Binding inciNueva.profesor2, NotifyOnValidationError=True,
+            ValidatesOnDataErrors=True}">
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Profesor responsable" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </ComboBox>
+
+                <!--Comunicado-->
+                <CheckBox Content="Comunicado" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0,10,0,10"
+                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" x:Name="checkComunicado"/>
+
+                <!--Finalizado-->
+                <CheckBox Content="Finalizado" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom" Margin="0,10,0,10" x:Name="checkFinalizado"
+                  Checked="checkFinalizado_Checked" Unchecked="checkFinalizado_Unchecked"/>
+
+                <!--Informacion-->
+
+        
         
         <!--Introduccion-->
-        <TextBlock Text="Fecha Introduccion" Grid.Row="12" Grid.Column="0" VerticalAlignment="top" x:Name="txtIntro"
-                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,0,0,40"/>
-        <DatePicker Grid.Row="12" Grid.Column="0" Width="150" IsEnabled="False"
+        <TextBlock Text="Fecha Introduccion" Grid.Row="3" Grid.Column="0" VerticalAlignment="top" x:Name="txtIntro"
+                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,10,0,40"/>
+        <DatePicker Grid.Row="3" Grid.Column="0" Width="150" IsEnabled="False" Margin="0,10,0,0"
                     x:Name="DateIntroduccion" SelectedDate="{Binding inciNueva.fecha_introduccion}" />
        <!--Final-->
-        <TextBlock Text="Fecha Final" Grid.Row="12" Grid.Column="1" VerticalAlignment="top" x:Name="txtFinal"
-                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,0,0,40"/>
-        <DatePicker Grid.Row="12" Grid.Column="1" Width="150" IsEnabled="False"
+        <TextBlock Text="Fecha Final" Grid.Row="3" Grid.Column="1" VerticalAlignment="top" x:Name="txtFinal"
+                   HorizontalAlignment="Center" FontWeight="Bold" Foreground="Firebrick" Margin="0,10,0,40"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Width="150" IsEnabled="False" Margin="0,10,0,0"
                     x:Name="DateFinal" SelectedDate="{Binding inciNueva.fecha_resolucion}" />
         
         <!--Profesor-->
-        <TextBox Grid.Row="13" Grid.Column="1" Width="150" Height="50"
+        <TextBox Grid.Row="4" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding inciNueva.profesor1.nombre}" x:Name="txtProfesor"
                  mat:TextFieldAssist.HasClearButton="True" IsEnabled="False">
@@ -235,7 +262,7 @@
         </TextBox>
         
         <!--Tiempo-->
-        <TextBox Grid.Row="13" Grid.Column="0" Width="150" Height="50"
+        <TextBox Grid.Row="4" Grid.Column="0" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsEnabled="False"
                  mat:TextFieldAssist.HasClearButton="True" >
@@ -246,10 +273,25 @@
             </mat:HintAssist.Hint>
         </TextBox>
 
-        <Button x:Name="btnAceptar" Grid.Column="2" Grid.Row="14" Width="110" HorizontalAlignment="Right"
+                <!--Observaciones-->
+                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Width="300"  Height="50"
+                 Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Text="{Binding inciNueva.observacion}" x:Name="txtObservacion"
+                 mat:TextFieldAssist.HasClearButton="True">
+                    <mat:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                            <TextBlock Text="Observacion" FontWeight="Bold" Foreground="Firebrick"/>
+                        </StackPanel>
+                    </mat:HintAssist.Hint>
+                </TextBox>
+            </Grid>
+        </Border>
+
+        <Button x:Name="btnAceptar" Grid.Column="{Binding num}" Grid.Row="3" Width="110" HorizontalAlignment="Right"
                 Content="ACEPTAR" Margin="10" Click="btnAceptar_Click"/>
 
-        <Button x:Name="btnCancelar" Grid.Column="2" Grid.Row="14" Width="110" 
-                Content="CANCELAR" Margin="10" Click="btnCancelar_Click"/>
+        <Button x:Name="btnCancelar" Grid.Column="{Binding num}" Grid.Row="3" Width="110" HorizontalAlignment="Right" Margin="10,10,150,10"
+                Content="CANCELAR"  Click="btnCancelar_Click"/> 
+
     </Grid>
 </mah:MetroWindow>

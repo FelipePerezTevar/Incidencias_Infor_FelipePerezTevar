@@ -61,12 +61,14 @@ namespace Incidencias_Infor.Fronted.Dialogo
             if(inci == null)
             {
                 mvInci.inciNueva = new incidencia();
+                mvInci.num = 0;
                 
                 
             }
             else
             {
                 mvInci.inciNueva = inci;
+                mvInci.num = 1;
                 
 
                 if(mvInci.inciNueva.comunicado == 0)
@@ -110,21 +112,24 @@ namespace Incidencias_Infor.Fronted.Dialogo
             //Y dependiendo del resultado, mostrará los campos de adminstracion o no
             if (!editar)
             {
-                txtSeparador.Visibility = Visibility.Collapsed;
+                borderAdmin.Visibility = Visibility.Collapsed;
+                checkComunicado.IsChecked = false;
+
+                
+
+                /*txtSeparador.Visibility = Visibility.Collapsed;
                 comboResponsable.Visibility = Visibility.Collapsed;
                 comboEstado.Visibility = Visibility.Collapsed;
                 comboEstado.SelectedItem = mvInci.estadoProf;
                 checkComunicado.Visibility = Visibility.Collapsed;
-                checkComunicado.IsChecked = false;
                 checkFinalizado.Visibility = Visibility.Collapsed;
                 txtObservacion.Visibility = Visibility.Collapsed;
                 DateIntroduccion.Visibility = Visibility.Collapsed;
                 DateFinal.Visibility = Visibility.Collapsed;
                 txtProfesor.Visibility = Visibility.Collapsed;
                 txtTiempo.Visibility = Visibility.Collapsed;
-                txtInformacion.Visibility = Visibility.Collapsed;
                 txtIntro.Visibility = Visibility.Collapsed;
-                txtFinal.Visibility = Visibility.Collapsed;
+                txtFinal.Visibility = Visibility.Collapsed;*/
             }
             else
             {

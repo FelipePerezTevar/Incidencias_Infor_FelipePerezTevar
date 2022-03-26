@@ -25,6 +25,7 @@ namespace Incidencias_Infor.MVVM
         private estado estadoEnSolucion;
         private permiso limiteProfesor;
         private incidencia inci;
+        private int numColumna;
 
         public MVIncidencia(incidenciasEntities ent)
         {
@@ -72,6 +73,20 @@ namespace Incidencias_Infor.MVVM
         public List<hardware> listHardware { get { return hardServ.getAll().ToList(); } }
 
         public incidencia inciNueva { get { return inci; } set { inci = value; NotifyPropertyChanged(nameof(inciNueva)); } }
+
+        public int num
+        {
+            get
+            {
+                return numColumna;
+            }
+
+            set
+            {
+                numColumna = value;
+                NotifyPropertyChanged(nameof(num));
+            }
+        }
 
        public software softNuevo { get { return soft; } set { soft = value; NotifyPropertyChanged(nameof(softNuevo)); } }
 

@@ -248,6 +248,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Recursos\Iconos\lincidencias v2.0.png" />
     <EmbeddedResource Include="Informes\CRTipoHW.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTipoHW.cs</LastGenOutput>

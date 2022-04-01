@@ -6,7 +6,8 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
-        mc:Ignorable="d" SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False">
+        mc:Ignorable="d" SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False"
+                 WindowStartupLocation="CenterScreen">
     <Grid>
         
 

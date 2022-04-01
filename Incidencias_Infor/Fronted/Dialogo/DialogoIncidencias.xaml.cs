@@ -114,22 +114,6 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 borderAdmin.Visibility = Visibility.Collapsed;
                 checkComunicado.IsChecked = false;
-
-                
-
-                /*txtSeparador.Visibility = Visibility.Collapsed;
-                comboResponsable.Visibility = Visibility.Collapsed;
-                comboEstado.Visibility = Visibility.Collapsed;
-                comboEstado.SelectedItem = mvInci.estadoProf;
-                checkComunicado.Visibility = Visibility.Collapsed;
-                checkFinalizado.Visibility = Visibility.Collapsed;
-                txtObservacion.Visibility = Visibility.Collapsed;
-                DateIntroduccion.Visibility = Visibility.Collapsed;
-                DateFinal.Visibility = Visibility.Collapsed;
-                txtProfesor.Visibility = Visibility.Collapsed;
-                txtTiempo.Visibility = Visibility.Collapsed;
-                txtIntro.Visibility = Visibility.Collapsed;
-                txtFinal.Visibility = Visibility.Collapsed;*/
             }
             else
             {
@@ -145,7 +129,12 @@ namespace Incidencias_Infor.Fronted.Dialogo
         //Este método comprueba y guarda las incidencias en la base de datos
         private async void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-
+            if(mvInci.inciNueva == null)
+            {
+                mvInci.inciNueva = new incidencia();
+                mvInci.hardNuevo = new hardware();
+                mvInci.softNuevo = new software();
+            }
            
             //Primero, comprueba si es valido
             if (mvInci.IsValid(this))
@@ -183,6 +172,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
                             //Primero asigna los campos que no debe introducir el usuario con los valores 
                             //que necesita la incidencia al principio
+
+
                             mvInci.inciNueva.fecha_introduccion = DateTime.Now;
                             mvInci.inciNueva.profesor1 = profLogin;
                             mvInci.inciNueva.profesor2 = mvInci.coordTIC;
@@ -208,6 +199,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                         mvSoft.wareNuevo = mvInci.softNuevo;
                                         mvSoft.wareNuevo.incidencia1 = mvInci.inciNueva;
                                         bool softGuarda = mvSoft.guarda;
+                                        mvInci.softNuevo = null;
 
                                         if (softGuarda)
                                         {
@@ -229,7 +221,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     {
                                         
                                         mvHard.wareNuevo = mvInci.hardNuevo;
-                                        mvInci.hardNuevo.incidencia1 = mvInci.inciNueva;
+                                        mvHard.wareNuevo.incidencia1 = mvInci.inciNueva;
                                         if (garantia)
                                         {
                                             mvHard.wareNuevo.garantia = 1;
@@ -240,6 +232,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                         }
                                         
                                         bool hardGuarda = mvHard.guarda;
+                                        mvInci.hardNuevo = null;
 
                                         if (hardGuarda)
                                         {
@@ -274,7 +267,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "La fecha de inicio no puede ser posterior a la actual");
                 }
 
-               
+                mvInci.inciNueva = null;
             }
         }
         //Cierra el dialogo

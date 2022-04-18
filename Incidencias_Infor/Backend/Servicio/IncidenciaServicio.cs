@@ -36,5 +36,17 @@ namespace Incidencias_Infor.Backend.Servicio
             hardware hard = contexto.Set<hardware>().Where(h => h.incidencia1.codigo == 1).FirstOrDefault();
             return hard;
         }
+
+        public DateTime getFechaInicio()
+        {
+            incidencia inci = contexto.Set<incidencia>().OrderBy(i => i.fecha_introduccion).FirstOrDefault();
+            return (DateTime)inci.fecha_introduccion;
+        }
+
+        public DateTime getFechaFinal()
+        {
+            incidencia inci = contexto.Set<incidencia>().OrderByDescending(i => i.fecha_introduccion).FirstOrDefault();
+            return (DateTime)inci.fecha_introduccion;
+        }
     }
 }

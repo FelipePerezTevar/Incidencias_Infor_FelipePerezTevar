@@ -8,13 +8,49 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <TextBlock Text="Futuros filtros" HorizontalAlignment="Right"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <!--Filtro de hard/soft-->
             <CheckBox x:Name="checkTipoWare" Content="Software" 
                       IsChecked="False" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
+            
+            <!--Filtro de fecha inicio-->
+            <TextBlock Text="Fecha Inicio" Grid.Column="1" Margin="5,0,5,0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="2" Width="100" Margin="5,0,5,0" x:Name="dateInicio"
+                        SelectedDate="{Binding inicioSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedDateChanged="dateInicio_SelectedDateChanged"/>
+            
+            <!--Filtro de fecha final-->
+            <TextBlock Text="Fecha Final" Grid.Column="3" Margin="5,0,5,0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="4" Width="100" Margin="5,0,5,0" x:Name="dateFinal"
+                        SelectedDate="{Binding finalSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedDateChanged="dateFinal_SelectedDateChanged"/>
+            
+            <!--Filtro tipo hard-->
+            <ComboBox Grid.Column="5" Width="100" ItemsSource="{Binding listTipo}" Margin="5,0,5,0"
+                      Visibility="Visible" x:Name="comboTipo" SelectedItem="{Binding tipoSeleccionado}"
+                  DisplayMemberPath="nombre" SelectionChanged="comboTipo_SelectionChanged"/>
+            
+            
+            <!--Filtro finalizado
+            <ComboBox Grid.Column="7" Width="100" ItemsSource="{Binding listEstado}" Margin="5,0,5,0"
+                      Visibility="Visible" x:Name="comboEstado" SelectedItem="{Binding estadoSeleccionado}"
+                  DisplayMemberPath="nombre" SelectionChanged="comboEstado_SelectionChanged"/>-->
+
+
+
         </Grid>
         <Grid>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
-                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding ListWare}"
+                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding ListWare2}"
                       SelectedItem="{Binding wareNuevo}" MouseLeftButtonDown="dgIncidencia_MouseLeftButtonDown">
                 
                 <DataGrid.Columns>

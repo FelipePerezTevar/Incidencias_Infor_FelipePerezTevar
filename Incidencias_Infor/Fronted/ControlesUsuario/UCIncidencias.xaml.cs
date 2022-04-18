@@ -52,6 +52,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             hardTipo.Visibility = Visibility.Collapsed;
             softNombre.Visibility = Visibility.Visible;
             softVersion.Visibility = Visibility.Visible;
+            comboTipo.Visibility = Visibility.Collapsed;
             DataContext = mvSoft;
             
         }
@@ -63,6 +64,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             hardTipo.Visibility = Visibility.Visible;
             softNombre.Visibility = Visibility.Collapsed;
             softVersion.Visibility = Visibility.Collapsed;
+            comboTipo.Visibility = Visibility.Visible;
             DataContext = mvHard;
             
         }
@@ -84,6 +86,57 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 }
 
 
+            }
+        }
+
+        private void dateInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(mvHard.inicioSeleccionado <= mvHard.finalSeleccionado)
+            {
+                mvHard.addCriterios();
+                mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
+            }
+
+            if (mvSoft.inicioSeleccionado <= mvSoft.finalSeleccionado)
+            {
+                mvSoft.addCriterios();
+                mvSoft.ListWare2.Filter = new Predicate<object>(mvSoft.filtroCombinadoCriterios);
+            }
+        }
+
+        private void dateFinal_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mvHard.inicioSeleccionado <= mvHard.finalSeleccionado)
+            {
+                mvHard.addCriterios();
+                mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
+            }
+
+            if (mvSoft.inicioSeleccionado <= mvSoft.finalSeleccionado)
+            {
+                mvSoft.addCriterios();
+                mvSoft.ListWare2.Filter = new Predicate<object>(mvSoft.filtroCombinadoCriterios);
+            }
+        }
+
+        private void comboTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(mvHard.tipoSeleccionado != null)
+            {
+                mvHard.addCriterios();
+                mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
+            }
+            
+        }
+
+        
+
+        private void comboEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mvHard.tipoSeleccionado != null)
+            {
+                mvHard.addCriterios();
+                mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
             }
         }
     }

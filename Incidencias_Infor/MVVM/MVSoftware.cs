@@ -22,8 +22,12 @@ namespace Incidencias_Infor.MVVM
         private DateTime fechaInicio;
         private DateTime fechaFinal;
         //private estado Estado;
+        private profesor prof;
+
         private List<Predicate<software>> criterios;
         private Predicate<software> criteriosFecha;
+        private Predicate<software> criterioProf;
+        private Predicate<software> criterioRespons;
         //private Predicate<software> criteriosEstado;
 
         public MVSoftware(incidenciasEntities ent)
@@ -47,7 +51,9 @@ namespace Incidencias_Infor.MVVM
             lista = new ListCollectionView(softServ.getAll().ToList());
             criteriosFecha = new Predicate<software>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
-           // criteriosEstado = new Predicate<software>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado)); 
+            // criteriosEstado = new Predicate<software>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado)); 
+            criterioProf = new Predicate<software>(m => m.incidencia1.profesor1 != null && m.incidencia1.profesor1.dni.Equals(profUsuario));
+            criterioRespons = new Predicate<software>(m => m.incidencia1.profesor2 != null && m.incidencia1.profesor2.dni.Equals(profUsuario));
         }
 
         public List<software> ListWare { get { return softServ.getAll().ToList(); } }
@@ -58,7 +64,8 @@ namespace Incidencias_Infor.MVVM
 
         public DateTime inicioSeleccionado { get { return fechaInicio; } set { fechaInicio = value; NotifyPropertyChanged(nameof(inicioSeleccionado));} }
         public DateTime finalSeleccionado { get { return fechaFinal; } set { fechaFinal = value; NotifyPropertyChanged(nameof(finalSeleccionado)); } }
-       // public estado estadoSeleccionado { get { return Estado; } set { Estado = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+        // public estado estadoSeleccionado { get { return Estado; } set { Estado = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+        public profesor profUsuario { get { return prof; } set { prof = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
 
         public ListCollectionView ListWare2 { get { return lista; } }
 
@@ -75,6 +82,12 @@ namespace Incidencias_Infor.MVVM
             if (inicioSeleccionado != null && finalSeleccionado != null)
             {
                 criterios.Add(criteriosFecha);
+            }
+
+            if (profUsuario != null)
+            {
+                criterios.Add(criterioProf);
+                criterios.Add(criterioRespons);
             }
 
             /*if(Estado != null)

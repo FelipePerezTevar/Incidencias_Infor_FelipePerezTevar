@@ -45,11 +45,15 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             if (profLogin.rol1.nombre.Equals("Profesor"))
             {
                 mvHard.profUsuario = profLogin;
+                mvSoft.profUsuario = profLogin;
 
                 if(mvHard.profUsuario != null)
                 {
                     mvHard.addCriterios();
                     mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
+
+                    mvSoft.addCriterios();
+                    mvSoft.ListWare2.Filter = new Predicate<object>(mvSoft.filtroCombinadoCriterios);
                 }
             }
         }

@@ -22,10 +22,13 @@ namespace Incidencias_Infor.MVVM
         private DateTime fechaInicio;
         private DateTime fechaFinal;
         private tipohw tipo;
+        private profesor prof;
        // private estado Resolucion;
         private List<Predicate<hardware>> criterios;
         private Predicate<hardware> criterioFecha;
         private Predicate<hardware> criterioTipo;
+        private Predicate<hardware> criterioProf;
+        private Predicate<hardware> criterioRespons;
        // private Predicate<hardware> criterioResol;
 
         public MVHardware(incidenciasEntities ent)
@@ -44,14 +47,17 @@ namespace Incidencias_Infor.MVVM
             estServ = new EstadoServicio(inciEnt);
             fechaInicio = inciServ.getFechaInicio();
             fechaFinal = inciServ.getFechaFinal();
-            tipo = new tipohw();
+            //tipo = new tipohw();
+            //prof = new profesor();
             //Resolucion = new estado();
             criterios = new List<Predicate<hardware>>();
             lista = new ListCollectionView(hardServ.getAll().ToList());
             criterioFecha = new Predicate<hardware>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             criterioTipo = new Predicate<hardware>(m => m.tipohw != null && m.tipohw.Equals(tipoSeleccionado));
-           // criterioResol = new Predicate<hardware>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado));
+            //criterioResol = new Predicate<hardware>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado));
+            criterioProf = new Predicate<hardware>(m =>  m.incidencia1.profesor1 != null && m.incidencia1.profesor1.dni.Equals(profUsuario));
+            criterioRespons = new Predicate<hardware>(m => m.incidencia1.profesor2 != null && m.incidencia1.profesor2.dni.Equals(profUsuario));
             hard = new hardware();
         }
 
@@ -64,7 +70,7 @@ namespace Incidencias_Infor.MVVM
         public DateTime finalSeleccionado { get { return fechaFinal; } set { fechaFinal = value; NotifyPropertyChanged(nameof(finalSeleccionado)); } }
         public tipohw tipoSeleccionado { get { return tipo; } set { tipo = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
        // public estado estadoSeleccionado { get { return Resolucion;} set { Resolucion = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
-       
+       public profesor profUsuario { get { return prof; } set { prof = value;NotifyPropertyChanged(nameof(wareNuevo)); } }
        
 
         public ListCollectionView ListWare2 { get { return lista; } }
@@ -87,6 +93,12 @@ namespace Incidencias_Infor.MVVM
             if(tipoSeleccionado != null)
             {
                 criterios.Add(criterioTipo);
+            }
+
+            if(profUsuario != null)
+            {
+                criterios.Add(criterioProf);
+                criterios.Add(criterioRespons);
             }
 
            /* if (estadoSeleccionado != null)

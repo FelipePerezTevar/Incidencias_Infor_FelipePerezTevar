@@ -41,6 +41,17 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
             DataContext = mvHard;
+
+            if (profLogin.rol1.nombre.Equals("Profesor"))
+            {
+                mvHard.profUsuario = profLogin;
+
+                if(mvHard.profUsuario != null)
+                {
+                    mvHard.addCriterios();
+                    mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
+                }
+            }
         }
 
         

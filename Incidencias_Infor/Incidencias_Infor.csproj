@@ -215,10 +215,22 @@
     <Compile Include="Fronted\Dialogo\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Informes\CRDepartamento.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRDepartamento.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Informes\CRMensual.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRMensual.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\CRTipoHardware.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTipoHardware.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Informes\CRTipoHW.cs">
@@ -262,9 +274,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Recursos\Iconos\lincidencias v2.0.png" />
+    <EmbeddedResource Include="Informes\CRDepartamento.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRDepartamento.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informes\CRMensual.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRMensual.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes\CRTipoHardware.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTipoHardware.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Informes\CRTipoHW.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

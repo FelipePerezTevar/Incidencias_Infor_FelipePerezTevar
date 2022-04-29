@@ -26,8 +26,17 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="Permisos"/>
+                <MenuItem Header="Informes">
+                    <MenuItem Header="Numero de incidencias por mes"/>
+                    <MenuItem Header="Numero de incidencias por tipo de hardware"/>
+                    <MenuItem Header="Numero de incidencias por deparatamento"/>
+                </MenuItem>
+                <MenuItem Header="Opciones" HorizontalAlignment="Right">
+                    <MenuItem Header="Cambiar contraseña"/>
+                    <MenuItem Header="Cerrar sesión"/>
+                </MenuItem>
             </Menu>
-            <Button x:Name="btnAjustes" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
         <Grid x:Name="gridCentral">
             

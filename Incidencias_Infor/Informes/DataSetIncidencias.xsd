@@ -53,6 +53,79 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tipohw1TableAdapter" GeneratorDataComponentClassName="tipohw1TableAdapter" Name="tipohw1" UserDataComponentName="tipohw1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="incidencias_informaticasConnectionString (Settings)" DbObjectName="incidencias_informaticas.tipohw" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select count(*), t.nombre from incidencia i
+inner join hardware h on i.codigo = h.incidencia
+inner join tipohw t on h.tipo = t.codigo
+group by t.nombre</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="count(*)" DataSetColumn="count(*)" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="departamentoTableAdapter" GeneratorDataComponentClassName="departamentoTableAdapter" Name="departamento" UserDataComponentName="departamentoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="incidencias_informaticasConnectionString (Settings)" DbObjectName="incidencias_informaticas.departamento" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select count(*), d.nombre from incidencia i
+inner join lugar l on i.lugar = l.codigo
+inner join departamento d on l.departamento= d.codigo
+group by d.nombre</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="count(*)" DataSetColumn="count(*)" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="incidencias_informaticasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select count(*) as NumInci, monthname(fecha_introduccion) from incidencia group by MONTH(fecha_introduccion)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NumInci" DataSetColumn="NumInci" />
+              <Mapping SourceColumn="monthname(fecha_introduccion)" DataSetColumn="monthname(fecha_introduccion)" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="incidencias_informaticasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select count(*) from incidencia</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="count(*)" DataSetColumn="count(*)" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -61,7 +134,7 @@
   <xs:element name="DataSetIncidencias" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetIncidencias" msprop:Generator_UserDSName="DataSetIncidencias">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tipohw" msprop:Generator_TableClassName="tipohwDataTable" msprop:Generator_TableVarName="tabletipohw" msprop:Generator_TablePropName="tipohw" msprop:Generator_RowDeletingName="tipohwRowDeleting" msprop:Generator_RowChangingName="tipohwRowChanging" msprop:Generator_RowEvHandlerName="tipohwRowChangeEventHandler" msprop:Generator_RowDeletedName="tipohwRowDeleted" msprop:Generator_UserTableName="tipohw" msprop:Generator_RowChangedName="tipohwRowChanged" msprop:Generator_RowEvArgName="tipohwRowChangeEvent" msprop:Generator_RowClassName="tipohwRow">
+        <xs:element name="tipohw" msprop:Generator_TableClassName="tipohwDataTable" msprop:Generator_TableVarName="tabletipohw" msprop:Generator_RowChangedName="tipohwRowChanged" msprop:Generator_TablePropName="tipohw" msprop:Generator_RowDeletingName="tipohwRowDeleting" msprop:Generator_RowChangingName="tipohwRowChanging" msprop:Generator_RowEvHandlerName="tipohwRowChangeEventHandler" msprop:Generator_RowDeletedName="tipohwRowDeleted" msprop:Generator_RowClassName="tipohwRow" msprop:Generator_UserTableName="tipohw" msprop:Generator_RowEvArgName="tipohwRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="codigo" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncodigo" msprop:Generator_ColumnPropNameInRow="codigo" msprop:Generator_ColumnPropNameInTable="codigoColumn" msprop:Generator_UserColumnName="codigo" type="xs:int" />
@@ -72,6 +145,55 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tipohw1" msprop:Generator_TableClassName="tipohw1DataTable" msprop:Generator_TableVarName="tabletipohw1" msprop:Generator_TablePropName="tipohw1" msprop:Generator_RowDeletingName="tipohw1RowDeleting" msprop:Generator_RowChangingName="tipohw1RowChanging" msprop:Generator_RowEvHandlerName="tipohw1RowChangeEventHandler" msprop:Generator_RowDeletedName="tipohw1RowDeleted" msprop:Generator_UserTableName="tipohw1" msprop:Generator_RowChangedName="tipohw1RowChanged" msprop:Generator_RowEvArgName="tipohw1RowChangeEvent" msprop:Generator_RowClassName="tipohw1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="count_x0028__x002A__x0029_" msprop:Generator_ColumnVarNameInTable="_columncount___" msprop:Generator_ColumnPropNameInRow="_count___" msprop:Generator_ColumnPropNameInTable="_count___Column" msprop:Generator_UserColumnName="count(*)" type="xs:long" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="departamento" msprop:Generator_TableClassName="departamentoDataTable" msprop:Generator_TableVarName="tabledepartamento" msprop:Generator_TablePropName="departamento" msprop:Generator_RowDeletingName="departamentoRowDeleting" msprop:Generator_RowChangingName="departamentoRowChanging" msprop:Generator_RowEvHandlerName="departamentoRowChangeEventHandler" msprop:Generator_RowDeletedName="departamentoRowDeleted" msprop:Generator_UserTableName="departamento" msprop:Generator_RowChangedName="departamentoRowChanged" msprop:Generator_RowEvArgName="departamentoRowChangeEvent" msprop:Generator_RowClassName="departamentoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="count_x0028__x002A__x0029_" msprop:Generator_ColumnVarNameInTable="_columncount___" msprop:Generator_ColumnPropNameInRow="_count___" msprop:Generator_ColumnPropNameInTable="_count___Column" msprop:Generator_UserColumnName="count(*)" type="xs:long" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NumInci" msprop:Generator_ColumnVarNameInTable="columnNumInci" msprop:Generator_ColumnPropNameInRow="NumInci" msprop:Generator_ColumnPropNameInTable="NumInciColumn" msprop:Generator_UserColumnName="NumInci" type="xs:long" />
+              <xs:element name="monthname_x0028_fecha_introduccion_x0029_" msprop:Generator_ColumnVarNameInTable="_columnmonthname_fecha_introduccion_" msprop:Generator_ColumnPropNameInRow="_monthname_fecha_introduccion_" msprop:Generator_ColumnPropNameInTable="_monthname_fecha_introduccion_Column" msprop:Generator_UserColumnName="monthname(fecha_introduccion)" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="count_x0028__x002A__x0029_" msprop:Generator_ColumnVarNameInTable="_columncount___" msprop:Generator_ColumnPropNameInRow="_count___" msprop:Generator_ColumnPropNameInTable="_count___Column" msprop:Generator_UserColumnName="count(*)" type="xs:long" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

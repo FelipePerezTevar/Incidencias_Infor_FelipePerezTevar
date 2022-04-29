@@ -31,7 +31,7 @@ namespace Incidencias_Infor
             InitializeComponent();
             inciEnt = ent;
             profLogin = prof;
-            btnAjustes.Content = profLogin.nombre;
+            //btnAjustes.Content = profLogin.nombre;
         }
 
         private void menuNuevo_Click(object sender, RoutedEventArgs e)

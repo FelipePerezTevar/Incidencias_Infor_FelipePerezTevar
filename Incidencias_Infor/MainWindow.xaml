@@ -28,7 +28,7 @@
                 </MenuItem>
                 <MenuItem Header="Permisos"/>
                 <MenuItem Header="Informes">
-                    <MenuItem Header="Numero de incidencias por mes"/>
+                    <MenuItem Header="Numero de incidencias por mes" Click="MenuItem_Click"/>
                     <MenuItem Header="Numero de incidencias por tipo de hardware"/>
                     <MenuItem Header="Numero de incidencias por deparatamento"/>
                 </MenuItem>

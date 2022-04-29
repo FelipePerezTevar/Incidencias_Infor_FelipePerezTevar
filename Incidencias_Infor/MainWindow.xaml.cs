@@ -47,5 +47,12 @@ namespace Incidencias_Infor
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            UCInformeMes uci = new UCInformeMes();
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uci);
+        }
     }
 }

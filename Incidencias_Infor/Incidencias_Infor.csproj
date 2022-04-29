@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Fronted\ControlesUsuario\UCInformeMes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fronted\Dialogo\DialogoIncidencias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +205,9 @@
     </Compile>
     <Compile Include="Fronted\ControlesUsuario\UCIncidencias.xaml.cs">
       <DependentUpon>UCIncidencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fronted\ControlesUsuario\UCInformeMes.xaml.cs">
+      <DependentUpon>UCInformeMes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fronted\Dialogo\DialogoIncidencias.xaml.cs">
       <DependentUpon>DialogoIncidencias.xaml</DependentUpon>

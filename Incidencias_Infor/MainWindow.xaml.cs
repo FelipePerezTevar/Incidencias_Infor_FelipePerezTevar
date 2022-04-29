@@ -48,7 +48,23 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uc);
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        
+
+        private void informeDpto_Click(object sender, RoutedEventArgs e)
+        {
+            UCInformeDepartamento uci = new UCInformeDepartamento();
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uci);
+        }
+
+        private void informeTipoHw_Click(object sender, RoutedEventArgs e)
+        {
+            UCInformeTipoHardware uci = new UCInformeTipoHardware();
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uci);
+        }
+
+        private void informeMes_Click(object sender, RoutedEventArgs e)
         {
             UCInformeMes uci = new UCInformeMes();
             gridCentral.Children.Clear();

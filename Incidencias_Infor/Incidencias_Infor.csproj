@@ -114,15 +114,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Fronted\ControlesUsuario\ReporteTipoHW.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Fronted\ControlesUsuario\UCIncidencias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Fronted\ControlesUsuario\UCInformeDepartamento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fronted\ControlesUsuario\UCInformeMes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fronted\ControlesUsuario\UCInformeTipoHardware.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,14 +204,17 @@
     <Compile Include="Backend\Servicio\ServicioSQL.cs" />
     <Compile Include="Backend\Servicio\SoftwareServicio.cs" />
     <Compile Include="Backend\Servicio\TipoHWServicio.cs" />
-    <Compile Include="Fronted\ControlesUsuario\ReporteTipoHW.xaml.cs">
-      <DependentUpon>ReporteTipoHW.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Fronted\ControlesUsuario\UCIncidencias.xaml.cs">
       <DependentUpon>UCIncidencias.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fronted\ControlesUsuario\UCInformeDepartamento.xaml.cs">
+      <DependentUpon>UCInformeDepartamento.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fronted\ControlesUsuario\UCInformeMes.xaml.cs">
       <DependentUpon>UCInformeMes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fronted\ControlesUsuario\UCInformeTipoHardware.xaml.cs">
+      <DependentUpon>UCInformeTipoHardware.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fronted\Dialogo\DialogoIncidencias.xaml.cs">
       <DependentUpon>DialogoIncidencias.xaml</DependentUpon>
@@ -231,12 +238,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRTipoHardware.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Informes\CRTipoHW.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRTipoHW.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Informes\DataSetIncidencias.Designer.cs">
@@ -285,10 +286,6 @@
     <EmbeddedResource Include="Informes\CRTipoHardware.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTipoHardware.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Informes\CRTipoHW.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CRTipoHW.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

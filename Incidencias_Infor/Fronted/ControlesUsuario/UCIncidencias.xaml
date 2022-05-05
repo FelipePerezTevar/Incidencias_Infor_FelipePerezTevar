@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Incidencias_Infor.Fronted.ControlesUsuario"
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" >
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -19,27 +20,43 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--Filtro de hard/soft-->
-            <CheckBox x:Name="checkTipoWare" Content="Software" 
+            <CheckBox x:Name="checkTipoWare" Content="{Binding textoCheck}" Margin="0,0,25,0"
                       IsChecked="False" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
             
+            <!--Titulo de los filtros-->
+            <TextBlock Text="FILTROS" Grid.Column="1" Background="RosyBrown" FontWeight="Bold" Padding="5"
+                       Foreground="White" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0"/>
+
             <!--Filtro de fecha inicio-->
-            <TextBlock Text="Fecha Inicio" Grid.Column="1" Margin="5,0,5,0" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="2" Width="100" Margin="5,0,5,0" x:Name="dateInicio"
+            <TextBlock Text="Fecha Inicio" Grid.Column="2" Margin="5,0,5,0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="3" Width="100" Margin="5,0,5,0" x:Name="dateInicio"
                         SelectedDate="{Binding inicioSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                         SelectedDateChanged="dateInicio_SelectedDateChanged"/>
             
             <!--Filtro de fecha final-->
-            <TextBlock Text="Fecha Final" Grid.Column="3" Margin="5,0,5,0" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="4" Width="100" Margin="5,0,5,0" x:Name="dateFinal"
+            <TextBlock Text="Fecha Final" Grid.Column="4" Margin="5,0,5,0" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="5" Width="100" Margin="5,0,5,0" x:Name="dateFinal"
                         SelectedDate="{Binding finalSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                         SelectedDateChanged="dateFinal_SelectedDateChanged"/>
             
             <!--Filtro tipo hard-->
-            <ComboBox Grid.Column="5" Width="100" ItemsSource="{Binding listTipo}" Margin="5,0,5,0"
+            <ComboBox Grid.Column="6" Width="160" ItemsSource="{Binding listTipo}" Margin="5,0,5,0"
                       Visibility="Visible" x:Name="comboTipo" SelectedItem="{Binding tipoSeleccionado}"
-                  DisplayMemberPath="nombre" SelectionChanged="comboTipo_SelectionChanged"/>
-            
-            
+                  DisplayMemberPath="nombre" SelectionChanged="comboTipo_SelectionChanged">
+                <mat:HintAssist.Hint>
+                    <TextBlock Text="Selección de tipo hardware"/>
+                </mat:HintAssist.Hint>
+            </ComboBox>
+
+            <Button Name="btnPruebarRefresco" Grid.Column="7" Click="btnPruebarRefresco_Click">
+                <Button.Content>
+                    <mat:PackIcon Kind="AboutCircle"/>
+                </Button.Content>
+            </Button>
+
+
+
+
             <!--Filtro finalizado
             <ComboBox Grid.Column="7" Width="100" ItemsSource="{Binding listEstado}" Margin="5,0,5,0"
                       Visibility="Visible" x:Name="comboEstado" SelectedItem="{Binding estadoSeleccionado}"

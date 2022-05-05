@@ -41,6 +41,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
             DataContext = mvHard;
+            mvHard.textoCheck = "Cambiar a incidencias software";
 
             if (profLogin.rol1.nombre.Equals("Profesor"))
             {
@@ -69,6 +70,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             softVersion.Visibility = Visibility.Visible;
             comboTipo.Visibility = Visibility.Collapsed;
             DataContext = mvSoft;
+            mvSoft.textoCheck = "Cambiar a incidencias hardware";
             
         }
 
@@ -81,6 +83,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             softVersion.Visibility = Visibility.Collapsed;
             comboTipo.Visibility = Visibility.Visible;
             DataContext = mvHard;
+            mvHard.textoCheck = "Cambiar a incidencias software";
             
         }
 
@@ -153,6 +156,12 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 mvHard.addCriterios();
                 mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
             }
+        }
+
+        private void btnPruebarRefresco_Click(object sender, RoutedEventArgs e)
+        {
+            mvHard.refrescarTabla();
+            mvSoft.refrescarTabla();
         }
     }
 }

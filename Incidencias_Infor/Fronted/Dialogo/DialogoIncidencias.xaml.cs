@@ -306,10 +306,14 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     }
 
                     this.Close();
+                    mvHard.refrescarTabla();
+                    mvSoft.refrescarTabla();
                 }
                 else
                 {
                     this.Close();
+                    mvHard.refrescarTabla();
+                    mvSoft.refrescarTabla();
                 }
             }
 
@@ -388,5 +392,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             garantia = false;
         }
+
+        
     }
 }

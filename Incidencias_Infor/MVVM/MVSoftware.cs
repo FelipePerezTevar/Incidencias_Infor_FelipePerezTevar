@@ -17,8 +17,9 @@ namespace Incidencias_Infor.MVVM
         private incidenciasEntities inciEnt;
         private EstadoServicio estServ;
         private software soft;
+        private string _textoCheck;
 
-        private ListCollectionView lista;
+        private ListCollectionView listaWare;
         private DateTime fechaInicio;
         private DateTime fechaFinal;
         //private estado Estado;
@@ -48,7 +49,7 @@ namespace Incidencias_Infor.MVVM
             fechaInicio = inciServ.getFechaInicio();
             fechaFinal = inciServ.getFechaFinal();
             criterios = new List<Predicate<software>>();
-            lista = new ListCollectionView(softServ.getAll().ToList());
+            listaWare = new ListCollectionView(softServ.getAll().ToList());
             criteriosFecha = new Predicate<software>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             // criteriosEstado = new Predicate<software>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado)); 
@@ -60,6 +61,8 @@ namespace Incidencias_Infor.MVVM
 
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
 
+        public string textoCheck { get {return _textoCheck; } set { _textoCheck = value; NotifyPropertyChanged(nameof(textoCheck) );  } }
+
         public software wareNuevo { get { return soft; } set { soft = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
 
         public DateTime inicioSeleccionado { get { return fechaInicio; } set { fechaInicio = value; NotifyPropertyChanged(nameof(inicioSeleccionado));} }
@@ -67,7 +70,7 @@ namespace Incidencias_Infor.MVVM
         // public estado estadoSeleccionado { get { return Estado; } set { Estado = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
         public profesor profUsuario { get { return prof; } set { prof = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
 
-        public ListCollectionView ListWare2 { get { return lista; } }
+        public ListCollectionView ListWare2 { get { return listaWare; } }
 
         public bool guarda { get { return add(wareNuevo); } }
         public bool edita { get { return update(wareNuevo); } }
@@ -107,6 +110,11 @@ namespace Incidencias_Infor.MVVM
             }
 
             return correcto;
+        }
+
+        public void refrescarTabla()
+        {
+            listaWare = new ListCollectionView(softServ.getAll().ToList());
         }
     }
 }

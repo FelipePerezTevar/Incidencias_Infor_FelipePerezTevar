@@ -34,7 +34,7 @@
                 </MenuItem>
                 <MenuItem Header="Opciones" HorizontalAlignment="Right">
                     <MenuItem Header="Cambiar contraseña"/>
-                    <MenuItem Header="Cerrar sesión"/>
+                    <MenuItem x:Name="cerrarSesion" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
                 </MenuItem>
             </Menu>
         </Grid>

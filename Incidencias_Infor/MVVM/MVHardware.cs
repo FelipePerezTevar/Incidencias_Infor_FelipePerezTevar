@@ -17,8 +17,9 @@ namespace Incidencias_Infor.MVVM
         private EstadoServicio estServ;
         private IncidenciaServicio inciServ;
         private hardware hard;
+        private string _textoCheck;
 
-        private ListCollectionView lista;
+        private ListCollectionView listaWare;
         private DateTime fechaInicio;
         private DateTime fechaFinal;
         private tipohw tipo;
@@ -51,7 +52,7 @@ namespace Incidencias_Infor.MVVM
             //prof = new profesor();
             //Resolucion = new estado();
             criterios = new List<Predicate<hardware>>();
-            lista = new ListCollectionView(hardServ.getAll().ToList());
+            listaWare = new ListCollectionView(hardServ.getAll().ToList());
             criterioFecha = new Predicate<hardware>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             criterioTipo = new Predicate<hardware>(m => m.tipohw != null && m.tipohw.Equals(tipoSeleccionado));
@@ -66,6 +67,8 @@ namespace Incidencias_Infor.MVVM
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
         public hardware wareNuevo { get { return hard; } set { hard = value;NotifyPropertyChanged(nameof(wareNuevo));} }
 
+        public string textoCheck { get { return _textoCheck; } set { _textoCheck = value; NotifyPropertyChanged(nameof(textoCheck)); } }
+
         public DateTime inicioSeleccionado { get { return fechaInicio; } set { fechaInicio = value; NotifyPropertyChanged(nameof(inicioSeleccionado)); } }
         public DateTime finalSeleccionado { get { return fechaFinal; } set { fechaFinal = value; NotifyPropertyChanged(nameof(finalSeleccionado)); } }
         public tipohw tipoSeleccionado { get { return tipo; } set { tipo = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
@@ -73,7 +76,7 @@ namespace Incidencias_Infor.MVVM
        public profesor profUsuario { get { return prof; } set { prof = value;NotifyPropertyChanged(nameof(wareNuevo)); } }
        
 
-        public ListCollectionView ListWare2 { get { return lista; } }
+        public ListCollectionView ListWare2 { get { return listaWare; } }
 
         public bool guarda { get { return add(wareNuevo); } }
         public bool edita { get { return update(wareNuevo); } }
@@ -118,6 +121,11 @@ namespace Incidencias_Infor.MVVM
             }
 
             return correcto;
+        }
+
+        public void refrescarTabla()
+        {
+            listaWare = new ListCollectionView(hardServ.getAll().ToList());
         }
     }
 }

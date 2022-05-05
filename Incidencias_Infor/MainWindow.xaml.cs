@@ -32,6 +32,10 @@ namespace Incidencias_Infor
             inciEnt = ent;
             profLogin = prof;
             //btnAjustes.Content = profLogin.nombre;
+
+            UCIncidencias uc = new UCIncidencias(inciEnt, profLogin);
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uc);
         }
 
         private void menuNuevo_Click(object sender, RoutedEventArgs e)
@@ -69,6 +73,14 @@ namespace Incidencias_Infor
             UCInformeMes uci = new UCInformeMes();
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uci);
+        }
+
+        private void cerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+
+            this.Close();
         }
     }
 }

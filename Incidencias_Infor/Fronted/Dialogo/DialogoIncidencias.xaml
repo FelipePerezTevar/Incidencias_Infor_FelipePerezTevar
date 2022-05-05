@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
         mc:Ignorable="d" SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False"
                  WindowStartupLocation="CenterScreen" Icon="/Recursos/Iconos/lincy2.png"
-                 ShowIconOnTitleBar="False">
+                 ShowIconOnTitleBar="False" >
     <Grid>
         
 

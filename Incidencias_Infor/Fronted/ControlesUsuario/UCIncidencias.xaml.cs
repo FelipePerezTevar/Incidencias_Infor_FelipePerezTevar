@@ -27,6 +27,8 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
         private MVHardware mvHard;
         private MVSoftware mvSoft;
         private profesor profLogin;
+        private bool tipoWare;
+
         public UCIncidencias(incidenciasEntities ent, profesor prof)
         {
             InitializeComponent();
@@ -70,6 +72,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             softVersion.Visibility = Visibility.Visible;
             comboTipo.Visibility = Visibility.Collapsed;
             DataContext = mvSoft;
+            tipoWare = true;
             mvSoft.textoCheck = "Cambiar a incidencias hardware";
             
         }
@@ -83,6 +86,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             softVersion.Visibility = Visibility.Collapsed;
             comboTipo.Visibility = Visibility.Visible;
             DataContext = mvHard;
+            tipoWare = false;
             mvHard.textoCheck = "Cambiar a incidencias software";
             
         }
@@ -160,8 +164,28 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void btnPruebarRefresco_Click(object sender, RoutedEventArgs e)
         {
-            mvHard.refrescarTabla();
-            mvSoft.refrescarTabla();
+            refresh();
+        }
+
+        public void refresh()
+        {
+            
+            mvSoft = null;
+            mvHard = null;
+
+            mvSoft = new MVSoftware(inciEnt);
+            mvHard = new MVHardware(inciEnt);
+
+            if (tipoWare == true)
+            {
+                DataContext = mvSoft;
+                mvSoft.textoCheck = "Cambiar a incidencias hardware";
+            }
+            else
+            {
+                DataContext = mvHard;
+                mvHard.textoCheck = "Cambiar a incidencias software";
+            }
         }
     }
 }

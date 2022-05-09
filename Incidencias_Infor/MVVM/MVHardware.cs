@@ -123,9 +123,6 @@ namespace Incidencias_Infor.MVVM
             return correcto;
         }
 
-        public void refrescarTabla()
-        {
-            listaWare = new ListCollectionView(hardServ.getAll().ToList());
-        }
+        
     }
 }

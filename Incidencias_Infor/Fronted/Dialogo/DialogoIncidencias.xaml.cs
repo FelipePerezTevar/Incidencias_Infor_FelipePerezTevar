@@ -237,6 +237,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                         if (hardGuarda)
                                         {
                                             guardado = true;
+                                            mvInci.inciNueva = null;
                                         }
                                         else
                                         {
@@ -267,7 +268,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "La fecha de inicio no puede ser posterior a la actual");
                 }
 
-                mvInci.inciNueva = null;
+                
             }
         }
         //Cierra el dialogo
@@ -306,14 +307,12 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     }
 
                     this.Close();
-                    mvHard.refrescarTabla();
-                    mvSoft.refrescarTabla();
+                    
                 }
                 else
                 {
                     this.Close();
-                    mvHard.refrescarTabla();
-                    mvSoft.refrescarTabla();
+                    
                 }
             }
 

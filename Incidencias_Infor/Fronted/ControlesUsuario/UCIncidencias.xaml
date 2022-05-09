@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" >
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -48,9 +48,10 @@
                 </mat:HintAssist.Hint>
             </ComboBox>
 
-            <Button Name="btnPruebarRefresco" Grid.Column="7" Click="btnPruebarRefresco_Click">
+            <Button Name="btnPruebarRefresco" Grid.Column="7" Click="btnPruebarRefresco_Click"
+                    Margin="90,0,0,0">
                 <Button.Content>
-                    <mat:PackIcon Kind="AboutCircle"/>
+                    <mat:PackIcon Kind="CircleArrows"/>
                 </Button.Content>
             </Button>
 

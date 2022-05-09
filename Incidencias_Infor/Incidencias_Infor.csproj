@@ -130,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Fronted\Dialogo\CambioContrasenya.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fronted\Dialogo\DialogoIncidencias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +220,9 @@
     <Compile Include="Fronted\ControlesUsuario\UCInformeTipoHardware.xaml.cs">
       <DependentUpon>UCInformeTipoHardware.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fronted\Dialogo\CambioContrasenya.xaml.cs">
+      <DependentUpon>CambioContrasenya.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fronted\Dialogo\DialogoIncidencias.xaml.cs">
       <DependentUpon>DialogoIncidencias.xaml</DependentUpon>
     </Compile>
@@ -274,6 +281,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Recursos\Iconos\lincy contrasenya.png" />
     <Resource Include="Recursos\Iconos\lincidencias v2.0.png" />
     <EmbeddedResource Include="Informes\CRDepartamento.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

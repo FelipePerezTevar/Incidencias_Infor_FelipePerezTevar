@@ -93,6 +93,9 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         private void dgIncidencia_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+
+
+
             if (dgIncidencia.SelectedItem != null)
             {
 
@@ -170,6 +173,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
         public void refresh()
         {
             
+
             mvSoft = null;
             mvHard = null;
 

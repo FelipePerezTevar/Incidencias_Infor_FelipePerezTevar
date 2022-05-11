@@ -204,6 +204,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                         if (softGuarda)
                                         {
                                             guardado = true;
+                                            mvInci.inciNueva = null;
                                         }
                                     }
                                     else
@@ -276,6 +277,17 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             bool borrarWare;
             bool borrarInci;
+            
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Borrar",
+                NegativeButtonText = "Go fucking back",
+                AnimateShow = true,
+                AnimateHide = false
+            };
+
+            MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres borrar este registro?",
+                            MessageDialogStyle.AffirmativeAndNegative, mySettings);
 
             if (mvInci.IsValid(this))
             {
@@ -284,29 +296,58 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     if (tipoware == false)
                     {
                         mvSoft.wareNuevo = mvInci.softNuevo;
-                        borrarWare = mvSoft.borrar;
+
+                         
+
+                        if (result == MessageDialogResult.Affirmative)
+                        {
+                            borrarWare = mvSoft.borrar;
+                        }
+                        else
+                        {
+                            borrarWare = false;
+                        }
+
+                        
                     }
                     else
                     {
+
                         mvHard.wareNuevo = mvInci.hardNuevo;
-                        borrarWare = mvHard.borrar;
+
+                        if(result == MessageDialogResult.Affirmative)
+                        {
+                            borrarWare = mvHard.borrar;
+                        }
+                        else
+                        {
+                            borrarWare = false;
+                        }
+                        
                     }
 
                     if (borrarWare)
                     {
-                        borrarInci = mvInci.borrar;
+
+                        if (result == MessageDialogResult.Affirmative){
+                            borrarInci = mvInci.borrar;
+                        }
+                        else
+                        {
+                            borrarInci = false;
+                        }
+
+                        
 
                         if (borrarInci)
                         {
                             await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha borrado la incidencia actual");
+                            this.Close();
                         }
-                        else
-                        {
-                            await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "No se ha podido borrar la incidencia actual");
-                        }
+                        
                     }
 
-                    this.Close();
+                    
                     
                 }
                 else

@@ -278,21 +278,24 @@ namespace Incidencias_Infor.Fronted.Dialogo
             bool borrarWare;
             bool borrarInci;
             
-            var mySettings = new MetroDialogSettings()
-            {
-                AffirmativeButtonText = "Borrar",
-                NegativeButtonText = "Go fucking back",
-                AnimateShow = true,
-                AnimateHide = false
-            };
-
-            MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres borrar este registro?",
-                            MessageDialogStyle.AffirmativeAndNegative, mySettings);
+            
 
             if (mvInci.IsValid(this))
             {
                 if (editar)
                 {
+
+                    var mySettings = new MetroDialogSettings()
+                    {
+                        AffirmativeButtonText = "Borrar",
+                        NegativeButtonText = "Volver",
+                        AnimateShow = true,
+                        AnimateHide = false
+                    };
+
+                    MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres borrar este registro?",
+                                    MessageDialogStyle.AffirmativeAndNegative, mySettings);
+
                     if (tipoware == false)
                     {
                         mvSoft.wareNuevo = mvInci.softNuevo;

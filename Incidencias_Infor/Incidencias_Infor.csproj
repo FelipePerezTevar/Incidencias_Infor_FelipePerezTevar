@@ -266,6 +266,7 @@
     <Compile Include="MVVM\MVBaseCRUD.cs" />
     <Compile Include="MVVM\MVHardware.cs" />
     <Compile Include="MVVM\MVIncidencia.cs" />
+    <Compile Include="MVVM\MVProfesor.cs" />
     <Compile Include="MVVM\MVSoftware.cs" />
     <Compile Include="MVVM\PropertyChangedDataError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

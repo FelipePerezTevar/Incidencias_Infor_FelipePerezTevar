@@ -19,35 +19,39 @@ using System.Windows.Shapes;
 namespace Incidencias_Infor.Fronted.Dialogo
 {
 
-    public static class InfoBox
-    {
-        public async static Task<MessageDialogResult> ShowMessageAsync(string title, string Message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings settings = null)
-        {
-            return await ((MetroWindow)(Application.Current.MainWindow)).ShowMessageAsync(title, Message, style, settings);
-        }
-    }
+    
 
     /// <summary>
     /// Lógica de interacción para CambioContrasenya.xaml
     /// </summary>
     public partial class CambioContrasenya : MetroWindow
     {
-        public CambioContrasenya()
+
+        private incidenciasEntities inciEnt;
+        private MVProfesor mvProf;
+
+        public CambioContrasenya(incidenciasEntities ent, profesor prof)
         {
             InitializeComponent();
+            inciEnt = ent;
+
+            mvProf = new MVProfesor(inciEnt);
+            DataContext = mvProf;
+
+            mvProf.profe = prof;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var pedro = await InfoBox.ShowMessageAsync("Pedro", "Pedro");
+            mvProf.setPassword(passNueva.Password);
+            bool result = mvProf.edita;
 
-            if (pedro == MessageDialogResult.Negative)
-            {
-                await this.ShowMessageAsync("mamahuevo", "you are a wizard, Harry");
+            if (result) {
+                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
             }
             else
             {
-                await this.ShowMessageAsync("chupa pija", "galactico");
+                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar, wey");
             }
         }
     }

@@ -43,16 +43,82 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            mvProf.setPassword(passNueva.Password);
-            bool result = mvProf.edita;
 
-            if (result) {
-                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
+            if (comprobarContrasenya())
+            {
+                mvProf.setPassword(mvProf.cifrarContraseña(passNueva.Password));
+                bool result = mvProf.edita;
+
+                if (result)
+                {
+                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
+                }
+                else
+                {
+                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar, wey");
+                }
             }
             else
             {
-                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar, wey");
+                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Eres debil contraseña, te faltan caracteres");
             }
+
+            
         }
+
+        private bool comprobarContrasenya()
+        {
+            bool correcto = false;
+            string password = passNueva.Password;
+            string password2 = passDoble.Password;
+            if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password2))
+            {
+
+                if (password.Equals(password2))
+                {
+                    char[] characters = password.ToCharArray();
+
+                    int cant = password.Length;
+
+                    if (cant >= 8)
+                    {
+                        bool numero = false;
+                        bool letraMas = false;
+                        bool letraMen = false;
+                        
+
+                        for (int i = 0; i < cant; i++)
+                        {
+                            int result = Convert.ToInt32(characters.GetValue(i));
+
+                            if(result > 48 && result < 57)
+                            {
+                                numero = true;
+                            }
+
+                            if(result > 65 && result < 90)
+                            {
+                                letraMas = true;
+                            }
+
+                            if(result > 97 && result < 122)
+                            {
+                                letraMen = true;
+                            }
+                            
+                        }
+
+                        if (numero && letraMas && letraMen )
+                        {
+                            correcto = true;
+                        }
+                    }
+                
+                }
+                
+            }
+            return correcto;
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Incidencias_Infor.Backend.Modelo;
 using Incidencias_Infor.Backend.Servicio;
+using Incidencias_Infor.MVVM;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -26,6 +27,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private incidenciasEntities inciEnt;
         private ProfesorServicio profServ;
+        private MVProfesor mvProf;
 
         public Login()
         {

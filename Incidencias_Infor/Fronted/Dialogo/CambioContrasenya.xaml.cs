@@ -47,6 +47,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             if (comprobarContrasenya())
             {
                 mvProf.setPassword(mvProf.cifrarContraseña(passNueva.Password));
+                var pedro = mvProf.profe;
                 bool result = mvProf.edita;
 
                 if (result)

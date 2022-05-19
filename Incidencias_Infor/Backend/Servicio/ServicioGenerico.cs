@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -58,7 +59,25 @@ namespace Incidencias_Infor.Backend.Servicio
          */
         public void save()
         {
-            _entities.SaveChanges();
+            try
+            {
+                
+                _entities.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var pedro = "";
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+
+                        pedro =("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+
+                
+            }
         }
         /*
          * Devuelve un objeto identificado por su id

@@ -23,13 +23,13 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
     /// </summary>
     public partial class UCIncidencias : UserControl
     {
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private MVHardware mvHard;
         private MVSoftware mvSoft;
         private profesor profLogin;
         private bool tipoWare;
 
-        public UCIncidencias(incidenciasEntities ent, profesor prof)
+        public UCIncidencias(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
             inciEnt = ent;

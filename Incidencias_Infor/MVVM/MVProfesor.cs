@@ -13,11 +13,11 @@ namespace Incidencias_Infor.MVVM
     class MVProfesor : MVBaseCRUD<profesor>
     {
 
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private ProfesorServicio profServ;
         private profesor prof;
 
-        public MVProfesor(incidenciasEntities ent)
+        public MVProfesor(incidencias_informaticasEntities ent)
         {
             inciEnt = ent;
             inicializa();

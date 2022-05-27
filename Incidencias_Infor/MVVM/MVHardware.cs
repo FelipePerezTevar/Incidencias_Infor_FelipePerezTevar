@@ -11,7 +11,7 @@ namespace Incidencias_Infor.MVVM
 {
     class MVHardware : MVBaseCRUD<hardware>
     {
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private HardwareServicio hardServ;
         private TipoHWServicio tipoServ;
         private EstadoServicio estServ;
@@ -32,7 +32,7 @@ namespace Incidencias_Infor.MVVM
         private Predicate<hardware> criterioRespons;
        // private Predicate<hardware> criterioResol;
 
-        public MVHardware(incidenciasEntities ent)
+        public MVHardware(incidencias_informaticasEntities ent)
         {
             inciEnt = ent;
             inicializa();

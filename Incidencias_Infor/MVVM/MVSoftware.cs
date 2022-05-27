@@ -14,7 +14,7 @@ namespace Incidencias_Infor.MVVM
         
         private SoftwareServicio softServ;
         private IncidenciaServicio inciServ;
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private EstadoServicio estServ;
         private software soft;
         private string _textoCheck;
@@ -31,7 +31,7 @@ namespace Incidencias_Infor.MVVM
         private Predicate<software> criterioRespons;
         //private Predicate<software> criteriosEstado;
 
-        public MVSoftware(incidenciasEntities ent)
+        public MVSoftware(incidencias_informaticasEntities ent)
         {
             inciEnt = ent;
             inicializa();

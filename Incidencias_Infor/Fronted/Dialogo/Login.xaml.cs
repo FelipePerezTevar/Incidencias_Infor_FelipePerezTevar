@@ -25,7 +25,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
     public partial class Login : MetroWindow
     {
 
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private ProfesorServicio profServ;
         private MVProfesor mvProf;
 
@@ -62,13 +62,15 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private bool conectar()
         {
             bool conecta = true;
-            inciEnt = new incidenciasEntities();
+            inciEnt = new incidencias_informaticasEntities();
             try
             {
                 inciEnt.Database.Connection.Open();
 
             }catch(Exception ex)
             {
+                MessageBox.Show(ex.Message,
+                   "CONEXIÓN BASE DE DATOS", MessageBoxButton.OK, MessageBoxImage.Error);
                 conecta = false;
             }
             return conecta;

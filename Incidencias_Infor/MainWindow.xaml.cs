@@ -24,9 +24,9 @@ namespace Incidencias_Infor
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private profesor profLogin;
-        public MainWindow(incidenciasEntities ent, profesor prof)
+        public MainWindow(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
             inciEnt = ent;

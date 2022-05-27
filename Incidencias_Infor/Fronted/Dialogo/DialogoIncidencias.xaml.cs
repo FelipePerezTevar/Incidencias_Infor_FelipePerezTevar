@@ -24,7 +24,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
     public partial class DialogoIncidencias : MetroWindow
     {
         //Declaracion de todas las variables necesarias
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private MVIncidencia mvInci;
         private MVHardware mvHard;
         private MVSoftware mvSoft;
@@ -37,7 +37,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private bool guardado = false;
         private bool editar = false;
         private bool garantia;
-        public DialogoIncidencias(incidenciasEntities ent, profesor prof, incidencia inc, hardware h, software s)
+        public DialogoIncidencias(incidencias_informaticasEntities ent, profesor prof, incidencia inc, hardware h, software s)
         {
             InitializeComponent();
             inciEnt = ent;

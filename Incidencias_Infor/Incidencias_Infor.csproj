@@ -169,21 +169,6 @@
     <Compile Include="Backend\Modelo\lugar.cs">
       <DependentUpon>ModelInciInfor.tt</DependentUpon>
     </Compile>
-    <Compile Include="Backend\Modelo\ModelIncidencias.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIncidencias.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Backend\Modelo\ModelIncidencias.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIncidencias.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Backend\Modelo\ModelIncidencias.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Backend\Modelo\ModelInciInfor.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -322,16 +307,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Backend\Modelo\ModelIncidencias.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-      <LastGenOutput>ModelIncidencias.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Backend\Modelo\ModelIncidencias.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-      <LastGenOutput>ModelIncidencias.cs</LastGenOutput>
-    </Content>
     <Content Include="Backend\Modelo\ModelInciInfor.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelInciInfor.edmx</DependentUpon>
@@ -345,13 +320,6 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Backend\Modelo\ModelIncidencias.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelIncidencias.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Backend\Modelo\ModelIncidencias.edmx.diagram">
-      <DependentUpon>ModelIncidencias.edmx</DependentUpon>
-    </None>
     <EntityDeploy Include="Backend\Modelo\ModelInciInfor.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelInciInfor.Designer.cs</LastGenOutput>

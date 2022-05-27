@@ -27,10 +27,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
     public partial class CambioContrasenya : MetroWindow
     {
         //Hola
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private MVProfesor mvProf;
 
-        public CambioContrasenya(incidenciasEntities ent, profesor prof)
+        public CambioContrasenya(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
             inciEnt = ent;

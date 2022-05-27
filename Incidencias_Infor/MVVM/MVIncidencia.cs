@@ -10,7 +10,7 @@ namespace Incidencias_Infor.MVVM
 {
     class MVIncidencia : MVBaseCRUD<incidencia>
     {
-        private incidenciasEntities inciEnt;
+        private incidencias_informaticasEntities inciEnt;
         private LugarServicio luServ;
         private EstadoServicio estServ;
         private IncidenciaServicio inciServ;
@@ -27,7 +27,7 @@ namespace Incidencias_Infor.MVVM
         private incidencia inci;
         private int numColumna;
 
-        public MVIncidencia(incidenciasEntities ent)
+        public MVIncidencia(incidencias_informaticasEntities ent)
         {
             inciEnt = ent;
             inicializa();

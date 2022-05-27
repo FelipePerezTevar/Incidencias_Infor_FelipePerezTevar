@@ -138,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Fronted\Dialogo\GestionPermisos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Fronted\Dialogo\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +229,9 @@
     </Compile>
     <Compile Include="Fronted\Dialogo\DialogoIncidencias.xaml.cs">
       <DependentUpon>DialogoIncidencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fronted\Dialogo\GestionPermisos.xaml.cs">
+      <DependentUpon>GestionPermisos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Fronted\Dialogo\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

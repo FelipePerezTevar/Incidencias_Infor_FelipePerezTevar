@@ -26,7 +26,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
     /// </summary>
     public partial class CambioContrasenya : MetroWindow
     {
-
+        //Hola
         private incidenciasEntities inciEnt;
         private MVProfesor mvProf;
 

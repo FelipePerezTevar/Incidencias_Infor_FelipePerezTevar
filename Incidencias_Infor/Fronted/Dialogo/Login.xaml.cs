@@ -39,6 +39,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 Application.Current.Shutdown();
             }
             profServ = new ProfesorServicio(inciEnt);
+            mvProf = new MVProfesor(inciEnt);
         }
 
         private async void btnEntrar_Click(object sender, RoutedEventArgs e)
@@ -47,7 +48,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 await this.ShowMessageAsync("LOGIN", "La contraseña y el usuario no pueden ser vacios");
             }
-            else if(profServ.login(txtUsername.Text, passClaveAcceso.Password))
+            else if(profServ.login(txtUsername.Text, mvProf.cifrarContraseña(passClaveAcceso.Password)))
             {
                 MainWindow ventaPrincipal = new MainWindow(inciEnt, profServ.profLogin);
                 ventaPrincipal.Show();

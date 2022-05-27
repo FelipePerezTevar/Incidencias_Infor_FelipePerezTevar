@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ecd0dfce0a724ccca29aad26acecf369" Name="Diagram1">
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.departamento" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.estado" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.hardware" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.incidencia" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.lugar" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.permiso" Width="1.5" PointX="1.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.profesor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.rol" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.software" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="incidencias_informaticasModel1.tipohw" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_lugar_departamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_profesor_departamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia_estado1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_hardware_tipohw" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia_lugar1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia_profesor1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia_profesor2" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_incidencia_sw" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.fk_profesor_rol1" ManuallyRouted="false" />
+        <AssociationConnector Association="incidencias_informaticasModel1.rol_has_permiso" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

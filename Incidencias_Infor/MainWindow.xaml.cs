@@ -88,5 +88,11 @@ namespace Incidencias_Infor
             CambioContrasenya diag = new CambioContrasenya(inciEnt, profLogin);
             diag.ShowDialog();
         }
+
+        private void permisos_Click(object sender, RoutedEventArgs e)
+        {
+            GestionPermisos diag = new GestionPermisos();
+            diag.ShowDialog();
+        }
     }
 }

@@ -26,7 +26,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Permisos"/>
+                <MenuItem x:Name="permisos" Header="Permisos" Click="permisos_Click"/>
                 <MenuItem Header="Informes">
                     <MenuItem x:Name="informeMes" Header="Numero de incidencias por mes" Click="informeMes_Click"/>
                     <MenuItem x:Name="informeTipoHw" Header="Numero de incidencias por tipo de hardware" Click="informeTipoHw_Click"/>

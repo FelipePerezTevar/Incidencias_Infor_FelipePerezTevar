@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
     /// <summary>
     /// Lógica de interacción para GestionPermisos.xaml
     /// </summary>
-    public partial class GestionPermisos : Window
+    public partial class GestionPermisos : MetroWindow
     {
         public GestionPermisos()
         {

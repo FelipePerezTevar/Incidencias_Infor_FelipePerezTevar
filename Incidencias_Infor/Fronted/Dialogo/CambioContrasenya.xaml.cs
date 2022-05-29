@@ -52,6 +52,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 if (result)
                 {
                     await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
+                    this.Close();
                 }
                 else
                 {

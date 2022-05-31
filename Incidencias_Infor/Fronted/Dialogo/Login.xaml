@@ -41,6 +41,8 @@
             </mat:HintAssist.Hint>
         </PasswordBox>
         <Button Grid.Row="3" Content="Entrar" Width="100" Margin="20" x:Name="btnEntrar"
-                Click="btnEntrar_Click"/>
+                Click="btnEntrar_Click" IsDefault="True"/>
+
+
     </Grid>
 </mah:MetroWindow>

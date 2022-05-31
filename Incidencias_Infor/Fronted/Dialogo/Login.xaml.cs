@@ -44,20 +44,25 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private async void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(passClaveAcceso.Password))
-            {
-                await this.ShowMessageAsync("LOGIN", "La contraseña y el usuario no pueden ser vacios");
-            }
-            else if(profServ.login(txtUsername.Text, mvProf.cifrarContraseña(passClaveAcceso.Password)))
-            {
-                MainWindow ventaPrincipal = new MainWindow(inciEnt, profServ.profLogin);
-                ventaPrincipal.Show();
-                this.Close();
-            }
-            else
-            {
-                await this.ShowMessageAsync("LOGIN", "El usuario y la contraseña son incorrectas");
-            }
+            
+            
+                if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(passClaveAcceso.Password))
+                {
+                    await this.ShowMessageAsync("LOGIN", "La contraseña y el usuario no pueden ser vacios");
+                }
+                else if (profServ.login(txtUsername.Text, mvProf.cifrarContraseña(passClaveAcceso.Password)))
+                {
+                    MainWindow ventaPrincipal = new MainWindow(inciEnt, profServ.profLogin);
+                    ventaPrincipal.Show();
+                    this.Close();
+                }
+                else
+                {
+                    await this.ShowMessageAsync("LOGIN", "El usuario y la contraseña son incorrectas");
+                }
+            
+
+            
         }
 
         private bool conectar()

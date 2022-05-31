@@ -91,7 +91,7 @@ namespace Incidencias_Infor
 
         private void permisos_Click(object sender, RoutedEventArgs e)
         {
-            GestionPermisos diag = new GestionPermisos();
+            GestionPermisos diag = new GestionPermisos(inciEnt, profLogin );
             diag.ShowDialog();
         }
     }

@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Controls;
+﻿using Incidencias_Infor.Backend.Modelo;
+using Incidencias_Infor.MVVM;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,55 @@ namespace Incidencias_Infor.Fronted.Dialogo
     /// </summary>
     public partial class GestionPermisos : MetroWindow
     {
-        public GestionPermisos()
+
+        private incidencias_informaticasEntities inciEnt;
+        private MVRol mvrol;
+        private profesor profe;
+        
+
+        public GestionPermisos(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
+            inciEnt = ent;
+            profe = prof;
+            mvrol = new MVRol(inciEnt);
+            mvrol.rolSel = profe.rol1;
+            mvrol.listPermiRol = mvrol.rolSel.permiso.ToList();
+            DataContext = mvrol;
+
+        }
+
+        
+
+        private void BtnEditarPermiso_Click(object sender, RoutedEventArgs e)
+        {
+            if (BtnEditarPermiso.Content.Equals("Editar"))
+            {
+                btnAnyadir.Visibility = Visibility.Visible;
+                btnAnyadirTodos.Visibility = Visibility.Visible;
+                btnQuitar.Visibility = Visibility.Visible;
+                btnQuitarTodos.Visibility = Visibility.Visible;
+                BtnDeshacer.Visibility = Visibility.Visible;
+                lbPermiso.Visibility = Visibility.Visible;
+                BtnEditarPermiso.Content = "Guardar";
+            }
+            else
+            {
+                //FUNCION DE GRUARDAR SIN EMPLEMENTAR POR AHORA
+                btnAnyadir.Visibility = Visibility.Collapsed;
+                btnAnyadirTodos.Visibility = Visibility.Collapsed;
+                btnQuitar.Visibility = Visibility.Collapsed;
+                btnQuitarTodos.Visibility = Visibility.Collapsed;
+                BtnDeshacer.Visibility = Visibility.Collapsed;
+                lbPermiso.Visibility = Visibility.Collapsed;
+                BtnEditarPermiso.Content = "Editar";
+
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mvrol.ListRolPermiso = mvrol.rolSel.permiso.ToList();
         }
     }
 }

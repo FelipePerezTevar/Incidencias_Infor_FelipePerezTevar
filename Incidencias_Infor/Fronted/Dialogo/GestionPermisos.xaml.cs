@@ -74,8 +74,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
                 if (result == MessageDialogResult.Affirmative)
                 {
-                    //FUNCION DE GRUARDAR SIN EMPLEMENTAR POR AHORA
-                    if (mvrol.guarda)
+
+                    mvrol.rolSel.permiso = mvrol.ListRolPermiso;
+                    
+                    if (mvrol.editar)
                     {
                         await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se han guardado los cambios");
                         btnAnyadir.Visibility = Visibility.Collapsed;
@@ -208,8 +210,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 listaPermiso.Add(permi);
             }
 
-            listaPermiso.Add(mvrol.permiRol);
-            listaRolPermiso.Remove(mvrol.permiRol);
+            listaRolPermiso.Add(mvrol.permiOri);
+            listaPermiso.Remove(mvrol.permiOri);
 
             mvrol.ListRolPermiso = listaRolPermiso;
             mvrol.ListPermiso = listaPermiso;

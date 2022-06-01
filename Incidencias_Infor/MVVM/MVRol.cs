@@ -53,6 +53,6 @@ namespace Incidencias_Infor.MVVM
             set { listPermi = value; NotifyPropertyChanged(nameof(ListPermiso)); }
         }
 
-        public bool guarda { get { return update(rolSel); } }
+        public bool editar { get { return update(rolSel); } }
     }
 }

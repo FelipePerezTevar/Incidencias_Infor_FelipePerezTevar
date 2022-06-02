@@ -57,6 +57,12 @@ namespace Incidencias_Infor.MVVM
             criterioRespons = new Predicate<software>(m => m.incidencia1.profesor2 != null && m.incidencia1.profesor2.dni.Equals(profUsuario));
         }
 
+        public void refrescarFiltro()
+        {
+            inicioSeleccionado = inciServ.getFechaInicio();
+            finalSeleccionado = inciServ.getFechaFinal();
+        }
+
         public List<software> ListWare { get { return softServ.getAll().ToList(); } }
 
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }

@@ -18,11 +18,12 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--Filtro de hard/soft-->
             <CheckBox x:Name="checkTipoWare" Content="{Binding textoCheck}" Margin="0,0,25,0"
                       IsChecked="False" Checked="checkTipoWare_Checked" Unchecked="checkTipoWare_Unchecked"/>
-            
+
             <!--Titulo de los filtros-->
             <TextBlock Text="FILTROS" Grid.Column="1" Background="RosyBrown" FontWeight="Bold" Padding="5"
                        Foreground="White" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0"/>
@@ -32,23 +33,32 @@
             <DatePicker Grid.Column="3" Width="100" Margin="5,0,5,0" x:Name="dateInicio"
                         SelectedDate="{Binding inicioSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                         SelectedDateChanged="dateInicio_SelectedDateChanged"/>
-            
+
             <!--Filtro de fecha final-->
             <TextBlock Text="Fecha Final" Grid.Column="4" Margin="5,0,5,0" VerticalAlignment="Center"/>
             <DatePicker Grid.Column="5" Width="100" Margin="5,0,5,0" x:Name="dateFinal"
                         SelectedDate="{Binding finalSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                         SelectedDateChanged="dateFinal_SelectedDateChanged"/>
-            
+
             <!--Filtro tipo hard-->
-            <ComboBox Grid.Column="6" Width="160" ItemsSource="{Binding listTipo}" Margin="5,0,5,0"
-                      Visibility="Visible" x:Name="comboTipo" SelectedItem="{Binding tipoSeleccionado}"
+            <ComboBox Grid.Column="6" Width="160" ItemsSource="{Binding listTipo}" Margin="15,0,5,0"
+                      Visibility="Visible" x:Name="comboTipo" SelectedItem="{Binding tipoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                   DisplayMemberPath="nombre" SelectionChanged="comboTipo_SelectionChanged">
                 <mat:HintAssist.Hint>
                     <TextBlock Text="Selección de tipo hardware"/>
                 </mat:HintAssist.Hint>
             </ComboBox>
 
-            <Button Name="btnPruebarRefresco" Grid.Column="7" Click="btnPruebarRefresco_Click"
+            <!--Boton para borrar los filtros-->
+            <Button Name="btnBorrarFiltro" Grid.Column="7" Click="btnBorrarFiltro_Click"
+                    Margin="45,0,0,0">
+                <Button.Content>
+                    <TextBlock Text="Quitar filtro"/>
+                </Button.Content>
+            </Button>
+
+            <!--Boton para refrescar la lista-->
+            <Button Name="btnPruebarRefresco" Grid.Column="8" Click="btnPruebarRefresco_Click"
                     Margin="90,0,0,0">
                 <Button.Content>
                     <mat:PackIcon Kind="CircleArrows"/>
@@ -67,12 +77,16 @@
 
         </Grid>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="381*"/>
+                <ColumnDefinition Width="19*"/>
+            </Grid.ColumnDefinitions>
             <DataGrid x:Name="dgIncidencia"  AutoGenerateColumns="False" CanUserAddRows="False"
                   ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding ListWare2}"
-                      SelectedItem="{Binding wareNuevo}" MouseLeftButtonDown="dgIncidencia_MouseLeftButtonDown">
-                
+                      SelectedItem="{Binding wareNuevo}" MouseLeftButtonDown="dgIncidencia_MouseLeftButtonDown" Grid.ColumnSpan="2" Margin="0,0,0,-0.4">
+
                 <DataGrid.Columns>
-                    
+
                     <DataGridTextColumn x:Name="softNombre" Header="Nombre" Binding="{Binding nombre}" Visibility="Collapsed"/>
                     <DataGridTextColumn x:Name="softVersion" Header="Version" Binding="{Binding version}" Visibility="Collapsed"/>
                     <DataGridTextColumn x:Name="hardSerie" Header="Numero de serie" Binding="{Binding num_serie}"/>

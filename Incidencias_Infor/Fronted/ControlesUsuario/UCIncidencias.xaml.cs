@@ -191,5 +191,21 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 mvHard.textoCheck = "Cambiar a incidencias software";
             }
         }
+
+        private void btnBorrarFiltro_Click(object sender, RoutedEventArgs e)
+        {
+            if(tipoWare == true)
+            {
+                mvSoft.refrescarFiltro();
+            }
+            else
+            {
+                comboTipo.SelectedIndex = -1;
+                mvHard.refrescarFiltro();
+            }
+
+           
+            
+        }
     }
 }

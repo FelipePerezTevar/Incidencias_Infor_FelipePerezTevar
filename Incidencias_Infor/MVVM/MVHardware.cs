@@ -62,6 +62,13 @@ namespace Incidencias_Infor.MVVM
             hard = new hardware();
         }
 
+        public void refrescarFiltro()
+        {
+            inicioSeleccionado = inciServ.getFechaInicio();
+            finalSeleccionado = inciServ.getFechaFinal();
+            tipoSeleccionado = null;
+        }
+
         public List<tipohw> listTipo { get { return tipoServ.getAll().ToList(); } }
         public List<hardware> ListWare { get { return hardServ.getAll().ToList(); } }
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }

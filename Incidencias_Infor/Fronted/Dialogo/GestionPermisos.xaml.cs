@@ -37,6 +37,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
             mvrol = new MVRol(inciEnt);
             inicializa();
             DataContext = mvrol;
+            
+            
 
         }
 

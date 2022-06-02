@@ -290,10 +290,10 @@
         </Border>
 
         <Button x:Name="btnAceptar" Grid.Column="{Binding num}" Grid.Row="3" Width="110" HorizontalAlignment="Right"
-                Content="ACEPTAR" Margin="10" Click="btnAceptar_Click"/>
+                Content="ACEPTAR" Margin="10" Click="btnAceptar_Click" Visibility="Collapsed"/>
 
         <Button x:Name="btnCancelar" Grid.Column="{Binding num}" Grid.Row="3" Width="110" HorizontalAlignment="Right" Margin="10,10,150,10"
-                Content="CANCELAR"  Click="btnCancelar_Click"/> 
+                Content="CANCELAR"  Click="btnCancelar_Click" Visibility="Collapsed"/> 
 
     </Grid>
 </mah:MetroWindow>

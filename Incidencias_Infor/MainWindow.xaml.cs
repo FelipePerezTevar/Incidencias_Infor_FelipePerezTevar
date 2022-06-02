@@ -32,10 +32,46 @@ namespace Incidencias_Infor
             inciEnt = ent;
             profLogin = prof;
             //btnAjustes.Content = profLogin.nombre;
+            comprobarPermiso();
 
             UCIncidencias uc = new UCIncidencias(inciEnt, profLogin);
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
+        }
+
+        public void comprobarPermiso()
+        {
+            foreach(permiso permi in profLogin.rol1.permiso)
+            {
+                switch (permi.codigo)
+                {
+                    case 1:
+                        menuNuevo.Visibility = Visibility.Visible;
+                        break;
+
+                    case 2:
+                        //Inutilizar botones
+                        break;
+
+                    case 3:
+                        //Vacio
+                        break;
+
+                    case 4:
+                        menuPermisos.Visibility = Visibility.Visible;
+                        break;
+
+                    case 5:
+                        //No existe
+                        break;
+
+                    case 6:
+                        menuInformes.Visibility = Visibility.Visible;
+                        break;
+                };
+                    
+
+            }
         }
 
         private void menuNuevo_Click(object sender, RoutedEventArgs e)

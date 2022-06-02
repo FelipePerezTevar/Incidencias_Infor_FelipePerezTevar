@@ -55,18 +55,33 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
+        private void comprobarPermiso()
+        {
+            foreach(permiso permi in profLogin.rol1.permiso)
+            {
+                if (permi.codigo == 2){
+                    btnAceptar.Visibility = Visibility.Visible;
+                    btnCancelar.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
         private void inicializa()
         {
+            
             //Comprueba si hay que editar o no
             if(inci == null)
             {
                 mvInci.inciNueva = new incidencia();
                 mvInci.num = 0;
-                
-                
+                btnAceptar.Visibility = Visibility.Visible;
+                btnCancelar.Visibility = Visibility.Visible;
+
             }
             else
             {
+
+                comprobarPermiso();
                 mvInci.inciNueva = inci;
                 mvInci.num = 1;
                 
@@ -272,7 +287,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 
             }
         }
-        //Cierra el dialogo
+        
         private async void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             bool borrarWare;

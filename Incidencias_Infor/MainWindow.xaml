@@ -14,8 +14,8 @@
             <Menu x:Name="menuEj1" HorizontalAlignment="Left" Height="Auto"
               VerticalAlignment="Top" Width="565" IsMainMenu="True"
               Grid.Row="0">
-                <MenuItem Header="Incidencias">
-                    <MenuItem Header="Nuevo" x:Name="menuNuevo" Click="menuNuevo_Click">
+                <MenuItem x:Name="menuincidencias" Header="Incidencias">
+                    <MenuItem Header="Nuevo" x:Name="menuNuevo" Click="menuNuevo_Click" Visibility="Collapsed">
                         <MenuItem.Icon>
                             <mat:PackIcon Kind="OpenInNew"/>
                         </MenuItem.Icon>
@@ -26,15 +26,15 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem x:Name="permisos" Header="Permisos" Click="permisos_Click"/>
-                <MenuItem Header="Informes">
+                <MenuItem x:Name="menuPermisos" Header="Permisos" Click="permisos_Click" Visibility="Collapsed"/>
+                <MenuItem x:Name="menuInformes" Header="Informes" Visibility="Collapsed">
                     <MenuItem x:Name="informeMes" Header="Numero de incidencias por mes" Click="informeMes_Click"/>
                     <MenuItem x:Name="informeTipoHw" Header="Numero de incidencias por tipo de hardware" Click="informeTipoHw_Click"/>
                     <MenuItem x:Name="informeDpto" Header="Numero de incidencias por deparatamento" Click="informeDpto_Click"/>
                 </MenuItem>
-                <MenuItem Header="Opciones" HorizontalAlignment="Right">
+                <MenuItem x:Name="opciones" Header="Opciones" HorizontalAlignment="Right">
                     <MenuItem x:Name="cambioContrasenya" Header="Cambiar contraseña" Click="cambioContrasenya_Click"/>
-                    <MenuItem x:Name="cerrarSesion" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
+                    <MenuItem x:Name="cerrarSesion" Header="Cerrar sesión" Click="cerrarSesion_Click" />
                 </MenuItem>
             </Menu>
         </Grid>

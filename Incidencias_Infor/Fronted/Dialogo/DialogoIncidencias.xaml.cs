@@ -95,14 +95,12 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     checkComunicado.IsChecked = true;
                 }
 
-                if(mvInci.inciNueva.tiempo == null)
-                {
-                    checkFinalizado.IsChecked = false;
-                }
-                else
-                {
-                    checkFinalizado.IsChecked = true;
-                }
+                
+
+                checkCambioware.IsEnabled = false;
+                DateIncio.IsEnabled = false;
+                comboLugar.IsEnabled = false;
+                txtDescripcion.IsEnabled = false;
 
                 if(hard != null)
                 {
@@ -162,8 +160,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     //Después comprueba que los campos de incidencia tengan información
                     //IF -> continua correctamente
                     //ELSE -> salta un mensaje de error diciendo que todos los campos son obligatorios
-                    if (comboLugar.SelectedItem != null ||
-                        DateIncio.SelectedDate != null || txtDescripcion.Text != null)
+                    if (comboLugar.SelectedItem != null &&
+                        DateIncio.SelectedDate != null && !string.IsNullOrEmpty(txtDescripcion.Text))
                     {
                         //Finalmente, comprueba si el usuario a elegido editar o borrar
                         if (editar)
@@ -209,7 +207,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //IF -> es un software y comprueba que sus campos no esten vacios para guardarlos
                                     //*IF -> asigna la información correspondiente al objeto software y lo guarda
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
-                                    if (txtSoftNombre.Text != null || txtSoftVersion.Text != null)
+                                    if (!string.IsNullOrEmpty(txtSoftNombre.Text) && !string.IsNullOrEmpty(txtSoftVersion.Text))
                                     {
                                         mvSoft.wareNuevo = mvInci.softNuevo;
                                         mvSoft.wareNuevo.incidencia1 = mvInci.inciNueva;
@@ -233,7 +231,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                     //ELSE -> es un hardware y comprueba que los campos no esten vacios para guardarlos
                                     //*IF -> asigna los valores al objeto hardware y lo guarda
                                     //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
-                                    if (txtNumSerie.Text != null || txtModelo.Text != null || comboTipoHW.SelectedItem != null)
+                                    if (!string.IsNullOrEmpty(txtNumSerie.Text) && !string.IsNullOrEmpty(txtModelo.Text) && comboTipoHW.SelectedItem != null)
                                     {
                                         
                                         mvHard.wareNuevo = mvInci.hardNuevo;
@@ -383,27 +381,19 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             mvInci.inciNueva.comunicado = 1;
+            comboEstado.IsEnabled = true;
+            
         }
 
         //Si esta uncheck, la incidencia pasa a estado de no comunicado
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             mvInci.inciNueva.comunicado = 0;
+            comboEstado.IsEnabled = false;
+            
         }
 
-        //Si la incidencia se ha finalizado, la fecha de resolucion pasa a la actual y se calcula el tiempo
-        private void checkFinalizado_Checked(object sender, RoutedEventArgs e)
-        {
-            mvInci.inciNueva.fecha_resolucion = DateTime.Now;
-            mvInci.inciNueva.tiempo = mvInci.inciNueva.fecha_resolucion - mvInci.inciNueva.fecha_introduccion;
-        }
-
-        //Si la incidencia no se ha finalizado, la fecha de resolucion es nula y no se calcula el tiempo
-        private void checkFinalizado_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mvInci.inciNueva.fecha_resolucion = null;
-            mvInci.inciNueva.tiempo = null;
-        }
+        
 
         //Si está check, los campos relacionados con el software pasan a visible, los de hardware a colapsados
         //y al bool encargado de gestionar el tipo pasa a ser software(false)
@@ -451,6 +441,18 @@ namespace Incidencias_Infor.Fronted.Dialogo
             garantia = false;
         }
 
-        
+        private void comboEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mvInci.inciNueva.estado1.nombre.Equals("En solucion"))
+            {
+                mvInci.inciNueva.fecha_resolucion = null;
+                mvInci.inciNueva.tiempo = null;
+            }
+            else
+            {
+                mvInci.inciNueva.fecha_resolucion = DateTime.Now;
+                mvInci.inciNueva.tiempo = mvInci.inciNueva.fecha_resolucion - mvInci.inciNueva.fecha_introduccion;
+            }
+        }
     }
 }

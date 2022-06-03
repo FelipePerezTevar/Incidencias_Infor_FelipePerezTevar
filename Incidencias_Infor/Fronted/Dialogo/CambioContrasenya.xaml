@@ -7,7 +7,7 @@
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Incidencias_Infor.Fronted.Dialogo"
         mc:Ignorable="d"
-        Title="CambioContrasenya" SizeToContent="WidthAndHeight" ShowMaxRestoreButton="False"
+        Title="CambioContrasenya" Height="300" Width="400" ShowMaxRestoreButton="False"
                  WindowStartupLocation="CenterScreen" Icon="/Recursos/Iconos/lincy contrasenya.png"
                  ShowIconOnTitleBar="False">
     <Grid>
@@ -49,7 +49,7 @@
             </mat:HintAssist.Hint>
         </PasswordBox>
 
-        <Button Content="Cambiar" Grid.Row="3" Width="100" HorizontalAlignment="Right" Margin="5"
+        <Button Content="Cambiar" Grid.Row="3" Width="100" HorizontalAlignment="Right" Margin="5,25,20,5"
                 Click="Button_Click" IsEnabled="False" x:Name="btnCambiar"/>
     </Grid>
 </mah:MetroWindow>

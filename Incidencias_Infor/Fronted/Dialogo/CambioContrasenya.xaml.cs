@@ -56,12 +56,12 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 }
                 else
                 {
-                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar, wey");
+                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar");
                 }
             }
             else
             {
-                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Eres debil contraseña, te faltan caracteres");
+                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "La contraseña no cumple con los requisitos para ser guardada");
             }
 
             
@@ -75,51 +75,77 @@ namespace Incidencias_Infor.Fronted.Dialogo
             if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password2))
             {
 
-                if (password.Equals(password2))
+                if (!mvProf.cifrarContraseña(password).Equals(mvProf.profe.contrasenya))
                 {
-                    char[] characters = password.ToCharArray();
-
-                    int cant = password.Length;
-
-                    if (cant >= 8)
+                    if (password.Equals(password2))
                     {
-                        bool numero = false;
-                        bool letraMas = false;
-                        bool letraMen = false;
-                        
+                        char[] characters = password.ToCharArray();
 
-                        for (int i = 0; i < cant; i++)
+                        int cant = password.Length;
+
+                        if (cant >= 8)
                         {
-                            int result = Convert.ToInt32(characters.GetValue(i));
+                            bool numero = false;
+                            bool letraMas = false;
+                            bool letraMen = false;
 
-                            if(result > 48 && result < 57)
+
+                            for (int i = 0; i < cant; i++)
                             {
-                                numero = true;
+                                int result = Convert.ToInt32(characters.GetValue(i));
+
+                                if (result > 48 && result < 57)
+                                {
+                                    numero = true;
+                                }
+
+                                if (result > 65 && result < 90)
+                                {
+                                    letraMas = true;
+                                }
+
+                                if (result > 97 && result < 122)
+                                {
+                                    letraMen = true;
+                                }
+
                             }
 
-                            if(result > 65 && result < 90)
+                            if (numero && letraMas && letraMen)
                             {
-                                letraMas = true;
+                                correcto = true;
                             }
-
-                            if(result > 97 && result < 122)
-                            {
-                                letraMen = true;
-                            }
-                            
                         }
 
-                        if (numero && letraMas && letraMen )
-                        {
-                            correcto = true;
-                        }
                     }
-                
                 }
                 
             }
             return correcto;
         }
-        
+
+        private void passNueva_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(passNueva.Password))
+            {
+                passDoble.IsEnabled = true;
+            }
+            else
+            {
+                passDoble.IsEnabled = false;
+            }
+            
+        }
+
+        private void passDoble_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrEmpty(passNueva.Password) || !string.IsNullOrEmpty(passDoble.Password)){
+                btnCambiar.IsEnabled = true;
+            }
+            else
+            {
+                btnCambiar.IsEnabled = false;
+            }
+        }
     }
 }

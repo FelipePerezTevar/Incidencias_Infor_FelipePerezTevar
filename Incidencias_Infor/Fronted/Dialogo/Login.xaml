@@ -21,7 +21,7 @@
         <Image Source="/Recursos/Iconos/lincidencias v2.0.png" Width="350" Margin="20"/>
         <TextBox HorizontalAlignment="Center" Width="300" Grid.Row="1" Margin="0,10,0,10"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                     mat:TextFieldAssist.HasClearButton="True" x:Name="txtUsername">
+                     x:Name="txtUsername">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <mat:PackIcon Kind="User"/>
@@ -31,7 +31,7 @@
         </TextBox>
         <PasswordBox HorizontalAlignment="Center" Width="300" Grid.Row="2"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                         mat:TextFieldAssist.HasClearButton="True" x:Name="passClaveAcceso"
+                          x:Name="passClaveAcceso"
                             Margin="0,0,0,10">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">

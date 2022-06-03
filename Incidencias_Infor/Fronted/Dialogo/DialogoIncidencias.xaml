@@ -69,7 +69,7 @@
 
                 <!--Descripcion-->
                 <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Width="250" MinHeight="75" MaxLength="150"
-                     Margin="20" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Margin="20" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                      Text="{Binding inciNueva.descripcion, UpdateSourceTrigger=PropertyChanged}" x:Name="txtDescripcion">
                         <mat:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -227,7 +227,8 @@
 
                 <!--Comunicado-->
                 <CheckBox Content="Comunicado" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0,10,0,10"
-                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" x:Name="checkComunicado"/>
+                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" x:Name="checkComunicado"
+                          Grid.ColumnSpan="2"/>
 
                 
 
@@ -248,7 +249,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding inciNueva.profesor1.nombre}" x:Name="txtProfesor"
-                  IsEnabled="False">
+                  IsReadOnly="True">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <TextBlock Text="Profesor" FontWeight="Bold" Foreground="Firebrick"/>
@@ -259,7 +260,7 @@
         <!--Tiempo-->
         <TextBox Grid.Row="4" Grid.Column="0" Width="150" Height="50" 
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsEnabled="False">
+                 Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsReadOnly="True">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <TextBlock Text="Tiempo" FontWeight="Bold" Foreground="Firebrick"/>

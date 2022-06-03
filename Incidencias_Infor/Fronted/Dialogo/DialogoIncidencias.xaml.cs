@@ -100,13 +100,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 checkCambioware.IsEnabled = false;
                 DateIncio.IsEnabled = false;
                 comboLugar.IsEnabled = false;
-                txtDescripcion.IsEnabled = false;
+                txtDescripcion.IsReadOnly = false;
 
                 if(hard != null)
                 {
                     mvInci.hardNuevo = hard;
-                    txtNumSerie.IsEnabled = false;
-                    txtModelo.IsEnabled = false;
+                    txtNumSerie.IsReadOnly = false;
+                    txtModelo.IsReadOnly = false;
                     checkGarantia.IsEnabled = false;
                     comboTipoHW.IsEnabled = false;
                     checkCambioware.IsChecked = false;
@@ -114,8 +114,8 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 else
                 {
                     mvInci.softNuevo = soft;
-                    txtSoftNombre.IsEnabled = false;
-                    txtSoftVersion.IsEnabled = false;
+                    txtSoftNombre.IsReadOnly = false;
+                    txtSoftVersion.IsReadOnly = false;
                     checkCambioware.IsChecked = true;
                 }
 

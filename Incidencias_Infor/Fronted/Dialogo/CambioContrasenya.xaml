@@ -28,7 +28,7 @@
 
         <PasswordBox HorizontalAlignment="Center" Width="300" Grid.Row="1" Margin="5"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                         mat:TextFieldAssist.HasClearButton="True" x:Name="passNueva">
+                         x:Name="passNueva" PasswordChanged="passNueva_PasswordChanged">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <mat:PackIcon Kind="Information"/>
@@ -39,7 +39,7 @@
 
         <PasswordBox HorizontalAlignment="Center" Width="300" Grid.Row="2"
                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                         mat:TextFieldAssist.HasClearButton="True" x:Name="passDoble"
+                          x:Name="passDoble" IsEnabled="false" PasswordChanged="passDoble_PasswordChanged"
                             Margin="5">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
@@ -50,6 +50,6 @@
         </PasswordBox>
 
         <Button Content="Cambiar" Grid.Row="3" Width="100" HorizontalAlignment="Right" Margin="5"
-                Click="Button_Click"/>
+                Click="Button_Click" IsEnabled="False" x:Name="btnCambiar"/>
     </Grid>
 </mah:MetroWindow>

@@ -59,25 +59,9 @@ namespace Incidencias_Infor.Backend.Servicio
          */
         public void save()
         {
-            try
-            {
 
                 _entities.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var pedro = "";
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-
-                        pedro = ("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-
-
-            }
+            
         }
         /*
          * Devuelve un objeto identificado por su id

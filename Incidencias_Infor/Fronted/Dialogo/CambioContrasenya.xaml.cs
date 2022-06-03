@@ -43,28 +43,40 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            if (comprobarContrasenya())
+            var mySettings = new MetroDialogSettings()
             {
-                mvProf.setPassword(mvProf.cifrarContraseña(passNueva.Password));
-                bool result = mvProf.edita;
+                AffirmativeButtonText = "Borrar",
+                NegativeButtonText = "Volver",
+                AnimateShow = true,
+                AnimateHide = false
+            };
 
-                if (result)
+            MessageDialogResult comprobacion = await this.ShowMessageAsync("Lincidencias warning", "¿Seguro de querer cambiar la contraseña?",
+                            MessageDialogStyle.AffirmativeAndNegative, mySettings);
+
+            if (comprobacion == MessageDialogResult.Affirmative)
+            {
+                if (comprobarContrasenya())
                 {
-                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
-                    this.Close();
+                    mvProf.setPassword(mvProf.cifrarContraseña(passNueva.Password));
+                    bool result = mvProf.edita;
+
+                    if (result)
+                    {
+                        await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "Se cambio la contraseña");
+                        this.Close();
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar");
+                    }
                 }
                 else
                 {
-                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "No se pudo cambiar");
+                    await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "La contraseña no cumple con los requisitos para ser guardada");
                 }
             }
-            else
-            {
-                await this.ShowMessageAsync("GESTIÓN DE CONTRASEÑA", "La contraseña no cumple con los requisitos para ser guardada");
-            }
 
-            
         }
 
         private bool comprobarContrasenya()

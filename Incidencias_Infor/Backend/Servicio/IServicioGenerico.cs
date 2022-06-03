@@ -40,5 +40,7 @@ namespace Incidencias_Infor.Backend.Servicio
          * Realiza un commit para que los cambios se hagan persistentes
          */
         void save();
+
+        bool cambio();
     }
 }

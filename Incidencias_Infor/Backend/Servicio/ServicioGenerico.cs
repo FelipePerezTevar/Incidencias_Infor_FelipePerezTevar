@@ -102,6 +102,11 @@ namespace Incidencias_Infor.Backend.Servicio
             IEnumerable<T> query = _dbset.Where(predicate).AsEnumerable();
             return query;
         }
+
+        public bool cambio()
+        {
+            return _entities.ChangeTracker.HasChanges();
+        }
     }
 }
 

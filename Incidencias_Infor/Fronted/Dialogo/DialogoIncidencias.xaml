@@ -249,7 +249,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Width="150" Height="50"
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding inciNueva.profesor1.nombre}" x:Name="txtProfesor"
-                  IsReadOnly="True">
+                  IsEnabled="false">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <TextBlock Text="Profesor" FontWeight="Bold" Foreground="Firebrick"/>
@@ -260,7 +260,7 @@
         <!--Tiempo-->
         <TextBox Grid.Row="4" Grid.Column="0" Width="150" Height="50" 
                  Margin="20" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsReadOnly="True">
+                 Text="{Binding inciNueva.tiempo}" x:Name="txtTiempo" IsEnabled="false">
             <mat:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
                     <TextBlock Text="Tiempo" FontWeight="Bold" Foreground="Firebrick"/>

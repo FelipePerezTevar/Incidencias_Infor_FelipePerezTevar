@@ -53,8 +53,8 @@ namespace Incidencias_Infor.MVVM
             criteriosFecha = new Predicate<software>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             // criteriosEstado = new Predicate<software>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado)); 
-            criterioProf = new Predicate<software>(m => m.incidencia1.profesor1 != null && m.incidencia1.profesor1.Equals(profUsuario));
-            criterioRespons = new Predicate<software>(m => m.incidencia1.profesor2 != null && m.incidencia1.profesor2.Equals(profUsuario));
+            criterioProf = new Predicate<software>(m => m.incidencia1.profesor1 != null && m.incidencia1.profesor2 != null && (m.incidencia1.profesor1.dni.Equals(profUsuario.dni) || m.incidencia1.profesor2.dni.Equals(profUsuario.dni)));
+            
         }
 
         public void refrescarFiltro()
@@ -96,7 +96,7 @@ namespace Incidencias_Infor.MVVM
             if (profUsuario != null)
             {
                 criterios.Add(criterioProf);
-                criterios.Add(criterioRespons);
+               
             }
 
             /*if(Estado != null)

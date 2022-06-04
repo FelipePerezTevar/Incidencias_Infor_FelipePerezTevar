@@ -29,7 +29,7 @@ namespace Incidencias_Infor.MVVM
         private Predicate<hardware> criterioFecha;
         private Predicate<hardware> criterioTipo;
         private Predicate<hardware> criterioProf;
-        private Predicate<hardware> criterioRespons;
+        
        // private Predicate<hardware> criterioResol;
 
         public MVHardware(incidencias_informaticasEntities ent)
@@ -57,7 +57,7 @@ namespace Incidencias_Infor.MVVM
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             criterioTipo = new Predicate<hardware>(m => m.tipohw != null && m.tipohw.Equals(tipoSeleccionado));
             //criterioResol = new Predicate<hardware>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado));
-            criterioProf = new Predicate<hardware>(m =>(m.incidencia1.profesor1 != null &&  m.incidencia1.profesor2 != null) && (m.incidencia1.profesor1.dni.Equals(profUsuario.dni) || m.incidencia1.profesor2.dni.Equals(profUsuario.dni)));
+            criterioProf = new Predicate<hardware>(m => m.incidencia1.profesor1 != null &&  m.incidencia1.profesor2 != null && (m.incidencia1.profesor1.dni.Equals(profUsuario.dni) || m.incidencia1.profesor2.dni.Equals(profUsuario.dni)));
             
             hard = new hardware();
         }

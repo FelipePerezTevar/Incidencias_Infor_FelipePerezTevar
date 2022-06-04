@@ -44,6 +44,7 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             mvSoft = new MVSoftware(inciEnt);
             DataContext = mvHard;
             mvHard.textoCheck = "Cambiar a incidencias software";
+            dgIncidencia.SelectedItem = null;
             comprobarProfesor();
             
         }
@@ -104,13 +105,15 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
                 if (dgIncidencia.SelectedItem is hardware)
                 {
-                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvHard.wareNuevo.incidencia1, mvHard.wareNuevo, null);
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, ((hardware)dgIncidencia.SelectedItem).incidencia1, (hardware)dgIncidencia.SelectedItem, null);
                     diag.Show();
+                    dgIncidencia.SelectedItem = null;
                 }
                 else
                 {
-                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, mvSoft.wareNuevo.incidencia1, null, mvSoft.wareNuevo);
+                    DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin, ((software)dgIncidencia.SelectedItem).incidencia1, null, (software)dgIncidencia.SelectedItem);
                     diag.Show();
+                    dgIncidencia.SelectedItem = null;
                 }
 
 

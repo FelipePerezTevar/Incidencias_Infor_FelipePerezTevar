@@ -44,13 +44,18 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             mvSoft = new MVSoftware(inciEnt);
             DataContext = mvHard;
             mvHard.textoCheck = "Cambiar a incidencias software";
+            comprobarProfesor();
+            
+        }
 
+        private void comprobarProfesor()
+        {
             if (profLogin.rol1.nombre.Equals("Profesor"))
             {
                 mvHard.profUsuario = profLogin;
                 mvSoft.profUsuario = profLogin;
 
-                if(mvHard.profUsuario != null)
+                if (mvHard.profUsuario != null)
                 {
                     mvHard.addCriterios();
                     mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
@@ -60,8 +65,6 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 }
             }
         }
-
-        
 
         private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
         {
@@ -190,6 +193,9 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 DataContext = mvHard;
                 mvHard.textoCheck = "Cambiar a incidencias software";
             }
+
+            comprobarProfesor();
+            
         }
 
         private void btnBorrarFiltro_Click(object sender, RoutedEventArgs e)

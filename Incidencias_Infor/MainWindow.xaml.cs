@@ -2,6 +2,7 @@
 using Incidencias_Infor.Fronted.ControlesUsuario;
 using Incidencias_Infor.Fronted.Dialogo;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,21 +50,13 @@ namespace Incidencias_Infor
                         menuNuevo.Visibility = Visibility.Visible;
                         break;
 
-                    case 2:
-                        //Inutilizar botones
-                        break;
-
-                    case 3:
-                        //Vacio
-                        break;
+                    
 
                     case 4:
                         menuPermisos.Visibility = Visibility.Visible;
                         break;
 
-                    case 5:
-                        //No existe
-                        break;
+                    
 
                     case 6:
                         menuInformes.Visibility = Visibility.Visible;
@@ -111,12 +104,27 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uci);
         }
 
-        private void cerrarSesion_Click(object sender, RoutedEventArgs e)
+        private async void cerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Salir",
+                NegativeButtonText = "Volver",
+                AnimateShow = true,
+                AnimateHide = false
+            };
 
-            this.Close();
+            MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres cerrar la sesión?",
+                            MessageDialogStyle.AffirmativeAndNegative, mySettings);
+
+            if(result == MessageDialogResult.Affirmative)
+            {
+                Login login = new Login();
+                login.Show();
+
+                this.Close();
+            }
+            
         }
 
         private void cambioContrasenya_Click(object sender, RoutedEventArgs e)

@@ -103,7 +103,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Comprobar si hay cambios para deshacer o no
+            
             var pedro = new List<permiso>();
             mvrol.llenarListaPermiso();
             mvrol.ListRolPermiso = mvrol.rolSel.permiso.ToList();
@@ -151,24 +151,29 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private void btnQuitar_Click(object sender, RoutedEventArgs e)
         {
-            var listaPermiso = new List<permiso>();
-            var listaRolPermiso = new List<permiso>();
 
-            foreach(permiso permi in mvrol.ListRolPermiso)
+            if(mvrol.permiRol.codigo != 0)
             {
-                listaRolPermiso.Add(permi);
+                var listaPermiso = new List<permiso>();
+                var listaRolPermiso = new List<permiso>();
+
+                foreach (permiso permi in mvrol.ListRolPermiso)
+                {
+                    listaRolPermiso.Add(permi);
+                }
+
+                foreach (permiso permi in mvrol.ListPermiso)
+                {
+                    listaPermiso.Add(permi);
+                }
+
+                listaPermiso.Add(mvrol.permiRol);
+                listaRolPermiso.Remove(mvrol.permiRol);
+
+                mvrol.ListRolPermiso = listaRolPermiso;
+                mvrol.ListPermiso = listaPermiso;
             }
-
-            foreach(permiso permi in mvrol.ListPermiso)
-            {
-                listaPermiso.Add(permi);
-            }
-
-            listaPermiso.Add(mvrol.permiRol);
-            listaRolPermiso.Remove(mvrol.permiRol);
-
-            mvrol.ListRolPermiso = listaRolPermiso;
-            mvrol.ListPermiso = listaPermiso;
+            
         }
 
         private void btnQuitarTodos_Click(object sender, RoutedEventArgs e)
@@ -199,24 +204,28 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private void btnAnyadir_Click(object sender, RoutedEventArgs e)
         {
-            var listaPermiso = new List<permiso>();
-            var listaRolPermiso = new List<permiso>();
-
-            foreach (permiso permi in mvrol.ListRolPermiso)
+            if (mvrol.permiOri.codigo != 0)
             {
-                listaRolPermiso.Add(permi);
+                var listaPermiso = new List<permiso>();
+                var listaRolPermiso = new List<permiso>();
+
+                foreach (permiso permi in mvrol.ListRolPermiso)
+                {
+                    listaRolPermiso.Add(permi);
+                }
+
+                foreach (permiso permi in mvrol.ListPermiso)
+                {
+                    listaPermiso.Add(permi);
+                }
+
+                listaRolPermiso.Add(mvrol.permiOri);
+                listaPermiso.Remove(mvrol.permiOri);
+
+                mvrol.ListRolPermiso = listaRolPermiso;
+                mvrol.ListPermiso = listaPermiso;
             }
-
-            foreach (permiso permi in mvrol.ListPermiso)
-            {
-                listaPermiso.Add(permi);
-            }
-
-            listaRolPermiso.Add(mvrol.permiOri);
-            listaPermiso.Remove(mvrol.permiOri);
-
-            mvrol.ListRolPermiso = listaRolPermiso;
-            mvrol.ListPermiso = listaPermiso;
+               
         }
 
         private void btnAnyadirTodos_Click(object sender, RoutedEventArgs e)

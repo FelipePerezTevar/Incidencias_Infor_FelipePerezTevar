@@ -36,6 +36,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private bool tipoware = true;
         private bool guardado = false;
         private bool editar = false;
+        private bool quiere = false;
         private bool garantia;
         public DialogoIncidencias(incidencias_informaticasEntities ent, profesor prof, incidencia inc, hardware h, software s)
         {
@@ -50,7 +51,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             DataContext = mvInci;
             this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(mvInci.OnErrorEvent));
             mvInci.btnGuardar = btnAceptar;
-
+            
             inicializa();
             
         }
@@ -66,27 +67,63 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
 
+        private async void quiereEditar()
+        {
+            if (mvInci.inciNueva.comunicado == 0 && mvInci.inciNueva.profesor1.Equals(profLogin))
+            {
+                if (mvInci.inciNueva.profesor2.Equals(profLogin))
+                {
+                    var mySettings = new MetroDialogSettings()
+                    {
+                        AffirmativeButtonText = "Editar",
+                        NegativeButtonText = "Gestionar",
+                        AnimateShow = true,
+                        AnimateHide = false
+                    };
+
+                    MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres editar o gestionar esta incidencia?",
+                                    MessageDialogStyle.AffirmativeAndNegative, mySettings);
+
+                    if(result == MessageDialogResult.Affirmative)
+                    {
+                        quiere = true;
+                    }
+                }
+                else
+                {
+                    quiere = true;
+                }
+            }
+        }
+
         private void inicializa()
         {
+            mvHard = new MVHardware(inciEnt);
+            mvSoft = new MVSoftware(inciEnt);
             
-            //Comprueba si hay que editar o no
             if(inci == null)
             {
                 mvInci.inciNueva = new incidencia();
                 mvInci.num = 0;
                 btnAceptar.Visibility = Visibility.Visible;
                 btnCancelar.Visibility = Visibility.Visible;
+                borderAdmin.Visibility = Visibility.Collapsed;
+                checkComunicado.IsChecked = false;
 
             }
             else
             {
+                btnAceptar.Content = "EDITAR";
+                btnCancelar.Content = "BORRAR";
 
                 comprobarPermiso();
                 mvInci.inciNueva = inci;
                 mvInci.num = 1;
-                
 
-                if(mvInci.inciNueva.comunicado == 0)
+                quiereEditar();
+
+
+                if (mvInci.inciNueva.comunicado == 0 )
                 {
                     checkComunicado.IsChecked = false;
                 }
@@ -95,47 +132,57 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     checkComunicado.IsChecked = true;
                 }
 
-                
-
-                checkCambioware.IsEnabled = false;
-                DateIncio.IsEnabled = false;
-                comboLugar.IsEnabled = false;
-                txtDescripcion.IsEnabled = false;
-
-                if(hard != null)
+                if(quiere == false)
                 {
-                    mvInci.hardNuevo = hard;
-                    txtNumSerie.IsEnabled = false;
-                    txtModelo.IsEnabled = false;
-                    checkGarantia.IsEnabled = false;
-                    comboTipoHW.IsEnabled = false;
-                    checkCambioware.IsChecked = false;
+                    checkCambioware.IsEnabled = false;
+                    DateIncio.IsEnabled = false;
+                    comboLugar.IsEnabled = false;
+                    txtDescripcion.IsEnabled = false;
+
+                    if (hard != null)
+                    {
+                        mvInci.hardNuevo = hard;
+                        txtNumSerie.IsEnabled = false;
+                        txtModelo.IsEnabled = false;
+                        checkGarantia.IsEnabled = false;
+                        comboTipoHW.IsEnabled = false;
+                        checkCambioware.IsChecked = false;
+                    }
+                    else
+                    {
+                        mvInci.softNuevo = soft;
+                        txtSoftNombre.IsEnabled = false;
+                        txtSoftVersion.IsEnabled = false;
+                        checkCambioware.IsChecked = true;
+                    }
                 }
                 else
                 {
-                    mvInci.softNuevo = soft;
-                    txtSoftNombre.IsEnabled = false;
-                    txtSoftVersion.IsEnabled = false;
-                    checkCambioware.IsChecked = true;
+                    borderAdmin.Visibility = Visibility.Collapsed;
+                    checkComunicado.IsChecked = false;
+                    mvInci.num = 0;
+                    checkCambioware.Visibility = Visibility.Collapsed;
+
+                    if(hard != null)
+                    {
+                        mvInci.hardNuevo = hard;
+                    }
+                    else
+                    {
+                        mvInci.softNuevo = soft;
+                    }
                 }
+                    
 
+                    
+                
                 editar = true;
+
             }
 
-            //Y dependiendo del resultado, mostrará los campos de adminstracion o no
-            if (!editar)
-            {
-                borderAdmin.Visibility = Visibility.Collapsed;
-                checkComunicado.IsChecked = false;
-            }
-            else
-            {
-                btnAceptar.Content = "EDITAR";
-                btnCancelar.Content = "BORRAR";
-            }
+            
 
-            mvHard = new MVHardware(inciEnt);
-            mvSoft = new MVSoftware(inciEnt);
+            
             
 
         }
@@ -149,26 +196,19 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 mvInci.softNuevo = new software();
             }
            
-            //Primero, comprueba si es valido
+            
             if (mvInci.IsValid(this))
             {
-                //A continuación, comprueba si la fecha de inicio es mayor a la actual
-                //IF -> continua correctamente
-                //ELSE -> salta un mensaje de error diciendo que la fecha de inicio no debe ser superior
+                
                 if (DateIncio.SelectedDate < DateTime.Now)
                 {
-                    //Después comprueba que los campos de incidencia tengan información
-                    //IF -> continua correctamente
-                    //ELSE -> salta un mensaje de error diciendo que todos los campos son obligatorios
                     if (comboLugar.SelectedItem != null &&
                         DateIncio.SelectedDate != null && !string.IsNullOrEmpty(txtDescripcion.Text))
                     {
-                        //Finalmente, comprueba si el usuario a elegido editar o borrar
                         if (editar)
                         {
-                            //IF -> edita la incidencia correspondiente
                             bool editado = mvInci.edita;
-                            //Dependiendo del resultado de la edición, nos dirá que ha salido bien o mal
+                            
                             if (editado)
                             {
                                 await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se  ha actualizado la incidencia");
@@ -181,11 +221,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                         }
                         else
                         {
-                            //ELSE -> guarda la nueva incidencia
-
-                            //Primero asigna los campos que no debe introducir el usuario con los valores 
-                            //que necesita la incidencia al principio
-
+                            
 
                             mvInci.inciNueva.fecha_introduccion = DateTime.Now;
                             mvInci.inciNueva.profesor1 = profLogin;
@@ -193,20 +229,16 @@ namespace Incidencias_Infor.Fronted.Dialogo
                             mvInci.inciNueva.estado1 = mvInci.estadoProf;
                             mvInci.inciNueva.comunicado = 0;
 
-                            //A continuación guarda la incidencia 
+                            
                             guardado = mvInci.guarda;
 
-                            //Finalmente, dependiendo del resultado del guardado
-                            //IF -> continua correctamente 
-                            //ELSE -> salta un mensaje diciendo que no se ha podido guardar la incidencia
+                            
                             if (guardado)
                             {
-                                //Comprueba si la variable es hardware(true) o software(false)
+                                
                                 if (tipoware == false)
                                 {
-                                    //IF -> es un software y comprueba que sus campos no esten vacios para guardarlos
-                                    //*IF -> asigna la información correspondiente al objeto software y lo guarda
-                                    //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
+                                    
                                     if (!string.IsNullOrEmpty(txtSoftNombre.Text) && !string.IsNullOrEmpty(txtSoftVersion.Text))
                                     {
                                         mvSoft.wareNuevo = mvInci.softNuevo;
@@ -228,9 +260,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                 }
                                 else
                                 {
-                                    //ELSE -> es un hardware y comprueba que los campos no esten vacios para guardarlos
-                                    //*IF -> asigna los valores al objeto hardware y lo guarda
-                                    //*ELSE -> salta un mensaje diciendo que todos los campos son obligatorios
+                                    
                                     if (!string.IsNullOrEmpty(txtNumSerie.Text) && !string.IsNullOrEmpty(txtModelo.Text) && comboTipoHW.SelectedItem != null)
                                     {
                                         
@@ -382,6 +412,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             mvInci.inciNueva.comunicado = 1;
             comboEstado.IsEnabled = true;
+            comboResponsable.IsEnabled = false;
             
         }
 
@@ -390,6 +421,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             mvInci.inciNueva.comunicado = 0;
             comboEstado.IsEnabled = false;
+            comboResponsable.IsEnabled = true;
             
         }
 

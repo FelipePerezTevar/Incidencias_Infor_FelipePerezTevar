@@ -42,7 +42,7 @@
                 Visibility="Collapsed" x:Name="BtnDeshacer" Click="BtnDeshacer_Click"/>
 
         <!--Lista de permisos en los roles-->
-        <ListBox ItemsSource="{Binding ListRolPermiso}" DisplayMemberPath="descripcion" Grid.Column="2" Grid.Row="1" Grid.RowSpan="5" Height="125" Width="175"
+        <ListBox ItemsSource="{Binding ListRolPermiso}" DisplayMemberPath="descripcion" Grid.Column="2" Grid.Row="1" Grid.RowSpan="5" Height="125" Width="300"
                  Background="#EEEEEE" Margin="15,0,25,25" SelectedItem="{Binding permiRol}" />
 
         <!--Botones para editar-->
@@ -56,7 +56,7 @@
                 Visibility="Collapsed" x:Name="btnAnyadirTodos" Click="btnAnyadirTodos_Click"/>
 
         <!--Lista de permisos en los roles-->
-        <ListBox ItemsSource="{Binding ListPermiso}" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Height="125" Width="175"
+        <ListBox ItemsSource="{Binding ListPermiso}" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Height="125" Width="300"
                  Background="#EEEEEE" Margin="15,0,25,25" DisplayMemberPath="descripcion" Visibility="Collapsed"
                  x:Name="lbPermiso" SelectedItem="{Binding permiOri}"/>
     </Grid>

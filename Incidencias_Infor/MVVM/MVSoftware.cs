@@ -22,14 +22,13 @@ namespace Incidencias_Infor.MVVM
         private ListCollectionView listaWare;
         private DateTime fechaInicio;
         private DateTime fechaFinal;
-        //private estado Estado;
+        
         private profesor prof;
 
         private List<Predicate<software>> criterios;
         private Predicate<software> criteriosFecha;
         private Predicate<software> criterioProf;
-        private Predicate<software> criterioRespons;
-        //private Predicate<software> criteriosEstado;
+        
 
         public MVSoftware(incidencias_informaticasEntities ent)
         {
@@ -45,14 +44,14 @@ namespace Incidencias_Infor.MVVM
             inciServ = new IncidenciaServicio(inciEnt);
             estServ = new EstadoServicio(inciEnt);
             soft = new software();
-            //Estado = new estado();
+            
             fechaInicio = inciServ.getFechaInicio();
             fechaFinal = inciServ.getFechaFinal();
             criterios = new List<Predicate<software>>();
             listaWare = new ListCollectionView(softServ.getAll().ToList());
             criteriosFecha = new Predicate<software>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
-            // criteriosEstado = new Predicate<software>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado)); 
+            
             criterioProf = new Predicate<software>(m => m.incidencia1.profesor1 != null && m.incidencia1.profesor2 != null && (m.incidencia1.profesor1.dni.Equals(profUsuario.dni) || m.incidencia1.profesor2.dni.Equals(profUsuario.dni)));
             
         }
@@ -82,7 +81,7 @@ namespace Incidencias_Infor.MVVM
         public bool edita { get { return update(wareNuevo); } }
         public bool borrar { get { return delete(wareNuevo); } }
 
-       
+        
 
         public void addCriterios()
         {

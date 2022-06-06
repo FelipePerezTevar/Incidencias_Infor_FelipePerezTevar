@@ -24,7 +24,8 @@ namespace Incidencias_Infor.MVVM
         private DateTime fechaFinal;
         private tipohw tipo;
         private profesor prof;
-       // private estado Resolucion;
+        
+       
         private List<Predicate<hardware>> criterios;
         private Predicate<hardware> criterioFecha;
         private Predicate<hardware> criterioTipo;
@@ -82,7 +83,8 @@ namespace Incidencias_Infor.MVVM
        // public estado estadoSeleccionado { get { return Resolucion;} set { Resolucion = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
        public profesor profUsuario { get { return prof; } set { prof = value;NotifyPropertyChanged(nameof(wareNuevo)); } }
        
-
+        
+        
         public ListCollectionView ListWare2 { get { return listaWare; } }
 
         public bool guarda { get { return add(wareNuevo); } }

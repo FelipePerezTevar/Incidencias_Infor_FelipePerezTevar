@@ -42,6 +42,8 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
         {
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
+            
+
             DataContext = mvHard;
             mvHard.textoCheck = "Cambiar a incidencias software";
             dgIncidencia.SelectedItem = null;

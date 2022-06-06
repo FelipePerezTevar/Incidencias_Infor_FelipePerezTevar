@@ -18,6 +18,7 @@ namespace Incidencias_Infor.MVVM
         private IncidenciaServicio inciServ;
         private hardware hard;
         private string _textoCheck;
+        
 
         private ListCollectionView listaWare;
         private DateTime fechaInicio;
@@ -31,7 +32,7 @@ namespace Incidencias_Infor.MVVM
         private Predicate<hardware> criterioTipo;
         private Predicate<hardware> criterioProf;
         
-       // private Predicate<hardware> criterioResol;
+      
 
         public MVHardware(incidencias_informaticasEntities ent)
         {
@@ -49,15 +50,12 @@ namespace Incidencias_Infor.MVVM
             estServ = new EstadoServicio(inciEnt);
             fechaInicio = inciServ.getFechaInicio();
             fechaFinal = inciServ.getFechaFinal();
-            //tipo = new tipohw();
-            //prof = new profesor();
-            //Resolucion = new estado();
+            
             criterios = new List<Predicate<hardware>>();
             listaWare = new ListCollectionView(hardServ.getAll().ToList());
             criterioFecha = new Predicate<hardware>(m => m.incidencia1.fecha_introduccion >= inicioSeleccionado
             && m.incidencia1.fecha_introduccion <= finalSeleccionado);
             criterioTipo = new Predicate<hardware>(m => m.tipohw != null && m.tipohw.Equals(tipoSeleccionado));
-            //criterioResol = new Predicate<hardware>(m => m.incidencia1.estado1.nombre != null && m.incidencia1.estado1.nombre.Equals(estadoSeleccionado));
             criterioProf = new Predicate<hardware>(m => m.incidencia1.profesor1 != null &&  m.incidencia1.profesor2 != null && (m.incidencia1.profesor1.dni.Equals(profUsuario.dni) || m.incidencia1.profesor2.dni.Equals(profUsuario.dni)));
             
             hard = new hardware();
@@ -80,10 +78,10 @@ namespace Incidencias_Infor.MVVM
         public DateTime inicioSeleccionado { get { return fechaInicio; } set { fechaInicio = value; NotifyPropertyChanged(nameof(inicioSeleccionado)); } }
         public DateTime finalSeleccionado { get { return fechaFinal; } set { fechaFinal = value; NotifyPropertyChanged(nameof(finalSeleccionado)); } }
         public tipohw tipoSeleccionado { get { return tipo; } set { tipo = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
-       // public estado estadoSeleccionado { get { return Resolucion;} set { Resolucion = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+       
        public profesor profUsuario { get { return prof; } set { prof = value;NotifyPropertyChanged(nameof(wareNuevo)); } }
        
-        
+       
         
         public ListCollectionView ListWare2 { get { return listaWare; } }
 

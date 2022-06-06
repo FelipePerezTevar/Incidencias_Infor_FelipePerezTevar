@@ -19,6 +19,7 @@ namespace Incidencias_Infor.MVVM
         private SoftwareServicio softServ;
         private PermisoServicio permServ;
         private TipoHWServicio tipoServ;
+
         private profesor profTIC;
         private hardware hard;
         private software soft;
@@ -45,6 +46,7 @@ namespace Incidencias_Infor.MVVM
             softServ = new SoftwareServicio(inciEnt);
             permServ = new PermisoServicio(inciEnt); 
             tipoServ = new TipoHWServicio(inciEnt);
+
             inci = new incidencia();
             hard = new hardware();
             soft = new software();
@@ -57,7 +59,6 @@ namespace Incidencias_Infor.MVVM
         public List<tipohw> listTipo { get { return tipoServ.getAll().ToList(); } }
         public List<lugar> listLugar { get { return luServ.getAll().ToList(); } }
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
-        
         public List<profesor> listProfesor { get { return profServ.getAll().ToList(); } }
 
         public estado estadoProf { get { return estadoEnSolucion; } }

@@ -25,17 +25,16 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
     public partial class UCInformeMes : UserControl
     {
 
-       // private incidenciasEntities inciEnt;
-       // private MVIncidencia mvInci;
-
         public UCInformeMes()
         {
             InitializeComponent();
-            //inciEnt = ent;
-            //mvInci = new MVIncidencia(inciEnt);
-            //DataContext = mvInci;
             cargarInforme();
         }
+
+        /// <summary>
+        /// Carga el informe de cuantas incidencias 
+        /// ha habido cada mes.
+        /// </summary>
 
         private void cargarInforme()
         {

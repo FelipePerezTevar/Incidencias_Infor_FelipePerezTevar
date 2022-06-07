@@ -59,6 +59,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
+        /// <summary>
+        /// Comprueba si el profesor registro tiene
+        /// el permisos de edición y modificación.
+        /// </summary>
         private void comprobarPermiso()
         {
             foreach(permiso permi in profLogin.rol1.permiso)
@@ -70,6 +74,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
 
+        /// <summary>
+        /// Dependiendo de si la incidencia está comunicada o no, si
+        /// el profesor registrado es el que ha creado la incidencia,
+        /// si el profesor registrado es el responsable de la incidencia
+        /// o si tiene el permiso de gestionar incidencias, dejará al
+        /// profesor gestionar la incidencia o no.
+        /// </summary>
         private async void quiereEditar()
         {
             if (inci.comunicado == 0 && inci.profesor1.Equals(profLogin))
@@ -107,6 +118,14 @@ namespace Incidencias_Infor.Fronted.Dialogo
             adaptarInterfaz();
         }
 
+        /// <summary>
+        /// Comprueba si el profesor registrado tiene el permiso
+        /// de gestionar incidencias o no.
+        /// </summary>
+        /// <returns>
+        /// Devuelve true si tiene el permiso de gestionar.
+        /// Devuelve false si no lo tiene.
+        /// </returns>
         private bool tienePermisoGestion()
         {
 
@@ -125,6 +144,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         }
 
+        /// <summary>
+        /// Prepara todo lo necesario para poder editar,
+        /// borrar o gestionar la incidencia.
+        /// </summary>
         private  void inicializa()
         {
             mvHard = new MVHardware(inciEnt);
@@ -166,6 +189,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         }
 
+        /// <summary>
+        /// Dependiendo de si el profesor quiere editar o gestionar,
+        /// este método adapta la interfaz para hacer una acción u otra.
+        /// </summary>
         private void adaptarInterfaz()
         {
             if (quiere == false)
@@ -211,7 +238,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 }
             }
         }
-        //Este método comprueba y guarda las incidencias en la base de datos
+        /// <summary>
+        /// Guarda la incidencia recien creada o edita la incidencia
+        /// con la que se está trabajando. 
+        /// </summary>
         private async void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if(mvInci.inciNueva == null)
@@ -341,6 +371,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
         
+        /// <summary>
+        /// Cierra la ventana en caso de que se esté creando un registro
+        /// o borra la incidencia con la que se está trabajando.
+        /// </summary>
         private async void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             bool borrarWare;
@@ -435,7 +469,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
-        //Si esta check, la incidencia pasa a estado de comunicado
+        /// <summary>
+        /// Pasa la incidencia a estado comunicado
+        /// </summary>
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             mvInci.inciNueva.comunicado = 1;
@@ -444,7 +480,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
-        //Si esta uncheck, la incidencia pasa a estado de no comunicado
+        /// <summary>
+        /// Pasa la incidencia a estado no comunicado
+        /// </summary>
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             mvInci.inciNueva.comunicado = 0;
@@ -455,8 +493,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         
 
-        //Si está check, los campos relacionados con el software pasan a visible, los de hardware a colapsados
-        //y al bool encargado de gestionar el tipo pasa a ser software(false)
+        /// <summary>
+        /// Pasa de crear una incidencia hardware a crear una 
+        /// incidencia software.
+        /// </summary>
         private void checkCambioware_Checked(object sender, RoutedEventArgs e)
         {
             txtNumSerie.Visibility = Visibility.Collapsed;
@@ -472,8 +512,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
             tipoware = false;
         }
 
-        //Si está uncheck, los campos relacionados con hardware pasan a estar visibles, los campos de software
-        //pasan a estar colapsados y la variable que controla el tipo de incidencia pasa hardware(true)
+        /// <summary>
+        /// Pasa de crear una incidencia software a crear
+        /// una incidencia hardware
+        /// </summary>
         private void checkCambioware_Unchecked(object sender, RoutedEventArgs e)
         {
             txtNumSerie.Visibility = Visibility.Visible;
@@ -489,18 +531,27 @@ namespace Incidencias_Infor.Fronted.Dialogo
             tipoware = true;
         }
 
-        //Si esta check, el hardware tendrá garantia
+        /// <summary>
+        /// Hace que el hardware de la incidencia pase a tener garantia
+        /// </summary>
         private void checkGarantia_Checked(object sender, RoutedEventArgs e)
         {
             garantia = true;
         }
 
-        //Si esta uncheck, el hardware no tendrá garantia
+        /// <summary>
+        /// Hace que el hardware de la incidencia deje de tener garantia
+        /// </summary>
         private void checkGarantia_Unchecked(object sender, RoutedEventArgs e)
         {
             garantia = false;
         }
 
+        /// <summary>
+        /// Cuando la incidencia cambia de estado a "Solucionada" o "Solución inviable",
+        /// introduce la fecha de resolución a la actual y calcula el tiempo que se 
+        /// tardo en resolver la incidencia
+        /// </summary>
         private void comboEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (mvInci.inciNueva.estado1.nombre.Equals("En solucion"))

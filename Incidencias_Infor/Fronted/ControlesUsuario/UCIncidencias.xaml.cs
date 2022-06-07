@@ -38,6 +38,10 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
 
         }
 
+        /// <summary>
+        /// Inicializa todo lo necesario para el correcto
+        /// funcionamiento del control de usuario.
+        /// </summary>
         private void inicializa()
         {
             mvHard = new MVHardware(inciEnt);
@@ -51,6 +55,11 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
         }
 
+        /// <summary>
+        /// Si el rol del profesor registrado es "Profesor",
+        /// solamente podrá ver las incidencias creadas por él
+        /// y en las que es responsable.
+        /// </summary>
         private void comprobarProfesor()
         {
             if (profLogin.rol1.nombre.Equals("Profesor"))
@@ -69,6 +78,10 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             }
         }
 
+        /// <summary>
+        /// Deja de mostrar las incidencias hardware para mostrar las 
+        /// incidencias software.
+        /// </summary>
         private void checkTipoWare_Checked(object sender, RoutedEventArgs e)
         {
             
@@ -83,6 +96,9 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
         }
 
+        /// <summary>
+        /// Deja de ver las incidencias software para ver las incidencias hardware.
+        /// </summary>
         private void checkTipoWare_Unchecked(object sender, RoutedEventArgs e)
         {
             
@@ -97,10 +113,12 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
         }
 
+        /// <summary>
+        /// Este método abre el dialogo de edición de incidencias
+        /// con la incidencia seleccionada.
+        /// </summary>
         private void dgIncidencia_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-
 
             if (dgIncidencia.SelectedItem != null)
             {
@@ -122,6 +140,11 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             }
         }
 
+        /// <summary>
+        /// Este método establece la fecha de inicio del
+        /// filtrado por rango de fechas.
+        /// </summary>
+
         private void dateInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if(mvHard.inicioSeleccionado <= mvHard.finalSeleccionado)
@@ -136,6 +159,11 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
                 mvSoft.ListWare2.Filter = new Predicate<object>(mvSoft.filtroCombinadoCriterios);
             }
         }
+
+        /// <summary>
+        /// Este método establece la fecha final del filtrado
+        /// por el rango de fechas.
+        /// </summary>
 
         private void dateFinal_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -152,6 +180,11 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             }
         }
 
+        /// <summary>
+        /// Permite filtrar por el tipo de hardware en las 
+        /// incidencias de tipo hardware
+        /// </summary>
+
         private void comboTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(mvHard.tipoSeleccionado != null)
@@ -162,26 +195,12 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             
         }
 
-        
 
-        private void comboEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (mvHard.tipoSeleccionado != null)
-            {
-                mvHard.addCriterios();
-                mvHard.ListWare2.Filter = new Predicate<object>(mvHard.filtroCombinadoCriterios);
-            }
-        }
-
+        /// <summary>
+        /// Refresca la lista de incidencias
+        /// </summary>
         private void btnPruebarRefresco_Click(object sender, RoutedEventArgs e)
         {
-            refresh();
-        }
-
-        public void refresh()
-        {
-            
-
             mvSoft = null;
             mvHard = null;
 
@@ -200,9 +219,13 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             }
 
             comprobarProfesor();
-            
         }
 
+       
+
+        /// <summary>
+        /// Resetea los filtros.
+        /// </summary>
         private void btnBorrarFiltro_Click(object sender, RoutedEventArgs e)
         {
             if(tipoWare == true)

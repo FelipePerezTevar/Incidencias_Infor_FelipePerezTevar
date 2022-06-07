@@ -27,6 +27,10 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             InitializeComponent();
             cargarInforme();
         }
+
+        /// <summary>
+        /// Carga el informe de tipo de hardware
+        /// </summary>
         private void cargarInforme()
         {
             try

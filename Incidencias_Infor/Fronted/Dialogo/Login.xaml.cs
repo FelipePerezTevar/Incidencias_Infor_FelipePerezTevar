@@ -29,6 +29,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private ProfesorServicio profServ;
         private MVProfesor mvProf;
 
+        /// <summary>
+        /// Compruba si se ha obtenido la conexión con la base de datos
+        /// e inicializa las variable de ProfesorServicio y MVProfesor
+        /// </summary>
         public Login()
         {
             InitializeComponent();
@@ -42,6 +46,11 @@ namespace Incidencias_Infor.Fronted.Dialogo
             mvProf = new MVProfesor(inciEnt);
         }
 
+        /// <summary>
+        /// Comprueba que el usuario y la contraseña corresponden
+        /// con un profesor de la base de datos, y le permite entrar
+        /// en la aplicación.
+        /// </summary>
         private async void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             
@@ -65,6 +74,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
+        /// <summary>
+        /// Realiza la conexión con la base de datos.
+        /// </summary>
+        /// <returns>
+        /// Devuelve true si se ha podido conectar con la base de datos y
+        /// devuelve false si ha habido un error al conectarse.
+        /// </returns>
         private bool conectar()
         {
             bool conecta = true;

@@ -40,6 +40,11 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uc);
         }
 
+        /// <summary>
+        /// Coge los permisos que tiene el rol del profesor que se registra
+        /// y dependiendo de los que tenga mostrará unos menús u otros.
+        /// </summary>
+
         public void comprobarPermiso()
         {
             foreach(permiso permi in profLogin.rol1.permiso)
@@ -67,12 +72,21 @@ namespace Incidencias_Infor
             }
         }
 
+        /// <summary>
+        /// Abre la ventana de edición de incidencias vacia, para poder 
+        /// crear una nueva incidencia.
+        /// </summary>
+        
         private void menuNuevo_Click(object sender, RoutedEventArgs e)
         {
             DialogoIncidencias diag = new DialogoIncidencias(inciEnt, profLogin,null, null, null);
             diag.ShowDialog();
         }
 
+        /// <summary>
+        /// Muestra en el centro de la ventana principal la lista
+        /// de incidencias registradas en la base de datos.
+        /// </summary>
         private void menuListar_Click(object sender, RoutedEventArgs e)
         {
             
@@ -82,7 +96,10 @@ namespace Incidencias_Infor
         }
 
         
-
+        /// <summary>
+        /// Muestra en el centro de la ventana principal un informe
+        /// con el gráfico de cuantas incidencias hay por departamento.
+        /// </summary>
         private void informeDpto_Click(object sender, RoutedEventArgs e)
         {
             UCInformeDepartamento uci = new UCInformeDepartamento();
@@ -90,6 +107,10 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uci);
         }
 
+        /// <summary>
+        /// Muestra en el centro de la ventana principal un informe
+        /// con el informe de cuantas incidencias de cada tipo de hardware.
+        /// </summary>
         private void informeTipoHw_Click(object sender, RoutedEventArgs e)
         {
             UCInformeTipoHardware uci = new UCInformeTipoHardware();
@@ -97,6 +118,11 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uci);
         }
 
+
+        /// <summary>
+        /// Muestra en el centro de la ventana principal un informe
+        /// con la cantidad de incedencias que ha habido cada mes.
+        /// </summary>
         private void informeMes_Click(object sender, RoutedEventArgs e)
         {
             UCInformeMes uci = new UCInformeMes();
@@ -104,6 +130,9 @@ namespace Incidencias_Infor
             gridCentral.Children.Add(uci);
         }
 
+        /// <summary>
+        /// Este menú permite cerrar la sesión.
+        /// </summary>
         private async void cerrarSesion_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -127,12 +156,21 @@ namespace Incidencias_Infor
             
         }
 
+        /// <summary>
+        /// Abre una ventana que permite cambiar la contraseña del 
+        /// profesor que se ha registrado.
+        /// </summary>
         private void cambioContrasenya_Click(object sender, RoutedEventArgs e)
         {
             CambioContrasenya diag = new CambioContrasenya(inciEnt, profLogin);
             diag.ShowDialog();
         }
 
+        /// <summary>
+        /// Abre una ventana que muestra los permisos que tiene el rol
+        /// del profesor registrado, además de poder editar que permisos tiene
+        /// cada rol.
+        /// </summary>
         private void permisos_Click(object sender, RoutedEventArgs e)
         {
             GestionPermisos diag = new GestionPermisos(inciEnt, profLogin );

@@ -26,10 +26,15 @@ namespace Incidencias_Infor.Fronted.Dialogo
     /// </summary>
     public partial class CambioContrasenya : MetroWindow
     {
-        //Hola
+        
         private incidencias_informaticasEntities inciEnt;
         private MVProfesor mvProf;
 
+        /// <summary>
+        /// Inicializa todo lo necesario para poder cambiar la contraseña
+        /// </summary>
+        /// <param name="ent">La conexión con la base de datos</param>
+        /// <param name="prof">El profesor que está usando la aplicación</param>
         public CambioContrasenya(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
@@ -41,6 +46,11 @@ namespace Incidencias_Infor.Fronted.Dialogo
             mvProf.profe = prof;
         }
 
+        /// <summary>
+        /// Comprueba que el usuario quiere cambiar la contraseña, 
+        /// a continuación comprueba que la contraseña cumple todos
+        /// los requisitos y finalmente sustituye la anterior por la actual.
+        /// </summary>
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -79,6 +89,13 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         }
 
+        /// <summary>
+        /// Comprueba si la nueva contraseña cumple con los requisitos o no.
+        /// </summary>
+        /// <returns>
+        /// Devuelve true si la nueva contraseña cumple todos los requisitos
+        /// Devuelve false si no cumple todos los requisitos
+        /// </returns>
         private bool comprobarContrasenya()
         {
             bool correcto = false;
@@ -136,6 +153,11 @@ namespace Incidencias_Infor.Fronted.Dialogo
             return correcto;
         }
 
+        /// <summary>
+        /// Habilita el segundo campo de contraseña cuando el campo
+        /// tiene contenido
+        /// </summary>
+
         private void passNueva_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(passNueva.Password))
@@ -149,6 +171,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
+        /// <summary>
+        /// Habilita el botón para cambiar de contraseña
+        /// cuando los dos campos contraseña no sean nulos
+        /// </summary>
         private void passDoble_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if(!string.IsNullOrEmpty(passNueva.Password) || !string.IsNullOrEmpty(passDoble.Password)){

@@ -28,26 +28,32 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private MVRol mvrol;
         private profesor profe;
         
-
+        /// <summary>
+        /// Inicializa todo para el correcto funcionamiento 
+        /// de la ventana.
+        /// </summary>
+        /// <param name="ent">La conexión con la base de datos</param>
+        /// <param name="prof">El profesor que está utilizando la aplicación</param>
         public GestionPermisos(incidencias_informaticasEntities ent, profesor prof)
         {
             InitializeComponent();
             inciEnt = ent;
             profe = prof;
             mvrol = new MVRol(inciEnt);
-            inicializa();
+            mvrol.rolSel = profe.rol1;
             DataContext = mvrol;
             
             
 
         }
 
-        private void inicializa()
-        {
-            mvrol.rolSel = profe.rol1;
-            
-        }
-
+        
+        /// <summary>
+        /// Dependiendo del estado en que se encuentre el botón hará lo siguiente:
+        /// Dejar el modo de visualización y pasar al modo de edición.
+        /// Guardar los cambios realizados en un solo permiso y volver al modo de 
+        /// visualización.
+        /// </summary>
         private async void BtnEditarPermiso_Click(object sender, RoutedEventArgs e)
         {
 
@@ -101,10 +107,14 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
 
+        /// <summary>
+        /// Llena las listas de los listBox con los permisos correspondientes.
+        /// </summary>
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-            var pedro = new List<permiso>();
+            var listaAuxiliar = new List<permiso>();
             mvrol.llenarListaPermiso();
             mvrol.ListRolPermiso = mvrol.rolSel.permiso.ToList();
 
@@ -112,16 +122,20 @@ namespace Incidencias_Infor.Fronted.Dialogo
             {
                 if (mvrol.ListRolPermiso.Contains(permi))
                 {
-                    pedro.Add(permi);
+                    listaAuxiliar.Add(permi);
                 }
             }
 
-            foreach (permiso permi in pedro)
+            foreach (permiso permi in listaAuxiliar)
             {
                 mvrol.ListPermiso.Remove(permi);
             }
         }
 
+        /// <summary>
+        /// Pregunta al usuario si quiere deshacer los cambios y
+        /// si la respuesta es afirmativa, los deshace
+        /// </summary>
         private async void BtnDeshacer_Click(object sender, RoutedEventArgs e)
         {
             var mySettings = new MetroDialogSettings()
@@ -149,6 +163,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
         }
 
+        /// <summary>
+        /// Quita el permiso seleccionado de la lista del rol.
+        /// </summary>
         private void btnQuitar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -176,6 +193,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             
         }
 
+        /// <summary>
+        /// Quita todos los permisos del rol.
+        /// </summary>
         private void btnQuitarTodos_Click(object sender, RoutedEventArgs e)
         {
             var listaPermiso = new List<permiso>();
@@ -202,6 +222,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             mvrol.ListPermiso = listaPermiso;
         }
 
+        /// <summary>
+        /// Añade un permiso a la lista del rol.
+        /// </summary>
         private void btnAnyadir_Click(object sender, RoutedEventArgs e)
         {
             if (mvrol.permiOri.codigo != 0)
@@ -227,7 +250,9 @@ namespace Incidencias_Infor.Fronted.Dialogo
             }
                
         }
-
+        /// <summary>
+        /// Añade todos los permisos al rol
+        /// </summary>
         private void btnAnyadirTodos_Click(object sender, RoutedEventArgs e)
         {
 

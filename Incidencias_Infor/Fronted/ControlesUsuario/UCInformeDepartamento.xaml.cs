@@ -28,6 +28,10 @@ namespace Incidencias_Infor.Fronted.ControlesUsuario
             cargarInforme();
         }
 
+        /// <summary>
+        /// Carga el gráfico de cuantas incidencias ha habido
+        /// por deparatamento
+        /// </summary>
         private void cargarInforme()
         {
             try

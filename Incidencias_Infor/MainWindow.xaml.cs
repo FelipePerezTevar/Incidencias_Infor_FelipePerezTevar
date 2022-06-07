@@ -58,7 +58,7 @@ namespace Incidencias_Infor
 
                     
 
-                    case 6:
+                    case 5:
                         menuInformes.Visibility = Visibility.Visible;
                         break;
                 };

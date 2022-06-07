@@ -36,8 +36,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
         private bool tipoware = true;
         private bool guardado = false;
         private bool editar = false;
-        private bool quiere = false;
+        private bool quiere;
         private bool garantia;
+        
+
         public DialogoIncidencias(incidencias_informaticasEntities ent, profesor prof, incidencia inc, hardware h, software s)
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
             DataContext = mvInci;
             this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(mvInci.OnErrorEvent));
             mvInci.btnGuardar = btnAceptar;
+            
             
             inicializa();
             
@@ -69,9 +72,10 @@ namespace Incidencias_Infor.Fronted.Dialogo
 
         private async void quiereEditar()
         {
-            if (mvInci.inciNueva.comunicado == 0 && mvInci.inciNueva.profesor1.Equals(profLogin))
+            if (inci.comunicado == 0 && inci.profesor1.Equals(profLogin))
             {
-                if (mvInci.inciNueva.profesor2.Equals(profLogin))
+
+                if (inci.profesor2.Equals(profLogin) && tienePermisoGestion())
                 {
                     var mySettings = new MetroDialogSettings()
                     {
@@ -88,15 +92,40 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     {
                         quiere = true;
                     }
+                    
+                    if(result == MessageDialogResult.Negative)
+                    {
+                        quiere = false;
+                    }
                 }
                 else
                 {
                     quiere = true;
                 }
             }
+
+            adaptarInterfaz();
         }
 
-        private void inicializa()
+        private bool tienePermisoGestion()
+        {
+
+            bool tiene = false;
+            var lista = inci.profesor1.rol1.permiso;
+
+            foreach(permiso permi in lista)
+            {
+                if(permi.codigo == 3)
+                {
+                    tiene = true;
+                }
+            }
+
+            return tiene;
+
+        }
+
+        private  void inicializa()
         {
             mvHard = new MVHardware(inciEnt);
             mvSoft = new MVSoftware(inciEnt);
@@ -120,9 +149,6 @@ namespace Incidencias_Infor.Fronted.Dialogo
                 mvInci.inciNueva = inci;
                 mvInci.num = 1;
 
-                quiereEditar();
-
-
                 if (mvInci.inciNueva.comunicado == 0 )
                 {
                     checkComunicado.IsChecked = false;
@@ -132,59 +158,58 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     checkComunicado.IsChecked = true;
                 }
 
-                if(quiere == false)
-                {
-                    checkCambioware.IsEnabled = false;
-                    DateIncio.IsEnabled = false;
-                    comboLugar.IsEnabled = false;
-                    txtDescripcion.IsEnabled = false;
-
-                    if (hard != null)
-                    {
-                        mvInci.hardNuevo = hard;
-                        txtNumSerie.IsEnabled = false;
-                        txtModelo.IsEnabled = false;
-                        checkGarantia.IsEnabled = false;
-                        comboTipoHW.IsEnabled = false;
-                        checkCambioware.IsChecked = false;
-                    }
-                    else
-                    {
-                        mvInci.softNuevo = soft;
-                        txtSoftNombre.IsEnabled = false;
-                        txtSoftVersion.IsEnabled = false;
-                        checkCambioware.IsChecked = true;
-                    }
-                }
-                else
-                {
-                    borderAdmin.Visibility = Visibility.Collapsed;
-                    checkComunicado.IsChecked = false;
-                    mvInci.num = 0;
-                    checkCambioware.Visibility = Visibility.Collapsed;
-
-                    if(hard != null)
-                    {
-                        mvInci.hardNuevo = hard;
-                    }
-                    else
-                    {
-                        mvInci.softNuevo = soft;
-                    }
-                }
-                    
-
-                    
-                
+                quiereEditar();
+                  
                 editar = true;
 
             }
 
-            
+        }
 
-            
-            
+        private void adaptarInterfaz()
+        {
+            if (quiere == false)
+            {
+                checkCambioware.IsEnabled = false;
+                DateIncio.IsEnabled = false;
+                comboLugar.IsEnabled = false;
+                txtDescripcion.IsEnabled = false;
 
+                if (hard != null)
+                {
+                    mvInci.hardNuevo = hard;
+                    txtNumSerie.IsEnabled = false;
+                    txtModelo.IsEnabled = false;
+                    checkGarantia.IsEnabled = false;
+                    comboTipoHW.IsEnabled = false;
+                    checkCambioware.IsChecked = false;
+                }
+                else
+                {
+                    mvInci.softNuevo = soft;
+                    txtSoftNombre.IsEnabled = false;
+                    txtSoftVersion.IsEnabled = false;
+                    checkCambioware.IsChecked = true;
+                }
+            }
+            else
+            {
+                borderAdmin.Visibility = Visibility.Collapsed;
+                checkComunicado.IsChecked = false;
+                mvInci.num = 0;
+                checkCambioware.Visibility = Visibility.Collapsed;
+
+                if (hard != null)
+                {
+                    mvInci.hardNuevo = hard;
+                    checkCambioware.IsChecked = false;
+                }
+                else
+                {
+                    mvInci.softNuevo = soft;
+                    checkCambioware.IsChecked = true;
+                }
+            }
         }
         //Este método comprueba y guarda las incidencias en la base de datos
         private async void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -339,62 +364,65 @@ namespace Incidencias_Infor.Fronted.Dialogo
                     MessageDialogResult result = await this.ShowMessageAsync("Lincidencias warning", "¿Quieres borrar este registro?",
                                     MessageDialogStyle.AffirmativeAndNegative, mySettings);
 
-                    if (tipoware == false)
+                    
+
+                    if (result == MessageDialogResult.Affirmative)
                     {
-                        mvSoft.wareNuevo = mvInci.softNuevo;
-
-                         
-
-                        if (result == MessageDialogResult.Affirmative)
-                        {
-                            borrarWare = mvSoft.borrar;
-                        }
-                        else
-                        {
-                            borrarWare = false;
-                        }
-
-                        
+                        borrarInci = mvInci.borrar;
                     }
                     else
                     {
-
-                        mvHard.wareNuevo = mvInci.hardNuevo;
-
-                        if(result == MessageDialogResult.Affirmative)
-                        {
-                            borrarWare = mvHard.borrar;
-                        }
-                        else
-                        {
-                            borrarWare = false;
-                        }
-                        
+                        borrarInci = false;
                     }
 
-                    if (borrarWare)
+
+
+                    if (borrarInci)
                     {
 
-                        if (result == MessageDialogResult.Affirmative){
-                            borrarInci = mvInci.borrar;
+                        if (tipoware == false)
+                        {
+                            mvSoft.wareNuevo = mvInci.softNuevo;
+
+
+
+                            if (result == MessageDialogResult.Affirmative)
+                            {
+                                borrarWare = mvSoft.borrar;
+                            }
+                            else
+                            {
+                                borrarWare = false;
+                            }
+
+
                         }
                         else
                         {
-                            borrarInci = false;
+
+                            mvHard.wareNuevo = mvInci.hardNuevo;
+
+                            if (result == MessageDialogResult.Affirmative)
+                            {
+                                borrarWare = mvHard.borrar;
+                            }
+                            else
+                            {
+                                borrarWare = false;
+                            }
+
                         }
 
-                        
-
-                        if (borrarInci)
+                        if (borrarWare)
                         {
+
                             await this.ShowMessageAsync("GESTIÓN DE INCIDENCIAS", "Se ha borrado la incidencia actual");
                             this.Close();
+
                         }
-                        
+
                     }
 
-                    
-                    
                 }
                 else
                 {

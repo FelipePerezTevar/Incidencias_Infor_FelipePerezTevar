@@ -40,13 +40,29 @@ namespace Incidencias_Infor.Backend.Servicio
         public DateTime getFechaInicio()
         {
             incidencia inci = contexto.Set<incidencia>().OrderBy(i => i.fecha_introduccion).FirstOrDefault();
-            return (DateTime)inci.fecha_introduccion;
+            if(inci != null)
+            {
+                return (DateTime)inci.fecha_introduccion;
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+            
         }
 
         public DateTime getFechaFinal()
         {
             incidencia inci = contexto.Set<incidencia>().OrderByDescending(i => i.fecha_introduccion).FirstOrDefault();
-            return (DateTime)inci.fecha_introduccion;
+            if (inci != null)
+            {
+                return (DateTime)inci.fecha_introduccion;
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+            
         }
     }
 }

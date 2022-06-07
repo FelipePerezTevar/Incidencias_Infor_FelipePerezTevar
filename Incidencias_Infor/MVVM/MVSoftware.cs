@@ -62,6 +62,7 @@ namespace Incidencias_Infor.MVVM
             finalSeleccionado = inciServ.getFechaFinal();
         }
 
+        public List<tipohw> listTipo { get { return null; } }
         public List<software> ListWare { get { return softServ.getAll().ToList(); } }
 
         public List<estado> listEstado { get { return estServ.getAll().ToList(); } }
@@ -72,8 +73,10 @@ namespace Incidencias_Infor.MVVM
 
         public DateTime inicioSeleccionado { get { return fechaInicio; } set { fechaInicio = value; NotifyPropertyChanged(nameof(inicioSeleccionado));} }
         public DateTime finalSeleccionado { get { return fechaFinal; } set { fechaFinal = value; NotifyPropertyChanged(nameof(finalSeleccionado)); } }
-        // public estado estadoSeleccionado { get { return Estado; } set { Estado = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+        
         public profesor profUsuario { get { return prof; } set { prof = value; NotifyPropertyChanged(nameof(wareNuevo)); } }
+
+        public tipohw tipoSeleccionado { get { return null; }  set { } }
 
         public ListCollectionView ListWare2 { get { return listaWare; } }
 

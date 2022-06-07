@@ -50,6 +50,6 @@
         </PasswordBox>
 
         <Button Content="Cambiar" Grid.Row="3" Width="100" HorizontalAlignment="Right" Margin="5,25,20,5"
-                Click="Button_Click" IsEnabled="False" x:Name="btnCambiar"/>
+                Click="Button_Click" IsEnabled="False" x:Name="btnCambiar" IsDefault="true"/>
     </Grid>
 </mah:MetroWindow>

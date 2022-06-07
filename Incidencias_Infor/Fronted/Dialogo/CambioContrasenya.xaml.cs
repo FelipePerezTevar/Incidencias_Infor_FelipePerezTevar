@@ -45,7 +45,7 @@ namespace Incidencias_Infor.Fronted.Dialogo
         {
             var mySettings = new MetroDialogSettings()
             {
-                AffirmativeButtonText = "Borrar",
+                AffirmativeButtonText = "Cambiar",
                 NegativeButtonText = "Volver",
                 AnimateShow = true,
                 AnimateHide = false
@@ -106,17 +106,17 @@ namespace Incidencias_Infor.Fronted.Dialogo
                             {
                                 int result = Convert.ToInt32(characters.GetValue(i));
 
-                                if (result > 48 && result < 57)
+                                if (result >= 48 && result <= 57)
                                 {
                                     numero = true;
                                 }
 
-                                if (result > 65 && result < 90)
+                                if (result >= 65 && result <= 90)
                                 {
                                     letraMas = true;
                                 }
 
-                                if (result > 97 && result < 122)
+                                if (result >= 97 && result <= 122)
                                 {
                                     letraMen = true;
                                 }

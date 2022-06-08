@@ -42,7 +42,15 @@ namespace Incidencias_Infor.Backend.Servicio
             incidencia inci = contexto.Set<incidencia>().OrderBy(i => i.fecha_introduccion).FirstOrDefault();
             if(inci != null)
             {
-                return (DateTime)inci.fecha_introduccion;
+                if(inci.fecha_introduccion != null)
+                {
+                    return (DateTime)inci.fecha_introduccion;
+                }
+                else
+                {
+                    return DateTime.Now;
+                }
+                
             }
             else
             {

@@ -336,7 +336,11 @@ namespace Incidencias_Infor.Fronted.Dialogo
                                         if (hardGuarda)
                                         {
                                             guardado = true;
-                                            mvInci.inciNueva = null;
+                                            
+                                            mvInci.inciNueva = new incidencia();
+                                            mvInci.hardNuevo = new hardware();
+                                            mvInci.softNuevo = new software();
+                                            
                                         }
                                         else
                                         {

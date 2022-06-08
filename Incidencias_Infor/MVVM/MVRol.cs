@@ -26,6 +26,10 @@ namespace Incidencias_Infor.MVVM
             servicio = rolServ;
         }
 
+        /// <summary>
+        /// Inicializa todo lo necesario para 
+        /// conectar correctamente el modelo con la vista
+        /// </summary>
         private void inicializa()
         {
             rolServ = new RolServicio(inciEnt);
@@ -37,22 +41,52 @@ namespace Incidencias_Infor.MVVM
             permisoOri = new permiso();
         }
 
+        /// <summary>
+        /// Llena la lista del listbox de edición con
+        /// todos los permisos que hay
+        /// </summary>
         public void llenarListaPermiso()
         {
             ListPermiso = permiServ.getAll().ToList();
         }
 
+        /// <summary>
+        /// Lista con todos los roles que hay
+        /// </summary>
         public List<rol> listRoles { get { return rolServ.getAll().ToList(); } }
+
+        /// <summary>
+        /// Es el objeto seleccionado del combo con los roles
+        /// </summary>
         public rol rolSel { get { return rol; } set { rol = value; NotifyPropertyChanged(nameof(rolSel)); } }
+
+        /// <summary>
+        /// Es el objeto seleccionado del listbox con los permisos del rol
+        /// </summary>
         public permiso permiRol { get { return permisoRol; } set { permisoRol = value; NotifyPropertyChanged(nameof(permiRol)); } }
+
+        /// <summary>
+        /// Es el objeto seleccionado del listbox con los permisos que no tiene el rol
+        /// </summary>
         public permiso permiOri { get { return permisoOri; } set { permisoOri = value; NotifyPropertyChanged(nameof(permisoOri)); } }
+
+        /// <summary>
+        /// Es la lista con los permisos que tiene el rol
+        /// </summary>
         public List<permiso> ListRolPermiso { get { return listPermiRol; } set { listPermiRol = value; NotifyPropertyChanged(nameof(ListRolPermiso)); } }
+
+        /// <summary>
+        /// Es la lista con los permisos que no tiene el rol
+        /// </summary>
         public List<permiso> ListPermiso
         {
             get { return listPermi; }
             set { listPermi = value; NotifyPropertyChanged(nameof(ListPermiso)); }
         }
 
+        /// <summary>
+        /// Permite la edicion del rol
+        /// </summary>
         public bool editar { get { return update(rolSel); } }
     }
 }

@@ -290,6 +290,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Recursos\Iconos\lincy incidencias.png" />
+    <Resource Include="Recursos\Iconos\lincy permisos.png" />
     <Resource Include="Recursos\Iconos\lincy contrasenya.png" />
     <Resource Include="Recursos\Iconos\lincidencias v2.0.png" />
     <EmbeddedResource Include="Informes\CRDepartamento.rpt">
@@ -352,9 +354,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\lincidencias.png" />
-  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

@@ -37,10 +37,13 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
+                <!--Imagen-->
+                <Image Source="/Recursos/Iconos/lincy incidencias.png" Width="50"/>
+
                 <!--Inicio-->
-                <TextBlock Text="INCIDENCIA" FontSize="14" Margin="10,10,10,40" 
-                   Foreground="Firebrick" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
-                   VerticalAlignment="Top" FontWeight="Bold"/>
+                <TextBlock Text="INCIDENCIA" FontSize="17"  
+                   Foreground="Firebrick" Grid.Column="1" Grid.Row="0" HorizontalAlignment="center"
+                   VerticalAlignment="Center"  FontWeight="Bold"/>
 
                 <!--Fecha inicio-->
                 <TextBlock Text="Fecha Inicio" Grid.Row="1" Grid.Column="0" VerticalAlignment="top"
